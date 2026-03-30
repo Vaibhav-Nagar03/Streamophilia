@@ -133,9 +133,11 @@
                 <a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-colors duration-300"
                     href="#">Browse</a>
                 <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="#">Esports</a>
+                    href="esports.html">Esports</a>
                 <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
                     href="#">Music</a>
+                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
+                    href="tournaments.html">Tournaments</a>
             </nav>
         </div>
         <div class="flex-1 max-w-xl mx-12">
@@ -148,6 +150,7 @@
             </div>
         </div>
         <div class="flex items-center gap-x-6">
+            <button class="top-dashboard-btn flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-lg border border-primary/20 hover:border-primary/50 text-primary transition-colors active:scale-95" title="Your Wallet"><span class="material-symbols-outlined text-sm">account_balance_wallet</span><span class="text-xs font-bold"><span id="wallet-balance">500</span> COINS</span></button>
             <!-- Notification Button + Panel -->
             <div class="relative" id="notif-wrapper">
                 <button id="notif-btn" class="relative text-on-surface-variant hover:text-primary transition-colors active:scale-95">
@@ -387,7 +390,7 @@
                         <span>Categories</span>
                     </a>
                     <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
-                        href="#">
+                        href="esports.html">
                         <span class="material-symbols-outlined text-xl">sports_esports</span>
                         <span>Esports</span>
                     </a>
@@ -417,42 +420,159 @@
         <main class="flex-1 lg:ml-64 p-8 min-h-screen">
             <!-- Featured Carousel Section -->
             <section class="mb-14">
-                <div class="relative w-full aspect-[21/9] rounded-xl overflow-hidden shadow-2xl group">
-                    <img class="w-full h-full object-cover"
-                        data-alt="High-fidelity cinematic game environment background"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyBm0cbMNi2NltOSSCAeypN_eftkFRwbynNTpieSqOdcqf8L5qWui7mictaqvWrcLSRLC2ZTuxx7qamqzCfNo5N4kA12SPcYo5qdaRovMNjKY8kiyoAHNxtkBwFLclInKBPUe-WsFt8MX8ttp2YKLwNeEjFZGxYSIl2L-Cw8Am5285AL0UlsFijzhx_z7ISaUtOW1CDRkUywfr5vX9mhSXs5Fubgma1NhBl0etsCnIG1skRrBYZxYypD6fNwEeC7ijp8ZNuBKH_tw" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
-                    <div class="absolute bottom-10 left-10 max-w-2xl">
-                        <div class="flex items-center gap-3 mb-4">
-                            <span
-                                class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
-                            <span class="text-secondary font-headline font-bold text-sm tracking-wider">CHAMPIONSHIP
-                                SERIES 2024</span>
-                        </div>
-                        <h1 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">Mastering the
-                            Abyss: Invitational Grand Finals</h1>
-                        <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">Watch the
-                            world's top tactical players compete for a $2M prize pool in the most intense tournament of
-                            the season.</p>
-                        <div class="flex items-center gap-4">
-                            <a href="two.html"
-                                class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">
-                                Watch Now
-                            </a>
-                            <button id="add-schedule-btn"
-                                class="px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">
-                                Add to Schedule
-                            </button>
+                <div id="hero-carousel" class="relative w-full aspect-[21/9] rounded-xl overflow-hidden shadow-2xl group">
+                    <!-- Slide 1 - Valorant -->
+                    <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100 z-10" data-slide="0">
+                        <img class="w-full h-full object-cover" alt="Valorant esports championship"
+                            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1920&h=820&fit=crop&q=90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
+                                <span class="text-secondary font-headline font-bold text-sm tracking-wider">VALORANT CHAMPIONS 2024</span>
+                            </div>
+                            <h2 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">Mastering the Abyss: Invitational Grand Finals</h2>
+                            <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">Watch the world's top tactical players compete for a $2M prize pool in the most intense tournament of the season.</p>
+                            <div class="flex items-center gap-4">
+                                <a href="stream.html" class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">Watch Now</a>
+                                <button class="add-schedule-btn px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">Add to Schedule</button>
+                            </div>
                         </div>
                     </div>
-                    <div class="absolute bottom-10 right-10 flex gap-2">
-                        <button
-                            class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low/80 backdrop-blur hover:bg-surface-container-highest transition-colors">
+                    <!-- Slide 2 - Chess -->
+                    <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" data-slide="1">
+                        <img class="w-full h-full object-cover" alt="Chess grandmaster championship"
+                            src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=1920&h=820&fit=crop&q=90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
+                                <span class="text-secondary font-headline font-bold text-sm tracking-wider">GRANDMASTER INVITATIONAL</span>
+                            </div>
+                            <h2 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">Grandmaster Rapid Blitz — Road to 3000 ELO</h2>
+                            <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">The greatest chess minds battle in a speed chess marathon. Every second counts in this electrifying format.</p>
+                            <div class="flex items-center gap-4">
+                                <a href="stream.html" class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">Watch Now</a>
+                                <button class="add-schedule-btn px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">Add to Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 3 - PUBG PC -->
+                    <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" data-slide="2">
+                        <img class="w-full h-full object-cover" alt="PUBG PC battle royale action"
+                            src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=1920&h=820&fit=crop&q=90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
+                                <span class="text-secondary font-headline font-bold text-sm tracking-wider">PUBG GLOBAL CHAMPIONSHIP</span>
+                            </div>
+                            <h2 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">Solo vs Squad — 30 Kill Challenge PUBG PC</h2>
+                            <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">Drop into Erangel with the most fearless players. High-kill solo squads with non-stop intensity.</p>
+                            <div class="flex items-center gap-4">
+                                <a href="stream.html" class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">Watch Now</a>
+                                <button class="add-schedule-btn px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">Add to Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 4 - Minecraft -->
+                    <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" data-slide="3">
+                        <img class="w-full h-full object-cover" alt="Minecraft survival world"
+                            src="https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=1920&h=820&fit=crop&q=90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
+                                <span class="text-secondary font-headline font-bold text-sm tracking-wider">MINECRAFT CHAMPIONSHIP</span>
+                            </div>
+                            <h2 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">Hardcore Survival Day 500 — Mega Castle Build</h2>
+                            <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">500 days of hardcore survival. Watch the most epic castle ever built in Minecraft, block by block.</p>
+                            <div class="flex items-center gap-4">
+                                <a href="stream.html" class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">Watch Now</a>
+                                <button class="add-schedule-btn px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">Add to Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 5 - Call of Duty -->
+                    <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" data-slide="4">
+                        <img class="w-full h-full object-cover" alt="Call of Duty warzone action"
+                            src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=1920&h=820&fit=crop&q=90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
+                                <span class="text-secondary font-headline font-bold text-sm tracking-wider">CALL OF DUTY LEAGUE</span>
+                            </div>
+                            <h2 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">Warzone Ranked — Dropping 40 Bombs All Night</h2>
+                            <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">High-octane Warzone gameplay. Watch elite operators dominate the battlefield with jaw-dropping killstreaks.</p>
+                            <div class="flex items-center gap-4">
+                                <a href="stream.html" class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">Watch Now</a>
+                                <button class="add-schedule-btn px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">Add to Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 6 - Clash of Clans -->
+                    <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" data-slide="5">
+                        <img class="w-full h-full object-cover" alt="Clash of Clans strategy battle"
+                            src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=1920&h=820&fit=crop&q=90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
+                                <span class="text-secondary font-headline font-bold text-sm tracking-wider">CLASH WORLDS 2024</span>
+                            </div>
+                            <h2 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">TH16 Legend League Push — Max Base Attacks</h2>
+                            <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">Top-tier Clash of Clans strategy. Watch the best attackers crush max bases in Legend League.</p>
+                            <div class="flex items-center gap-4">
+                                <a href="stream.html" class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">Watch Now</a>
+                                <button class="add-schedule-btn px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">Add to Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 7 - Albion Online -->
+                    <div class="carousel-slide absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0 z-0" data-slide="6">
+                        <img class="w-full h-full object-cover" alt="Albion Online medieval PvP"
+                            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1920&h=820&fit=crop&q=90" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
+                        <div class="absolute bottom-10 left-10 max-w-2xl">
+                            <div class="flex items-center gap-3 mb-4">
+                                <span class="px-3 py-1 bg-error text-on-error font-bold text-xs rounded-sm tracking-widest">LIVE</span>
+                                <span class="text-secondary font-headline font-bold text-sm tracking-wider">ALBION SEASON FINALS</span>
+                            </div>
+                            <h2 class="text-5xl font-headline font-bold text-on-surface mb-4 leading-tight">ZvZ Massive Guild War — 200v200 Albion Legend</h2>
+                            <p class="text-on-surface-variant font-body text-lg mb-8 max-w-lg leading-relaxed">Witness the largest guild wars in Albion history. Hundreds of players clash in real-time medieval combat.</p>
+                            <div class="flex items-center gap-4">
+                                <a href="stream.html" class="px-8 py-3 bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed font-bold rounded-md hover:shadow-[0_0_25px_rgba(207,150,255,0.4)] transition-all active:scale-95 inline-block">Watch Now</a>
+                                <button class="add-schedule-btn px-8 py-3 bg-surface-container-highest/60 backdrop-blur-md text-on-surface font-bold rounded-md border border-outline-variant/20 hover:bg-surface-container-highest transition-all active:scale-95">Add to Schedule</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="absolute bottom-10 right-10 flex items-center gap-3 z-30">
+                        <!-- Dot Indicators -->
+                        <div id="carousel-dots" class="flex items-center gap-2 mr-2">
+                            <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-secondary transition-all duration-300 scale-110" data-dot="0"></button>
+                            <button class="carousel-dot w-2 h-2 rounded-full bg-on-surface-variant/40 hover:bg-on-surface-variant/70 transition-all duration-300" data-dot="1"></button>
+                            <button class="carousel-dot w-2 h-2 rounded-full bg-on-surface-variant/40 hover:bg-on-surface-variant/70 transition-all duration-300" data-dot="2"></button>
+                            <button class="carousel-dot w-2 h-2 rounded-full bg-on-surface-variant/40 hover:bg-on-surface-variant/70 transition-all duration-300" data-dot="3"></button>
+                            <button class="carousel-dot w-2 h-2 rounded-full bg-on-surface-variant/40 hover:bg-on-surface-variant/70 transition-all duration-300" data-dot="4"></button>
+                            <button class="carousel-dot w-2 h-2 rounded-full bg-on-surface-variant/40 hover:bg-on-surface-variant/70 transition-all duration-300" data-dot="5"></button>
+                            <button class="carousel-dot w-2 h-2 rounded-full bg-on-surface-variant/40 hover:bg-on-surface-variant/70 transition-all duration-300" data-dot="6"></button>
+                        </div>
+                        <button id="carousel-prev"
+                            class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low/80 backdrop-blur hover:bg-surface-container-highest transition-colors active:scale-95">
                             <span class="material-symbols-outlined">chevron_left</span>
                         </button>
-                        <button
-                            class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low/80 backdrop-blur hover:bg-surface-container-highest transition-colors">
+                        <button id="carousel-next"
+                            class="w-12 h-12 flex items-center justify-center rounded-full bg-surface-container-low/80 backdrop-blur hover:bg-surface-container-highest transition-colors active:scale-95">
                             <span class="material-symbols-outlined">chevron_right</span>
                         </button>
                     </div>
@@ -477,12 +597,54 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-12">
-                    <!-- Stream Card 1 -->
+                    <!-- Stream Card 1 - Chess -->
                     <div class="group cursor-pointer">
                         <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                data-alt="Competitive gameplay of a tactical first-person shooter"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBOAzwlqJCCZh4tqdeBQtV_K4P_kiOLDhVlmtpMATR8TQdiNDXB5emcFyHadgqiZZH6lBg4qg91Zgr1rjd9bQU8ekEpDgj3ualmBsjb4ehpSvtnIeYzym2gGVDL0WVF74w1LsNbvMZlBcAr47Q3uCql5nq8ZR0AX3dGVn2TX0NoEZZptGNMU_UWfevipN944jvU7LxxoIavUMP01WxiI46jHaLN2gpJa-9UrmQD-Pk0atDjbWErSAhFPpuZeEJKrECCmuirupqIZ4" />
+                                alt="Chess competitive gameplay"
+                                src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=640&h=360&fit=crop&q=80" />
+                            <div
+                                class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
+                                <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
+                            </div>
+                            <div
+                                class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
+                                18.3k viewers
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20">
+                                    <img class="w-full h-full object-cover"
+                                        alt="GrandMaster_Magnus avatar"
+                                        src="https://images.unsplash.com/photo-1535930749574-1399327ce78f?w=100&h=100&fit=crop&q=80" />
+                                </div>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <h3
+                                    class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
+                                    Grandmaster Rapid Blitz — Road to 3000 ELO!</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">GrandMaster_Magnus</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">CHESS</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Strategy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stream Card 2 - Valorant -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Valorant tactical FPS gameplay"
+                                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=640&h=360&fit=crop&q=80" />
                             <div
                                 class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
                                 <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
@@ -501,7 +663,7 @@
                             <div class="flex-shrink-0">
                                 <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20">
                                     <img class="w-full h-full object-cover"
-                                        data-alt="Male streamer avatar in neon lighting"
+                                        alt="ViperScope avatar"
                                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRl_N-XFeKwtYd6QaNgpupYYtVkYjmNQX0HEZ3juYEie-GiAg3e2U57V6uxL0eYqfHt4PLm8X_GfV8KiQAtPKPhV_MiyaBk0cPhes2PVj-rFGx6L7VEQNIHK6wF0ED4NktQUXSZzKQ0S3e4zKpTOQ2yzqtYzOafprdU5oK5uQfe7M1VfJrf_chH5WyOXH34rtplMaZk60k-n6vKOlelj2xsLMZeo1GPL_0Ex1t-f0KsiTcvZm_2ESWHsFdSO_ZbigzLXs_YV4YC34" />
                                 </div>
                             </div>
@@ -514,118 +676,217 @@
                                     <span
                                         class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">VALORANT</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">English</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">FPS</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Stream Card 2 -->
+                    <!-- Stream Card 3 - PUBG PC -->
                     <div class="group cursor-pointer">
                         <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                data-alt="Cyberpunk city environment in a video game"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJOVKiAzBnWCqFgKOuO6PHsqflbW-PZSpdemvfHqfQrGNp7_YvFYv2LltZP0nAbbbA1WSjTWuFaof3ycV9NpMcKtGj7gx6jwFNkuzHgAvAiSUvCaV64DEIE6QkEYNoEalrrQAzpktOev9-c3XPNbboqxryfk-a6l9pxxC7XOMlJO1ynOwFlBnXw0aZ5HNuQF-YV2FJp5s31h1foOCHc8NMir9pQXh0PQ608uDU8QocthgihKBAfsgkIHTTvZttT_7GBoO-v83LThE" />
+                                alt="PUBG PC battle royale gameplay"
+                                src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=640&h=360&fit=crop&q=80" />
                             <div
                                 class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
                                 <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
                             </div>
                             <div
                                 class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
-                                15.7k viewers
+                                31.5k viewers
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span>
                             </div>
                         </div>
                         <div class="flex gap-4">
                             <div class="flex-shrink-0">
                                 <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20">
                                     <img class="w-full h-full object-cover"
-                                        data-alt="Female streamer avatar with glasses"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdaeaBuyP8NsyHaN1F_b_LLC6Py5HWAb1dunqUtrMZO61Jr23QP5QVtWtTQGWoKnzru46ffSwQEcGJGFDHZdoHxOvoCdqFJ2LdQrtpQP0U0wFPZ7dg4Y9WDXttOsq41tM3fISCcuLPm7IKi4Hnd0AnnC3u3btFjEqheQ3b7o43_Zdmanw2ml-uhTp0A-QCjE0vLc3qLRiiUEurMyZN8y8f44k0MCOAjeM4M4RiUYta5ptt0yoGoaL74-giuIK6h9WO1CmnzSrYqCo" />
+                                        alt="BattleKing_X avatar"
+                                        src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop&q=80" />
                                 </div>
                             </div>
                             <div class="flex-1 overflow-hidden">
                                 <h3
                                     class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
-                                    Ranking up with Subs! !sub !join</h3>
-                                <p class="text-on-surface-variant text-sm font-medium mb-3">Lumina_Dev</p>
+                                    Solo vs Squad — 30 Kill Challenge PUBG PC</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">BattleKing_X</p>
                                 <div class="flex flex-wrap gap-2">
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Software</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">PUBG PC</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Chill</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Battle Royale</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Stream Card 3 -->
+                    <!-- Stream Card 4 - Clash of Clans -->
                     <div class="group cursor-pointer">
                         <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                data-alt="Colorful fantasy role playing game world"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS76bhuqee_Ee076XzCmEjMYsbOtpjnKMmhZO7Hj99PwJI3UCNxR0zWH36si8cDp11GedWThGR6hAdkpswyosIvPoaa6gLa3XA06Y9dSTvlz1VuIHg4tqNPUeAn17bCHAknBHnLkRcU4__yJYYufe2eFiTAQZ0g1SqbbUATHl95O49gqhTEtvoNve5u_HxtG3GT-gJtqAE04md8ancBrLYrNJSA3Tl8Fp3IZauYefAMp6FssWhRA9Tx3JySTFiN46DRcoHJ-G8R3M" />
+                                alt="Clash of Clans strategy gameplay"
+                                src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=640&h=360&fit=crop&q=80" />
                             <div
                                 class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
                                 <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
                             </div>
                             <div
                                 class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
-                                8.4k viewers
+                                12.8k viewers
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span>
                             </div>
                         </div>
                         <div class="flex gap-4">
                             <div class="flex-shrink-0">
                                 <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20">
                                     <img class="w-full h-full object-cover"
-                                        data-alt="Professional gamer portrait with headset"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuANOKMIQ0ezd4yMmcN8c1253CdjbU46dwJdxb6gtAZlaohmKJzz5arK9Opgbuxx_io7iUTpxMGGXxp73GcCTYSmZRMLCKAhpU-B6X9RoU_5gxg0IC1JuKiXLr_x2d7goJwzwY9VC0M_Edb68nbnRsGAxbQk19Oe4e7wRbvuErsAIFsbQcSsRWCbJ_tSqTOZaUh9nnqu2lPKtZi5jnBwwxUTsXmPkb66Yawt13E1-L8K_pIlK7giyOCg5vroUzH4-YvmveKVjEtk_1E" />
+                                        alt="ChiefDestroyer avatar"
+                                        src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&h=100&fit=crop&q=80" />
                                 </div>
                             </div>
                             <div class="flex-1 overflow-hidden">
                                 <h3
                                     class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
-                                    World First Raid Attempt - Tier 10</h3>
-                                <p class="text-on-surface-variant text-sm font-medium mb-3">Krona_Gaming</p>
+                                    TH16 Legend League Push — Max Base Attacks!</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">ChiefDestroyer</p>
                                 <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">CLASH OF CLANS</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Strategy</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stream Card 5 - Call of Duty -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Call of Duty intense warfare gameplay"
+                                src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=640&h=360&fit=crop&q=80" />
+                            <div
+                                class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
+                                <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
+                            </div>
+                            <div
+                                class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
+                                55.2k viewers
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20">
+                                    <img class="w-full h-full object-cover"
+                                        alt="WarzoneLegend avatar"
+                                        src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop&q=80" />
+                                </div>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <h3
+                                    class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
+                                    Warzone Ranked — Dropping 40 Bombs All Night!</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">WarzoneLegend</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">CALL OF DUTY</span>
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">FPS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stream Card 6 - Albion Online -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Albion Online medieval MMORPG gameplay"
+                                src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=640&h=360&fit=crop&q=80" />
+                            <div
+                                class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
+                                <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
+                            </div>
+                            <div
+                                class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
+                                8.7k viewers
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20">
+                                    <img class="w-full h-full object-cover"
+                                        alt="AlbionKnight avatar"
+                                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" />
+                                </div>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <h3
+                                    class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
+                                    ZvZ Massive Guild War — 200v200 Albion Legend!</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">AlbionKnight</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">ALBION ONLINE</span>
                                     <span
                                         class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">MMORPG</span>
-                                    <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Hardcore</span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- Stream Card 4 -->
+                    <!-- Stream Card 7 - Minecraft -->
                     <div class="group cursor-pointer">
                         <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                data-alt="Fast action sports game field"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbvJocSZNiizVNxOaUwJbDLBZ_DPIhLIv8JJtx6SvlBjeA5g3pJiOpOgmL8pmB2g4E2jMcT1Sy-Tdp76aq8MaC6mcC-4ubr987cV3siY-J1E0rY3dj9FnRljmmlEeJCWoBPd1h5AZ8UBV-Et6FkRs-eNS185vgcSl8J_k3v7m-o1sFk8lGnLqSqSC6-M2En7cmA25f2hk5-tTnHZOPFojRQpGT8EBj46qzvcf9wCnQiqKUoV4xBNxFkhKGM7ortz-Pq0j6eVX5An0" />
+                                alt="Minecraft creative survival gameplay"
+                                src="https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=640&h=360&fit=crop&q=80" />
                             <div
                                 class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
                                 <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
                             </div>
                             <div
                                 class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
-                                2.9k viewers
+                                24.6k viewers
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <span
+                                    class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span>
                             </div>
                         </div>
                         <div class="flex gap-4">
                             <div class="flex-shrink-0">
                                 <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20">
                                     <img class="w-full h-full object-cover"
-                                        data-alt="Streamer smiling in dark room with RGB"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1LpXV-CIES7ZdKPFtB5UI9c_I8AIYqG48NDHZUwZEkPG6FIB2tmzJY2pX_IreoJmO0hReihySVnuNHbB4xULBKhdMCCRqmLAIONBh499ZwQohf_AMgjhxhtoPtoI-GuNFhdzcqS3WTmvXMGtExCgBGC2IyCA7Iiqsohzr0qSl2D15anLOUubPozuyNM6cQvq1M8vngXMAZAD9TzBneWFc0ShreOQ1u8jpgBSi-DNkgxyP-sfUdUiWywKgLNnoPk2EDsHKtIDosIU" />
+                                        alt="BlockMaster_Pro avatar"
+                                        src="https://images.unsplash.com/photo-1599566150163-29194dcabd9c?w=100&h=100&fit=crop&q=80" />
                                 </div>
                             </div>
                             <div class="flex-1 overflow-hidden">
                                 <h3
                                     class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
-                                    New Season Gameplay &amp; Giveaway</h3>
-                                <p class="text-on-surface-variant text-sm font-medium mb-3">Turbo_Tom</p>
+                                    Hardcore Survival Day 500 — Mega Castle Build!</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">BlockMaster_Pro</p>
                                 <div class="flex flex-wrap gap-2">
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Sports</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">MINECRAFT</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Drops</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Survival</span>
                                 </div>
                             </div>
                         </div>
@@ -641,70 +902,76 @@
                     </div>
                 </div>
                 <div class="grid grid-cols-2 lg:grid-cols-6 gap-6">
-                    <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-xl aspect-square">
+                    <!-- Chess - Large Feature -->
+                    <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-xl aspect-square cursor-pointer">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Gaming hardware and tech setup"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3-vQpqy95e0BfgcQ6IJvnrxhTOWW_hKqtdeVLEvu2faiMukEbHr-AcjLANhTD8lP8lYaMIeYlymby19xiE60rYIIWguVSRqEBSIplIPPct5xFUWR8-N7tur55k_y8NvEJBbzFJJn-OS3pYKMom9W2zVmTX7xTkhkS5KfuQ0COgjKsZt8LlHSXbyxE-UdLrNBoC52onAjHIlQT-E_mQpL64ER4kR4VgvSyKeAwI4MBpJzpigKUtpZEoBXRs4xXZf2GrJGV4BRXCQA" />
+                            alt="Chess strategy game category"
+                            src="https://images.unsplash.com/photo-1586165368502-1bad197a6461?w=600&h=600&fit=crop&q=80" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-4 left-4">
-                            <h4 class="text-xl font-bold text-on-surface mb-1">Just Chatting</h4>
-                            <p class="text-secondary text-sm font-bold">1.2M Viewers</p>
+                            <h4 class="text-xl font-bold text-on-surface mb-1">Chess</h4>
+                            <p class="text-secondary text-sm font-bold">180k Viewers</p>
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
+                    <!-- Valorant -->
+                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="MOBA game character art"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVoxwlfPXe49dAHr8FG_nIO8kFshTLfr3rOdug9YBDCwj8Gmb68cMKExoSUYBMemDGbQgLyTiDgSW_irqCfIRz_Ib3KmzdJ_qXbDLTUg7ECWm-hKEdf_PFez67QLyGwNSoowOgZBPvjFsajnwU9tSHU0T41JrooeWnaflcOqYCW4HAGErJYrpjO55mDla7lZIJkaA5otXNllelclNXuvCOfuJicR-AxKRq6deaGlfblbnezZUIZjhIqeI3ZVHhfbVGLgc1KBI2Nos" />
+                            alt="Valorant FPS game category"
+                            src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=400&h=530&fit=crop&q=80" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
-                            <h4 class="text-sm font-bold text-on-surface mb-0.5">League of Legends</h4>
-                            <p class="text-on-surface-variant text-[10px] font-bold">450k Viewers</p>
+                            <h4 class="text-sm font-bold text-on-surface mb-0.5">Valorant</h4>
+                            <p class="text-on-surface-variant text-[10px] font-bold">520k Viewers</p>
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
+                    <!-- PUBG PC -->
+                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Retro gaming console"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5aescspRdJDJW-IgKQIp_74HTO4sTVr7GtFK3YWtFH9ozFedVJsLy4Hpx4laSlWfK4U-T1aHA4CLdET2Y9H4jch_wuWXy1gfI2Z8gMmBe2dSEOKgnKKRUe43Fkais3eY3EUdwsrGokhRs1jl8KNpKaNitMxElBX9_LM0BbMMzQd0o0RHHPWxwxWktixQ3lKCYzrK4SekqWY21WSVNKSlwyOBUl4Olcyqdtw23JDsEAk_xH85_eTCWx_ULmjh5Af5G7YQYQIIO1bY" />
+                            alt="PUBG PC battle royale category"
+                            src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=400&h=530&fit=crop&q=80" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
-                            <h4 class="text-sm font-bold text-on-surface mb-0.5">Retro Classics</h4>
-                            <p class="text-on-surface-variant text-[10px] font-bold">12k Viewers</p>
+                            <h4 class="text-sm font-bold text-on-surface mb-0.5">PUBG PC</h4>
+                            <p class="text-on-surface-variant text-[10px] font-bold">310k Viewers</p>
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
+                    <!-- Clash of Clans -->
+                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Battle royale map overhead"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZjXi8Ht6WzHsqab5Q5VKU7Bzuq28tv8tNl0HzYCfxPr7Hnufui3ZFY3ZaUpn6MeHXNRBax7HseDsibIh1Bh7fhLqz7F2SZMitPlVYghgrlRVwfP0pnDCbviZhY_uYLfvBkYdLr9VGX6iiHzBaWdJwzUaAUAgKsyriM9Bm7myjRUWibiFtXtkwKhCPneDcQmFh3io3nSOxGny451RMbHM_-E8NXv2AYFHW-MDbOXLe_9yWODHmEvPVcy4UFhL8MzTG5lsagtexjpQ" />
+                            alt="Clash of Clans mobile strategy category"
+                            src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=400&h=530&fit=crop&q=80" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
-                            <h4 class="text-sm font-bold text-on-surface mb-0.5">Battle Royale</h4>
-                            <p class="text-on-surface-variant text-[10px] font-bold">280k Viewers</p>
+                            <h4 class="text-sm font-bold text-on-surface mb-0.5">Clash of Clans</h4>
+                            <p class="text-on-surface-variant text-[10px] font-bold">95k Viewers</p>
                         </div>
                     </div>
-                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
+                    <!-- Call of Duty -->
+                    <div class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Artistic digital painting tools"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfe1O2CpYwMd8dCSxxSMGeiNtgkzyR8-hwstJkE0qhrswqGwCKec9CtsCGJVgircZDTqzbuoEVFbvE_LL33zMXz9w_UnnAu1kXIzaIAwgVzeSCSFZ6epsyIQN8bX8kKGXnCWRrHin8JJhP-kaHAqRIiIzu6K2xoXBULD-o7zhc04m1tdJ5ode84riIyR25doxpyUoCLwhCTXWQaN4v112-lMk0AMx60OcmvFFlJUTyvhUEglzsLdY8i46wTo2PKbyuAtu63gXJFeQ" />
+                            alt="Call of Duty FPS warfare category"
+                            src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=400&h=530&fit=crop&q=80" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
-                            <h4 class="text-sm font-bold text-on-surface mb-0.5">Creative Arts</h4>
-                            <p class="text-on-surface-variant text-[10px] font-bold">35k Viewers</p>
+                            <h4 class="text-sm font-bold text-on-surface mb-0.5">Call of Duty</h4>
+                            <p class="text-on-surface-variant text-[10px] font-bold">680k Viewers</p>
                         </div>
                     </div>
-                    <div class="col-span-2 group relative overflow-hidden rounded-xl aspect-video mt-auto">
+                    <!-- Albion Online & Minecraft -->
+                    <div class="col-span-2 group relative overflow-hidden rounded-xl aspect-video mt-auto cursor-pointer">
                         <div class="absolute inset-0 bg-gradient-to-br from-purple-900/40 to-cyan-900/40 z-10"></div>
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Neon gaming setup abstract"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRQ0ubn3XP98zTUuAekUo9KSdeUzX3ySr_F2THnkwT0Aapf0OpwES0IKGv5dKCoeluMIQhnma4rMDanmtLbxH0fjWUTWFHxv1Z4Qjsrblg9-_IddfK1PI5Tzs8yH3ePGcYTImawjH2FtN1ifQwHCq-2_TxbU8VEVzA8xAF7m7s5pTQFyIHmf_47O8cqUqze5bbS0wsj0Vv8oKsa0g15lNM9LKMs-nRdQd-dJ8FIv-hSiiU0rU1wz6kBGg3gGIHDRkzIO5cnIDwLn4" />
+                            alt="Albion Online and Minecraft gaming"
+                            src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&h=450&fit=crop&q=80" />
                         <div class="absolute inset-0 bg-black/40 z-20"></div>
                         <div class="absolute inset-0 flex flex-col items-center justify-center z-30 p-6 text-center">
-                            <h4 class="text-2xl font-headline font-bold text-on-surface mb-2">Discover More</h4>
-                            <p class="text-on-surface-variant text-sm mb-4">Explore thousands of niche communities</p>
+                            <h4 class="text-2xl font-headline font-bold text-on-surface mb-2">Albion Online & Minecraft</h4>
+                            <p class="text-on-surface-variant text-sm mb-4">Explore open-world sandbox adventures</p>
                             <button
                                 class="px-6 py-2 border-2 border-secondary text-secondary font-bold rounded-full hover:bg-secondary hover:text-on-secondary transition-all">Browse
                                 All</button>
@@ -1012,20 +1279,92 @@
         });
 
         // === SCHEDULE MODAL LOGIC ===
-        const scheduleBtn = document.getElementById('add-schedule-btn');
+        // === HERO CAROUSEL ===
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const heroCarousel = document.getElementById('hero-carousel');
+        let currentSlide = 0;
+        let autoPlayTimer = null;
+
+        function goToSlide(index) {
+            // Hide current slide
+            slides[currentSlide].classList.remove('opacity-100', 'z-10');
+            slides[currentSlide].classList.add('opacity-0', 'z-0');
+            // Reset current dot
+            dots[currentSlide].classList.remove('bg-secondary', 'w-2.5', 'h-2.5', 'scale-110');
+            dots[currentSlide].classList.add('bg-on-surface-variant/40', 'w-2', 'h-2');
+
+            currentSlide = (index + slides.length) % slides.length;
+
+            // Show new slide
+            slides[currentSlide].classList.remove('opacity-0', 'z-0');
+            slides[currentSlide].classList.add('opacity-100', 'z-10');
+            // Highlight new dot
+            dots[currentSlide].classList.remove('bg-on-surface-variant/40', 'w-2', 'h-2');
+            dots[currentSlide].classList.add('bg-secondary', 'w-2.5', 'h-2.5', 'scale-110');
+        }
+
+        if (prevBtn && nextBtn) {
+            prevBtn.addEventListener('click', () => {
+                goToSlide(currentSlide - 1);
+                resetAutoPlay();
+            });
+            nextBtn.addEventListener('click', () => {
+                goToSlide(currentSlide + 1);
+                resetAutoPlay();
+            });
+        }
+
+        // Dot click navigation
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                goToSlide(parseInt(dot.dataset.dot));
+                resetAutoPlay();
+            });
+        });
+
+        // Auto-play every 6 seconds
+        function startAutoPlay() {
+            autoPlayTimer = setInterval(() => {
+                goToSlide(currentSlide + 1);
+            }, 6000);
+        }
+        function resetAutoPlay() {
+            clearInterval(autoPlayTimer);
+            startAutoPlay();
+        }
+        startAutoPlay();
+
+        // Pause auto-play on hover
+        if (heroCarousel) {
+            heroCarousel.addEventListener('mouseenter', () => clearInterval(autoPlayTimer));
+            heroCarousel.addEventListener('mouseleave', () => startAutoPlay());
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') { goToSlide(currentSlide - 1); resetAutoPlay(); }
+            if (e.key === 'ArrowRight') { goToSlide(currentSlide + 1); resetAutoPlay(); }
+        });
+
+        // === SCHEDULE MODAL LOGIC ===
+        const scheduleBtns = document.querySelectorAll('.add-schedule-btn');
         const scheduleModal = document.getElementById('schedule-modal');
         const closeScheduleBtn = document.getElementById('close-schedule-btn');
         const cancelScheduleBtn = document.getElementById('cancel-schedule-btn');
         const scheduleForm = document.getElementById('schedule-form');
 
-        if (scheduleBtn && scheduleModal) {
-            scheduleBtn.addEventListener('click', () => {
-                scheduleModal.classList.remove('hidden');
-                // Set default date to today for better UX
-                if (!scheduleForm.querySelector('input[type="date"]').value) {
-                    const today = new Date().toISOString().split('T')[0];
-                    scheduleForm.querySelector('input[type="date"]').value = today;
-                }
+        if (scheduleBtns.length && scheduleModal) {
+            scheduleBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    scheduleModal.classList.remove('hidden');
+                    if (!scheduleForm.querySelector('input[type="date"]').value) {
+                        const today = new Date().toISOString().split('T')[0];
+                        scheduleForm.querySelector('input[type="date"]').value = today;
+                    }
+                });
             });
 
             const closeSchedule = () => {
@@ -1043,7 +1382,6 @@
 
             scheduleForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-                // Instead of alert, we could add a notification, but alert is easiest for now
                 alert('Event added to your schedule!');
                 closeSchedule();
                 scheduleForm.reset();
@@ -1051,6 +1389,7 @@
         }
     });
     </script>
+    <script src="tournament_logic.js"></script>
 </body>
 
 </html>

@@ -156,44 +156,10 @@
         <!-- Stream & Info Section -->
         <section class="flex-1 p-6 lg:p-8 space-y-[2.75rem]">
             <!-- Video Player Area -->
-            <div
-                class="relative aspect-video bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.6)] group">
-                <img class="w-full h-full object-cover opacity-90"
-                    data-alt="Cinematic high-quality competitive gameplay visual"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuABI1HipPccQPAcaq3C3YvZ9CnEtx6E9GqHOIbORUG8t4WKhfwXQRgR_GyCuxr2LlQGnf25hdwEGiGQ3IAFAIa0b91AceW7_sf8_KjoM0SVc5kKZu8ku7qannh2hi0-0rwcIxjvDPxNsURzl88wKbt4TiUC4z8qmGOlKKtJsDDlyip-wwjgYV88h8DvHH9ptQtRwZmpEGjYFxuaEGU-yFvmxVkDh0NE1lLJzWox8Rv0dFT819Vy8Iw6dHgHGYY9S4mZ6etgdDn7vEg" />
-                <!-- Player Controls Overlay -->
-                <div
-                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                    <div class="flex items-center justify-between w-full">
-                        <div class="flex items-center gap-6">
-                            <button
-                                class="material-symbols-outlined text-white text-3xl hover:text-cyan-400 transition-colors"
-                                data-weight="fill">play_arrow</button>
-                            <div class="flex items-center gap-3 group/vol">
-                                <span class="material-symbols-outlined text-white text-2xl">volume_up</span>
-                                <div class="w-24 h-1 bg-white/20 rounded-full relative overflow-hidden">
-                                    <div class="absolute top-0 left-0 h-full w-2/3 bg-cyan-400"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6">
-                            <button
-                                class="material-symbols-outlined text-white text-2xl hover:text-purple-400 transition-colors">settings</button>
-                            <button
-                                class="material-symbols-outlined text-white text-2xl hover:text-purple-400 transition-colors">fullscreen</button>
-                        </div>
-                    </div>
-                    <!-- Seek bar -->
-                    <div class="w-full h-1 bg-white/20 mt-4 rounded-full overflow-hidden">
-                        <div class="h-full w-full bg-gradient-to-r from-purple-600 to-cyan-400"></div>
-                    </div>
-                </div>
-                <!-- Live Tag -->
-                <div class="absolute top-4 left-4 flex items-center gap-2">
-                    <span
-                        class="bg-error text-on-error px-2 py-0.5 rounded-sm text-[10px] font-bold tracking-widest uppercase shadow-lg shadow-error/20">LIVE</span>
-                    <span
-                        class="bg-black/40 backdrop-blur-md px-2 py-0.5 rounded-sm text-[10px] font-medium text-white">02:45:12</span>
+            <div class="relative aspect-video bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.6)] group">
+                <iframe class="w-full h-full" src="https://www.youtube.com/embed/lihYUxBZ_BE?autoplay=1&mute=0&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div class="absolute top-4 left-4 flex items-center gap-2 pointer-events-none">
+                    <span class="bg-error text-on-error px-2 py-0.5 rounded-sm text-[10px] font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(255,110,132,0.8)] animate-pulse">LIVE STREAM</span>
                 </div>
             </div>
             <!-- Stream Metadata -->
@@ -205,13 +171,12 @@
                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhcj154-0PeY_4sDK5pXOpoYc6eRXeUvCp7Gyx0lyXu02dlBcstn_Txk9NdmJ68pDozJZ6tqpwGU1EZ5ZO0D0m34GkELjuD4_uPRnW5u-cFDK47htGK3yD7KGkOOdbVgPguE_z84FZ06kRIMsXs8W6Hb_juU0u3gmgYGRpdnMRJTVuTJXoXLIAgfojvMZUbD08KOYSHgbLiY2cDp44FqfW_jZLVd7SrfET2DnaIXbgtZwogNNl4qy0BXEdKnJQKINiT_UtxXPxqeA" />
                     </div>
                     <div class="space-y-1">
-                        <h1 class="headline-font text-2xl font-bold tracking-tight text-on-surface">GRAND FINALS: NEON
-                            OVERDRIVE INVITATIONAL</h1>
+                        <h1 class="headline-font text-2xl font-bold tracking-tight text-on-surface">VALORANT CHAMPIONS SERIES: Sentinels vs Fnatic</h1>
                         <div class="flex items-center gap-3">
-                            <span class="text-secondary font-bold text-sm">ViperZero</span>
+                            <span class="text-secondary font-bold text-sm">VCT Official</span>
                             <span class="text-outline text-xs">•</span>
                             <span class="text-on-surface-variant text-sm">Playing <span
-                                    class="text-on-surface font-medium">Cyber Siege 2</span></span>
+                                    class="text-on-surface font-medium">VALORANT</span></span>
                         </div>
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span
@@ -251,10 +216,9 @@
                             <h3 class="headline-font text-lg font-bold flex items-center gap-2">
                                 <span class="material-symbols-outlined text-secondary"
                                     data-weight="fill">query_stats</span>
-                                LIVE PREDICTION
+                                BET ON WINNER
                             </h3>
-                            <p class="text-on-surface-variant text-xs">Will ViperZero clear the final objective under 5
-                                mins?</p>
+                            <p class="text-on-surface-variant text-xs">Which team will win this Grand Final matchup?</p>
                         </div>
                         <div class="bg-secondary/10 px-3 py-1 rounded-full border border-secondary/20">
                             <span class="text-secondary text-xs font-bold tabular-nums">01:24 LEFT</span>
@@ -267,7 +231,7 @@
                                 <div class="flex items-center gap-3">
                                     <span
                                         class="w-8 h-8 rounded-lg bg-cyan-400/20 text-cyan-400 flex items-center justify-center font-bold">A</span>
-                                    <span class="font-bold text-on-surface">YES, HE'S GOING TO CRUSH IT</span>
+                                    <span class="font-bold text-on-surface">SENTINELS (SEN)</span>
                                 </div>
                                 <div class="text-right">
                                     <span class="text-cyan-400 font-bold block">64%</span>
@@ -286,7 +250,7 @@
                                 <div class="flex items-center gap-3">
                                     <span
                                         class="w-8 h-8 rounded-lg bg-error/20 text-error flex items-center justify-center font-bold">B</span>
-                                    <span class="font-bold text-on-surface">NO, THE ODDS ARE TOO HIGH</span>
+                                    <span class="font-bold text-on-surface">FNATIC (FNC)</span>
                                 </div>
                                 <div class="text-right">
                                     <span class="text-error font-bold block">36%</span>
@@ -302,14 +266,14 @@
                     </div>
                     <div class="mt-8 flex gap-4">
                         <button
-                            class="flex-1 bg-surface-container-highest hover:bg-surface-bright text-on-surface py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/30 flex items-center justify-center gap-2">
+                            class="flex-1 bg-surface-container-highest hover:bg-surface-bright text-on-surface py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/30 flex items-center justify-center gap-2 hover:border-cyan-400/50 hover:text-cyan-400 active:scale-95 shadow-lg">
                             <span class="material-symbols-outlined text-lg">token</span>
-                            BET OPTION A
+                            BET ON SEN
                         </button>
                         <button
-                            class="flex-1 bg-surface-container-highest hover:bg-surface-bright text-on-surface py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/30 flex items-center justify-center gap-2">
+                            class="flex-1 bg-surface-container-highest hover:bg-surface-bright text-on-surface py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/30 flex items-center justify-center gap-2 hover:border-error/50 hover:text-error active:scale-95 shadow-lg">
                             <span class="material-symbols-outlined text-lg">token</span>
-                            BET OPTION B
+                            BET ON FNC
                         </button>
                     </div>
                 </div>
@@ -317,7 +281,7 @@
                 <div class="lg:col-span-5 bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
                     <h3 class="headline-font text-lg font-bold mb-6 flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">emoji_events</span>
-                        DONATION LEADERS
+                        TOP SUPERCHATS
                     </h3>
                     <div class="space-y-5">
                         <div class="flex items-center gap-4">
@@ -328,8 +292,7 @@
                             </div>
                             <div class="flex-1">
                                 <p class="text-sm font-bold text-on-surface">NeonShadow_</p>
-                                <p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Master
-                                    Contributor</p>
+                                <p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Highest Superchat</p>
                             </div>
                             <div class="text-right">
                                 <span class="text-primary font-bold text-sm">$2,450</span>
@@ -342,7 +305,7 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbHTKA7dYLi_6tf2P6uJVQkO0pLJU91w8tBnNS35I0DCu9bmVm_LmmskK330E0cFS5U_5wDrkbUyELiZBSN--Fhx8NbOp1z2znrgiJGATUPN53vASgoE_m06OADFWW6mLB4OC8JlGKlXCI4gbzx4QpN0CAco94H7nhebMqEXBv1gXU4vKfDtZSCRgPLJ1wuVWvNWNg-DYvQ_5cxDLWxOqBjsDHgEERzEw8Um-x8JxohELDnpdJQfSL_K9aIW6mR57ozSt_lTeI9Vc" />
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm font-bold text-on-surface">GhostGlitch</p>
+                                <p class="text-sm font-bold text-on-surface">GhostGlitch (2nd)</p>
                             </div>
                             <div class="text-right">
                                 <span class="text-on-surface font-bold text-sm">$1,820</span>
@@ -355,7 +318,7 @@
                                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEGBp2v9YKLeI8kZ2UyQlE36QXSUla1ROgjIgTirfRObCW2wCL0PL4wuF3XwlBUDGrB9PTbJ-K7K4gVMqoCJnUB4QugGP0Mfsw0ahx5G5DZilTDCiFjXDbNlrxBgRI2xBhg5-4P9U5ihFjtEnmhbfIqPQT7rKn4J3ikShJIp95Dkt1rY2TomjxUfze0_kusVAkE2b7U2iF1DvRESi2iaGWX_7dn22edwgMKrn1mH4x3-cnJF_8MaXweFgnR-HEyajuJ-2zgEiwck4" />
                             </div>
                             <div class="flex-1">
-                                <p class="text-sm font-bold text-on-surface">VoidRacer</p>
+                                <p class="text-sm font-bold text-on-surface">VoidRacer (3rd)</p>
                             </div>
                             <div class="text-right">
                                 <span class="text-on-surface font-bold text-sm">$950</span>
@@ -421,8 +384,8 @@
                         <span class="material-symbols-outlined text-primary text-sm self-center"
                             data-weight="fill">volunteer_activism</span>
                         <div class="flex-1">
-                            <p class="text-[10px] font-bold text-primary uppercase tracking-tighter">New Donation!</p>
-                            <p class="text-xs text-on-surface"><span class="font-bold">NeonShadow_</span> donated <span
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-tighter">New Superchat!</p>
+                            <p class="text-xs text-on-surface"><span class="font-bold">NeonShadow_</span> sent a Superchat <span
                                     class="text-primary font-bold">$100</span></p>
                         </div>
                     </div>
@@ -449,7 +412,7 @@
                     <button
                         class="flex-1 bg-gradient-to-r from-secondary-container to-secondary text-white py-3 rounded-lg font-bold text-xs hover:shadow-[0_0_15px_rgba(0,217,255,0.3)] transition-all flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-sm" data-weight="fill">volunteer_activism</span>
-                        DONATE
+                        SUPERCHAT
                     </button>
                     <button
                         class="w-12 h-12 flex items-center justify-center bg-surface-container-highest rounded-lg border border-outline-variant/30 text-on-surface hover:text-primary transition-colors">
