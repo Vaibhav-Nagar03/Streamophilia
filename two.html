@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            background-color: #0e0e11;
+            color: #fbf8fc;
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .headline-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Custom scrollbar for chat */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #48474b;
+            border-radius: 10px;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary": "#680a1f",
+                        "on-tertiary-fixed-variant": "#721325",
+                        "on-tertiary-container": "#570015",
+                        "inverse-surface": "#fbf8fc",
+                        "primary-fixed-dim": "#bc6fff",
+                        "tertiary-dim": "#f47783",
+                        "outline-variant": "#48474b",
+                        "on-secondary-fixed-variant": "#005969",
+                        "tertiary-fixed": "#ff9099",
+                        "surface-tint": "#cf96ff",
+                        "on-background": "#fbf8fc",
+                        "inverse-primary": "#8d00e6",
+                        "on-tertiary-fixed": "#39000b",
+                        "error-container": "#a70138",
+                        "secondary-fixed-dim": "#00d6fb",
+                        "tertiary-container": "#fe7e8a",
+                        "on-error-container": "#ffb2b9",
+                        "primary-container": "#c683ff",
+                        "on-primary-fixed": "#000000",
+                        "tertiary-fixed-dim": "#fb7c88",
+                        "surface-bright": "#2c2c30",
+                        "surface": "#0e0e11",
+                        "secondary-container": "#00687b",
+                        "inverse-on-surface": "#555458",
+                        "error": "#ff6e84",
+                        "on-primary": "#480079",
+                        "on-error": "#490013",
+                        "error-dim": "#d73357",
+                        "surface-container": "#19191d",
+                        "primary-dim": "#a533ff",
+                        "primary": "#cf96ff",
+                        "background": "#0e0e11",
+                        "on-secondary": "#004755",
+                        "on-primary-fixed-variant": "#450074",
+                        "on-secondary-container": "#ecfaff",
+                        "secondary-dim": "#00caed",
+                        "on-secondary-fixed": "#003a46",
+                        "surface-container-high": "#1f1f23",
+                        "secondary-fixed": "#6ce1ff",
+                        "surface-container-lowest": "#000000",
+                        "secondary": "#00d9ff",
+                        "on-surface-variant": "#acaaae",
+                        "tertiary": "#ff959d",
+                        "primary-fixed": "#c683ff",
+                        "on-primary-container": "#37005f",
+                        "surface-dim": "#0e0e11",
+                        "surface-variant": "#25252a",
+                        "surface-container-highest": "#25252a",
+                        "surface-container-low": "#131316",
+                        "outline": "#767578",
+                        "on-surface": "#fbf8fc"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+</head>
+
+<body class="bg-surface text-on-surface">
+    <!-- TopAppBar -->
+    <header
+        class="bg-neutral-950/80 backdrop-blur-xl fixed top-0 w-full z-50 shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16 w-full">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <span
+                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight">NEON
+                NOCTURNE</span>
+            <nav class="hidden md:flex items-center gap-x-8 ml-8">
+                <a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-all"
+                    href="#">Browse</a>
+                <a class="text-neutral-400 hover:text-purple-400 transition-colors duration-300 font-['Space_Grotesk']"
+                    href="#">Esports</a>
+                <a class="text-neutral-400 hover:text-purple-400 transition-colors duration-300 font-['Space_Grotesk']"
+                    href="#">Music</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-x-6">
+            <div class="relative hidden lg:block">
+                <span
+                    class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">search</span>
+                <input
+                    class="bg-surface-container-lowest border-none rounded-lg pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-1 focus:ring-secondary/50"
+                    placeholder="Search channels..." type="text" />
+            </div>
+            <div class="flex items-center gap-x-4">
+                <button
+                    class="material-symbols-outlined text-on-surface-variant hover:text-purple-400 transition-colors active:scale-95">notifications</button>
+                <button
+                    class="material-symbols-outlined text-on-surface-variant hover:text-purple-400 transition-colors active:scale-95">messenger</button>
+                <div class="w-8 h-8 rounded-full border border-purple-500/50 p-0.5 overflow-hidden">
+                    <img class="w-full h-full object-cover rounded-full" data-alt="User profile with neon status ring"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuADDYg3DX-1nF78M8Ykbf0T3NXVWcYGeJqkwyrW3e8fmIQk_8fMnDtmUGWhs6qm47_1l0QOczudIzeZ1aIv0tjRGUJRfnlPRc7MPoOukMY9BN3JBnLmVjIoTbVXamzFAdC_i7Z0Wo3ZStI1RC9TgH5OZh40u8Ir1cHGB89UO4Pvf7ZwFVMDx9U5sOkGPVM_w0CBNQ1Na61kt7_u23vXIM24m2V8LukdQBvtiDeZIGB7-vYGBN0-EShz6uCSDuVkeP4-gdHUNcG0mDI" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Canvas -->
+    <main class="pt-16 min-h-screen flex flex-col lg:flex-row">
+        <!-- Stream & Info Section -->
+        <section class="flex-1 p-6 lg:p-8 space-y-[2.75rem]">
+            <!-- Video Player Area -->
+            <div
+                class="relative aspect-video bg-surface-container-lowest rounded-xl overflow-hidden shadow-[0_20px_80px_rgba(0,0,0,0.6)] group">
+                <img class="w-full h-full object-cover opacity-90"
+                    data-alt="Cinematic high-quality competitive gameplay visual"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuABI1HipPccQPAcaq3C3YvZ9CnEtx6E9GqHOIbORUG8t4WKhfwXQRgR_GyCuxr2LlQGnf25hdwEGiGQ3IAFAIa0b91AceW7_sf8_KjoM0SVc5kKZu8ku7qannh2hi0-0rwcIxjvDPxNsURzl88wKbt4TiUC4z8qmGOlKKtJsDDlyip-wwjgYV88h8DvHH9ptQtRwZmpEGjYFxuaEGU-yFvmxVkDh0NE1lLJzWox8Rv0dFT819Vy8Iw6dHgHGYY9S4mZ6etgdDn7vEg" />
+                <!-- Player Controls Overlay -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                    <div class="flex items-center justify-between w-full">
+                        <div class="flex items-center gap-6">
+                            <button
+                                class="material-symbols-outlined text-white text-3xl hover:text-cyan-400 transition-colors"
+                                data-weight="fill">play_arrow</button>
+                            <div class="flex items-center gap-3 group/vol">
+                                <span class="material-symbols-outlined text-white text-2xl">volume_up</span>
+                                <div class="w-24 h-1 bg-white/20 rounded-full relative overflow-hidden">
+                                    <div class="absolute top-0 left-0 h-full w-2/3 bg-cyan-400"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-6">
+                            <button
+                                class="material-symbols-outlined text-white text-2xl hover:text-purple-400 transition-colors">settings</button>
+                            <button
+                                class="material-symbols-outlined text-white text-2xl hover:text-purple-400 transition-colors">fullscreen</button>
+                        </div>
+                    </div>
+                    <!-- Seek bar -->
+                    <div class="w-full h-1 bg-white/20 mt-4 rounded-full overflow-hidden">
+                        <div class="h-full w-full bg-gradient-to-r from-purple-600 to-cyan-400"></div>
+                    </div>
+                </div>
+                <!-- Live Tag -->
+                <div class="absolute top-4 left-4 flex items-center gap-2">
+                    <span
+                        class="bg-error text-on-error px-2 py-0.5 rounded-sm text-[10px] font-bold tracking-widest uppercase shadow-lg shadow-error/20">LIVE</span>
+                    <span
+                        class="bg-black/40 backdrop-blur-md px-2 py-0.5 rounded-sm text-[10px] font-medium text-white">02:45:12</span>
+                </div>
+            </div>
+            <!-- Stream Metadata -->
+            <div class="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                <div class="flex gap-4">
+                    <div class="w-16 h-16 rounded-full border-2 border-purple-500/30 p-1 flex-shrink-0">
+                        <img class="w-full h-full object-cover rounded-full"
+                            data-alt="Professional streamer avatar with high contrast lighting"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhcj154-0PeY_4sDK5pXOpoYc6eRXeUvCp7Gyx0lyXu02dlBcstn_Txk9NdmJ68pDozJZ6tqpwGU1EZ5ZO0D0m34GkELjuD4_uPRnW5u-cFDK47htGK3yD7KGkOOdbVgPguE_z84FZ06kRIMsXs8W6Hb_juU0u3gmgYGRpdnMRJTVuTJXoXLIAgfojvMZUbD08KOYSHgbLiY2cDp44FqfW_jZLVd7SrfET2DnaIXbgtZwogNNl4qy0BXEdKnJQKINiT_UtxXPxqeA" />
+                    </div>
+                    <div class="space-y-1">
+                        <h1 class="headline-font text-2xl font-bold tracking-tight text-on-surface">GRAND FINALS: NEON
+                            OVERDRIVE INVITATIONAL</h1>
+                        <div class="flex items-center gap-3">
+                            <span class="text-secondary font-bold text-sm">ViperZero</span>
+                            <span class="text-outline text-xs">•</span>
+                            <span class="text-on-surface-variant text-sm">Playing <span
+                                    class="text-on-surface font-medium">Cyber Siege 2</span></span>
+                        </div>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span
+                                class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-1 rounded font-medium uppercase tracking-wider">Competitive</span>
+                            <span
+                                class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-1 rounded font-medium uppercase tracking-wider">English</span>
+                            <span
+                                class="bg-surface-container-highest text-on-surface-variant text-[10px] px-2 py-1 rounded font-medium uppercase tracking-wider">DropsEnabled</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="text-right mr-4 hidden sm:block">
+                        <div class="flex items-center justify-end gap-1.5 text-secondary">
+                            <span class="material-symbols-outlined text-sm" data-weight="fill">group</span>
+                            <span class="font-bold">24.8k</span>
+                        </div>
+                        <p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">Viewers Watching</p>
+                    </div>
+                    <button
+                        class="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed px-8 py-3 rounded-lg font-bold text-sm hover:shadow-[0_0_20px_rgba(207,150,255,0.4)] transition-all active:scale-95 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-lg" data-weight="fill">favorite</span>
+                        FOLLOW
+                    </button>
+                    <button
+                        class="bg-surface-container-high text-on-surface px-4 py-3 rounded-lg hover:bg-surface-bright transition-colors border border-outline-variant/20">
+                        <span class="material-symbols-outlined text-lg">share</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Bento Layout Bottom Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-[2.75rem]">
+                <!-- Prediction Panel -->
+                <div class="lg:col-span-7 bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+                    <div class="flex items-center justify-between mb-8">
+                        <div>
+                            <h3 class="headline-font text-lg font-bold flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary"
+                                    data-weight="fill">query_stats</span>
+                                LIVE PREDICTION
+                            </h3>
+                            <p class="text-on-surface-variant text-xs">Will ViperZero clear the final objective under 5
+                                mins?</p>
+                        </div>
+                        <div class="bg-secondary/10 px-3 py-1 rounded-full border border-secondary/20">
+                            <span class="text-secondary text-xs font-bold tabular-nums">01:24 LEFT</span>
+                        </div>
+                    </div>
+                    <div class="space-y-8">
+                        <!-- Option A -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-end">
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="w-8 h-8 rounded-lg bg-cyan-400/20 text-cyan-400 flex items-center justify-center font-bold">A</span>
+                                    <span class="font-bold text-on-surface">YES, HE'S GOING TO CRUSH IT</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-cyan-400 font-bold block">64%</span>
+                                    <span class="text-[10px] text-on-surface-variant">1.2M Sparks</span>
+                                </div>
+                            </div>
+                            <div class="h-2.5 bg-surface-container-highest rounded-full overflow-hidden">
+                                <div
+                                    class="h-full w-[64%] bg-gradient-to-r from-cyan-600 to-cyan-400 shadow-[0_0_10px_rgba(0,217,255,0.3)]">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Option B -->
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-end">
+                                <div class="flex items-center gap-3">
+                                    <span
+                                        class="w-8 h-8 rounded-lg bg-error/20 text-error flex items-center justify-center font-bold">B</span>
+                                    <span class="font-bold text-on-surface">NO, THE ODDS ARE TOO HIGH</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-error font-bold block">36%</span>
+                                    <span class="text-[10px] text-on-surface-variant">420k Sparks</span>
+                                </div>
+                            </div>
+                            <div class="h-2.5 bg-surface-container-highest rounded-full overflow-hidden">
+                                <div
+                                    class="h-full w-[36%] bg-gradient-to-r from-error-dim to-error shadow-[0_0_10px_rgba(255,110,132,0.3)]">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex gap-4">
+                        <button
+                            class="flex-1 bg-surface-container-highest hover:bg-surface-bright text-on-surface py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/30 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-lg">token</span>
+                            BET OPTION A
+                        </button>
+                        <button
+                            class="flex-1 bg-surface-container-highest hover:bg-surface-bright text-on-surface py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/30 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-lg">token</span>
+                            BET OPTION B
+                        </button>
+                    </div>
+                </div>
+                <!-- Schedule / Mini Leaderboard -->
+                <div class="lg:col-span-5 bg-surface-container-low p-6 rounded-xl border border-outline-variant/10">
+                    <h3 class="headline-font text-lg font-bold mb-6 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">emoji_events</span>
+                        DONATION LEADERS
+                    </h3>
+                    <div class="space-y-5">
+                        <div class="flex items-center gap-4">
+                            <span class="text-secondary font-bold headline-font w-4">01</span>
+                            <div class="w-10 h-10 rounded-full bg-surface-container-highest flex-shrink-0">
+                                <img class="w-full h-full object-cover rounded-full" data-alt="Top donor avatar"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa-CVPBWEEU6WBicJR5IMoW-u-VKLKIbgiLkSBx3XBpIxUCqfyIKGoUyjEFjTU2DUM948E3rAREAQgfRZTlnnHOdricCawGOag9GVyYvnlz6KDFT7NM76xLjZW4O_u8dGojldqXCd-7ISLqKtuRUddZsQNS3Ya__EQnVD9ssWcEq8HaHQplQ1nwma-vDVFSi3Oxccl91f-Uo2klMKkQOzHwJZz1mOuU4hqnKXSxeC7-LrjQG1xgTwpV0FHg-JeAdIZj9vKvITfkJo" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">NeonShadow_</p>
+                                <p class="text-[10px] text-on-surface-variant uppercase tracking-widest">Master
+                                    Contributor</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-primary font-bold text-sm">$2,450</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <span class="text-on-surface-variant font-bold headline-font w-4">02</span>
+                            <div class="w-10 h-10 rounded-full bg-surface-container-highest flex-shrink-0">
+                                <img class="w-full h-full object-cover rounded-full" data-alt="Donor avatar"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbHTKA7dYLi_6tf2P6uJVQkO0pLJU91w8tBnNS35I0DCu9bmVm_LmmskK330E0cFS5U_5wDrkbUyELiZBSN--Fhx8NbOp1z2znrgiJGATUPN53vASgoE_m06OADFWW6mLB4OC8JlGKlXCI4gbzx4QpN0CAco94H7nhebMqEXBv1gXU4vKfDtZSCRgPLJ1wuVWvNWNg-DYvQ_5cxDLWxOqBjsDHgEERzEw8Um-x8JxohELDnpdJQfSL_K9aIW6mR57ozSt_lTeI9Vc" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">GhostGlitch</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-on-surface font-bold text-sm">$1,820</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4 opacity-70">
+                            <span class="text-on-surface-variant font-bold headline-font w-4">03</span>
+                            <div class="w-10 h-10 rounded-full bg-surface-container-highest flex-shrink-0">
+                                <img class="w-full h-full object-cover rounded-full" data-alt="Donor avatar"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEGBp2v9YKLeI8kZ2UyQlE36QXSUla1ROgjIgTirfRObCW2wCL0PL4wuF3XwlBUDGrB9PTbJ-K7K4gVMqoCJnUB4QugGP0Mfsw0ahx5G5DZilTDCiFjXDbNlrxBgRI2xBhg5-4P9U5ihFjtEnmhbfIqPQT7rKn4J3ikShJIp95Dkt1rY2TomjxUfze0_kusVAkE2b7U2iF1DvRESi2iaGWX_7dn22edwgMKrn1mH4x3-cnJF_8MaXweFgnR-HEyajuJ-2zgEiwck4" />
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-on-surface">VoidRacer</p>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-on-surface font-bold text-sm">$950</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Chat Panel -->
+        <aside
+            class="w-full lg:w-[380px] bg-surface-container-low border-l border-outline-variant/10 flex flex-col h-[calc(100vh-4rem)] sticky top-16">
+            <div class="p-4 border-b border-outline-variant/10 flex items-center justify-between">
+                <h2 class="headline-font font-bold text-sm tracking-widest uppercase text-on-surface-variant">Live Chat
+                </h2>
+                <div class="flex gap-2">
+                    <button class="material-symbols-outlined text-on-surface-variant text-lg">group</button>
+                    <button class="material-symbols-outlined text-on-surface-variant text-lg">more_vert</button>
+                </div>
+            </div>
+            <!-- Messages -->
+            <div class="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar">
+                <!-- Chat Notification -->
+                <div class="bg-surface-container-highest/50 p-3 rounded-lg border border-outline-variant/10">
+                    <p class="text-[10px] text-on-surface-variant leading-relaxed">Welcome to the <span
+                            class="text-primary font-bold">NEON NOCTURNE</span> chat! Please be respectful and follow
+                        community guidelines.</p>
+                </div>
+                <!-- Sample Messages -->
+                <div class="space-y-4">
+                    <div class="flex gap-3">
+                        <span class="text-xs font-bold text-secondary flex-shrink-0">PixelSlayer:</span>
+                        <p class="text-xs text-on-surface leading-snug">That flick shot was absolutely insane! 😱</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="text-xs font-bold text-primary flex-shrink-0">Mod_Zero:</span>
+                        <p class="text-xs text-on-surface leading-snug">Don't forget to use !prediction to get in on the
+                            action!</p>
+                    </div>
+                    <div class="flex gap-3 bg-secondary/5 -mx-2 px-2 py-1 rounded">
+                        <span class="material-symbols-outlined text-[10px] text-secondary self-center">verified</span>
+                        <span class="text-xs font-bold text-secondary-dim flex-shrink-0">GlitchMaster:</span>
+                        <p class="text-xs text-on-surface leading-snug">HE'S POPPING OFF!! LETS GOOOO</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="text-xs font-bold text-error flex-shrink-0">SlowBurn:</span>
+                        <p class="text-xs text-on-surface leading-snug">Option B holders sweating right now lol</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="text-xs font-bold text-on-surface-variant flex-shrink-0">User842:</span>
+                        <p class="text-xs text-on-surface leading-snug">quality looks amazing today</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="text-xs font-bold text-secondary flex-shrink-0">VoidRunner:</span>
+                        <p class="text-xs text-on-surface leading-snug">Imagine if he misses the objective though...</p>
+                    </div>
+                    <!-- Threaded Reply Style -->
+                    <div class="ml-4 pl-3 border-l-2 border-outline-variant/30 flex gap-3">
+                        <span class="text-[10px] font-bold text-on-surface-variant">PixelSlayer:</span>
+                        <p class="text-[10px] text-on-surface-variant">Not happening mate</p>
+                    </div>
+                    <div class="flex gap-3 bg-primary/10 -mx-2 px-2 py-2 rounded-lg border border-primary/20">
+                        <span class="material-symbols-outlined text-primary text-sm self-center"
+                            data-weight="fill">volunteer_activism</span>
+                        <div class="flex-1">
+                            <p class="text-[10px] font-bold text-primary uppercase tracking-tighter">New Donation!</p>
+                            <p class="text-xs text-on-surface"><span class="font-bold">NeonShadow_</span> donated <span
+                                    class="text-primary font-bold">$100</span></p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3">
+                        <span class="text-xs font-bold text-cyan-400 flex-shrink-0">StormyDay:</span>
+                        <p class="text-xs text-on-surface leading-snug">SPAM THOSE EMOTES 🛡️🛡️🛡️🛡️</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Chat Footer -->
+            <div class="p-4 bg-surface-container-low space-y-4">
+                <div class="relative">
+                    <input
+                        class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg px-4 py-3 text-xs focus:ring-1 focus:ring-primary/50 text-on-surface transition-all"
+                        placeholder="Send a message..." type="text" />
+                    <div class="absolute right-3 top-1/2 -translate-y-1/2 flex gap-2">
+                        <button
+                            class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-lg">mood</button>
+                        <button
+                            class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors text-lg">send</button>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button
+                        class="flex-1 bg-gradient-to-r from-secondary-container to-secondary text-white py-3 rounded-lg font-bold text-xs hover:shadow-[0_0_15px_rgba(0,217,255,0.3)] transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-sm" data-weight="fill">volunteer_activism</span>
+                        DONATE
+                    </button>
+                    <button
+                        class="w-12 h-12 flex items-center justify-center bg-surface-container-highest rounded-lg border border-outline-variant/30 text-on-surface hover:text-primary transition-colors">
+                        <span class="material-symbols-outlined">redeem</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </main>
+</body>
+
+</html>
