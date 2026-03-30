@@ -124,18 +124,20 @@
 <body class="bg-surface text-on-surface">
     <!-- TopAppBar -->
     <header
-        class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
-        <div class="flex items-center gap-x-[1.2rem]">
-            <span
-                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight">NEON
-                NOCTURNE</span>
-            <nav class="hidden md:flex items-center gap-x-8 ml-8">
-                <a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="#">Browse</a>
-                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="#">Esports</a>
-                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="#">Music</a>
+        class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-4 md:px-8 h-16">
+        <div class="flex items-center gap-x-4 md:gap-x-[1.2rem]">
+            <button id="mobile-menu-btn" class="lg:hidden text-on-surface hover:text-primary transition-colors">
+                <span class="material-symbols-outlined text-2xl">menu</span>
+            </button>
+            <a href="index.html" class="text-xl md:text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON
+                NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-8 ml-4 md:ml-8">
+                <a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-all duration-300 hover:text-cyan-300 hover:-translate-y-0.5"
+                    href="index.html">Browse</a>
+                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-all duration-300 hover:-translate-y-0.5"
+                    href="esports.html">Esports</a>
+                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-all duration-300 hover:-translate-y-0.5"
+                    href="categories.html">Categories</a>
             </nav>
         </div>
         <div class="flex-1 max-w-xl mx-12">
@@ -311,9 +313,12 @@
         </div>
     </header>
     <div class="flex pt-16">
+        <!-- Mobile Sidebar Overlay -->
+        <div id="mobile-sidebar-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0 lg:hidden"></div>
+        
         <!-- SideNavBar -->
-        <aside
-            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm space-y-[2.75rem] hidden lg:flex overflow-y-auto">
+        <aside id="main-sidebar"
+            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm space-y-[2.75rem] overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10">
             <div>
                 <div class="flex justify-between items-center mb-6 px-2">
                     <h3 class="font-bold text-on-surface-variant uppercase tracking-widest text-[0.65rem]">Followed
@@ -376,22 +381,22 @@
                     </h3>
                 </div>
                 <nav class="space-y-1">
-                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
-                        href="#">
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1"
+                        href="index.html">
                         <span class="material-symbols-outlined text-xl">star</span>
                         <span>Recommended</span>
                     </a>
-                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
-                        href="#">
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1"
+                        href="categories.html">
                         <span class="material-symbols-outlined text-xl">grid_view</span>
                         <span>Categories</span>
                     </a>
-                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
-                        href="#">
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1"
+                        href="esports.html">
                         <span class="material-symbols-outlined text-xl">sports_esports</span>
                         <span>Esports</span>
                     </a>
-                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1"
                         href="#">
                         <span class="material-symbols-outlined text-xl">palette</span>
                         <span>Creative</span>
@@ -420,7 +425,7 @@
                 <div class="relative w-full aspect-[21/9] rounded-xl overflow-hidden shadow-2xl group">
                     <img class="w-full h-full object-cover"
                         data-alt="High-fidelity cinematic game environment background"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyBm0cbMNi2NltOSSCAeypN_eftkFRwbynNTpieSqOdcqf8L5qWui7mictaqvWrcLSRLC2ZTuxx7qamqzCfNo5N4kA12SPcYo5qdaRovMNjKY8kiyoAHNxtkBwFLclInKBPUe-WsFt8MX8ttp2YKLwNeEjFZGxYSIl2L-Cw8Am5285AL0UlsFijzhx_z7ISaUtOW1CDRkUywfr5vX9mhSXs5Fubgma1NhBl0etsCnIG1skRrBYZxYypD6fNwEeC7ijp8ZNuBKH_tw" />
+                        src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1600&auto=format&fit=crop" />
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/40 to-transparent"></div>
                     <div class="absolute inset-0 bg-gradient-to-r from-surface via-transparent to-transparent"></div>
                     <div class="absolute bottom-10 left-10 max-w-2xl">
@@ -482,7 +487,7 @@
                         <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 data-alt="Competitive gameplay of a tactical first-person shooter"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBOAzwlqJCCZh4tqdeBQtV_K4P_kiOLDhVlmtpMATR8TQdiNDXB5emcFyHadgqiZZH6lBg4qg91Zgr1rjd9bQU8ekEpDgj3ualmBsjb4ehpSvtnIeYzym2gGVDL0WVF74w1LsNbvMZlBcAr47Q3uCql5nq8ZR0AX3dGVn2TX0NoEZZptGNMU_UWfevipN944jvU7LxxoIavUMP01WxiI46jHaLN2gpJa-9UrmQD-Pk0atDjbWErSAhFPpuZeEJKrECCmuirupqIZ4" />
+                                src="https://images.contentstack.io/v3/assets/bltb6530b271fddd0b1/blt8ef6edbef403ae6a/62cdd4f61f5bbd2ed5a6ce46/VALORANT_Jett_Red_cg_4k.jpg" />
                             <div
                                 class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
                                 <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
@@ -524,7 +529,7 @@
                         <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 data-alt="Cyberpunk city environment in a video game"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJOVKiAzBnWCqFgKOuO6PHsqflbW-PZSpdemvfHqfQrGNp7_YvFYv2LltZP0nAbbbA1WSjTWuFaof3ycV9NpMcKtGj7gx6jwFNkuzHgAvAiSUvCaV64DEIE6QkEYNoEalrrQAzpktOev9-c3XPNbboqxryfk-a6l9pxxC7XOMlJO1ynOwFlBnXw0aZ5HNuQF-YV2FJp5s31h1foOCHc8NMir9pQXh0PQ608uDU8QocthgihKBAfsgkIHTTvZttT_7GBoO-v83LThE" />
+                                src="https://wstatic-prod.pubg.com/web/live/static/og/img-og-pubg.jpg" />
                             <div
                                 class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
                                 <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
@@ -545,13 +550,13 @@
                             <div class="flex-1 overflow-hidden">
                                 <h3
                                     class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
-                                    Ranking up with Subs! !sub !join</h3>
+                                    Conqueror Push! Squad Wipe Highlights</h3>
                                 <p class="text-on-surface-variant text-sm font-medium mb-3">Lumina_Dev</p>
                                 <div class="flex flex-wrap gap-2">
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Software</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">BGMI</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Chill</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Mobile</span>
                                 </div>
                             </div>
                         </div>
@@ -561,7 +566,7 @@
                         <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
                             <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                 data-alt="Colorful fantasy role playing game world"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBS76bhuqee_Ee076XzCmEjMYsbOtpjnKMmhZO7Hj99PwJI3UCNxR0zWH36si8cDp11GedWThGR6hAdkpswyosIvPoaa6gLa3XA06Y9dSTvlz1VuIHg4tqNPUeAn17bCHAknBHnLkRcU4__yJYYufe2eFiTAQZ0g1SqbbUATHl95O49gqhTEtvoNve5u_HxtG3GT-gJtqAE04md8ancBrLYrNJSA3Tl8Fp3IZauYefAMp6FssWhRA9Tx3JySTFiN46DRcoHJ-G8R3M" />
+                                src="https://cdn2.unrealengine.com/fortnite-chapter-5-season-2-myths-and-mortals-key-art-1920x1080-606dc8db714d.jpg" />
                             <div
                                 class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
                                 <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
@@ -582,13 +587,13 @@
                             <div class="flex-1 overflow-hidden">
                                 <h3
                                     class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">
-                                    World First Raid Attempt - Tier 10</h3>
+                                    FNCS Grand Finals Watch Party & Ranked</h3>
                                 <p class="text-on-surface-variant text-sm font-medium mb-3">Krona_Gaming</p>
                                 <div class="flex flex-wrap gap-2">
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">MMORPG</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Fortnite</span>
                                     <span
-                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Hardcore</span>
+                                        class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Competitive</span>
                                 </div>
                             </div>
                         </div>
@@ -630,6 +635,122 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Stream Card 5 - CS2 -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="CS2 tactical gameplay"
+                                src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop" />
+                            <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
+                                <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
+                                85.2k viewers
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20 bg-surface-container-highest">
+                                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANOKMIQ0ezd4yMmcN8c1253CdjbU46dwJdxb6gtAZlaohmKJzz5arK9Opgbuxx_io7iUTpxMGGXxp73GcCTYSmZRMLCKAhpU-B6X9RoU_5gxg0IC1JuKiXLr_x2d7goJwzwY9VC0M_Edb68nbnRsGAxbQk19Oe4e7wRbvuErsAIFsbQcSsRWCbJ_tSqTOZaUh9nnqu2lPKtZi5jnBwwxUTsXmPkb66Yawt13E1-L8K_pIlK7giyOCg5vroUzH4-YvmveKVjEtk_1E" />
+                                </div>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <h3 class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">IEM Finals Match 1 - G2 vs NaVi</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">CS2_Esports</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">CS2</span>
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">English</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stream Card 6 - LoL -->
+                    <div class="group cursor-pointer">
+                        <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="LoL stream gameplay"
+                                src="https://images.unsplash.com/photo-1620078726581-22879f4c330f?w=800&auto=format&fit=crop" />
+                            <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
+                                <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
+                                48.9k viewers
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20 bg-surface-container-highest">
+                                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdaeaBuyP8NsyHaN1F_b_LLC6Py5HWAb1dunqUtrMZO61Jr23QP5QVtWtTQGWoKnzru46ffSwQEcGJGFDHZdoHxOvoCdqFJ2LdQrtpQP0U0wFPZ7dg4Y9WDXttOsq41tM3fISCcuLPm7IKi4Hnd0AnnC3u3btFjEqheQ3b7o43_Zdmanw2ml-uhTp0A-QCjE0vLc3qLRiiUEurMyZN8y8f44k0MCOAjeM4M4RiUYta5ptt0yoGoaL74-giuIK6h9WO1CmnzSrYqCo" />
+                                </div>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <h3 class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">Korean Challenger Grind!!</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">Lumina_LoL</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">League of Legends</span>
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">MOBA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stream Card 7 - GTA V -->
+                    <div class="group cursor-pointer xl:block">
+                        <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="GTA RP gameplay"
+                                src="https://images.unsplash.com/photo-1589241062272-c0a1f436000c?w=800&auto=format&fit=crop" />
+                            <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
+                                <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
+                                122k viewers
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20 bg-surface-container-highest">
+                                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk5Q9XZJrMhWjY9b9ahmJbz8snmSQkGkBq2evOanNkDxFZ_9Nb4R_Jmv11H_s8MQ_KSzIsfUiuGdIwneXmxn6VA8Q9IVu8lzyj7mcBCI1WIn8goFhZ1nwOGauo6qf0Zvbo2FHgMYmGRu7Hc72XYogT5UH_FgO4brqxFFTl6eRbbfigYdilBI2vx7Kn6FJSWyizuGFf-e_eD8w3o93LmROhDHXAU1Zi7V8p-QTEQzEyst8Dxlkkre2ZNIjklS0cdre5n4Vw_HJTb7E" />
+                                </div>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <h3 class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">NoPixel 4.0 Bank Heist RP</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">Viper_RP</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">GTA V</span>
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Roleplay</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Stream Card 8 - Warzone -->
+                    <div class="group cursor-pointer 2xl:block">
+                        <div class="relative aspect-video rounded-xl overflow-hidden mb-6 bg-surface-container-high">
+                            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                data-alt="Warzone intense drop"
+                                src="https://wstatic-prod.pubg.com/web/live/static/og/img-og-pubg.jpg" />
+                            <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1">
+                                <span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE
+                            </div>
+                            <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">
+                                44k viewers
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-12 h-12 rounded-xl overflow-hidden ring-2 ring-secondary/20 bg-surface-container-highest">
+                                    <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1LpXV-CIES7ZdKPFtB5UI9c_I8AIYqG48NDHZUwZEkPG6FIB2tmzJY2pX_IreoJmO0hReihySVnuNHbB4xULBKhdMCCRqmLAIONBh499ZwQohf_AMgjhxhtoPtoI-GuNFhdzcqS3WTmvXMGtExCgBGC2IyCA7Iiqsohzr0qSl2D15anLOUubPozuyNM6cQvq1M8vngXMAZAD9TzBneWFc0ShreOQ1u8jpgBSi-DNkgxyP-sfUdUiWywKgLNnoPk2EDsHKtIDosIU" />
+                                </div>
+                            </div>
+                            <div class="flex-1 overflow-hidden">
+                                <h3 class="font-bold text-on-surface text-base truncate mb-1 group-hover:text-secondary transition-colors">High Kill Warzone Nuke Attempt</h3>
+                                <p class="text-on-surface-variant text-sm font-medium mb-3">Turbo_Tom</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">Warzone</span>
+                                    <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded">FPS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
             <!-- Categories Bento Grid -->
@@ -643,8 +764,8 @@
                 <div class="grid grid-cols-2 lg:grid-cols-6 gap-6">
                     <div class="col-span-2 row-span-2 group relative overflow-hidden rounded-xl aspect-square">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Gaming hardware and tech setup"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3-vQpqy95e0BfgcQ6IJvnrxhTOWW_hKqtdeVLEvu2faiMukEbHr-AcjLANhTD8lP8lYaMIeYlymby19xiE60rYIIWguVSRqEBSIplIPPct5xFUWR8-N7tur55k_y8NvEJBbzFJJn-OS3pYKMom9W2zVmTX7xTkhkS5KfuQ0COgjKsZt8LlHSXbyxE-UdLrNBoC52onAjHIlQT-E_mQpL64ER4kR4VgvSyKeAwI4MBpJzpigKUtpZEoBXRs4xXZf2GrJGV4BRXCQA" />
+                            data-alt="Just chatting cover"
+                            src="https://static-cdn.jtvnw.net/ttv-boxart/509658-285x380.jpg" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-4 left-4">
@@ -654,8 +775,8 @@
                     </div>
                     <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="MOBA game character art"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVoxwlfPXe49dAHr8FG_nIO8kFshTLfr3rOdug9YBDCwj8Gmb68cMKExoSUYBMemDGbQgLyTiDgSW_irqCfIRz_Ib3KmzdJ_qXbDLTUg7ECWm-hKEdf_PFez67QLyGwNSoowOgZBPvjFsajnwU9tSHU0T41JrooeWnaflcOqYCW4HAGErJYrpjO55mDla7lZIJkaA5otXNllelclNXuvCOfuJicR-AxKRq6deaGlfblbnezZUIZjhIqeI3ZVHhfbVGLgc1KBI2Nos" />
+                            data-alt="Valorant game cover"
+                            src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2mvt.jpg" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
@@ -665,8 +786,8 @@
                     </div>
                     <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Retro gaming console"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5aescspRdJDJW-IgKQIp_74HTO4sTVr7GtFK3YWtFH9ozFedVJsLy4Hpx4laSlWfK4U-T1aHA4CLdET2Y9H4jch_wuWXy1gfI2Z8gMmBe2dSEOKgnKKRUe43Fkais3eY3EUdwsrGokhRs1jl8KNpKaNitMxElBX9_LM0BbMMzQd0o0RHHPWxwxWktixQ3lKCYzrK4SekqWY21WSVNKSlwyOBUl4Olcyqdtw23JDsEAk_xH85_eTCWx_ULmjh5Af5G7YQYQIIO1bY" />
+                            data-alt="BGMI cover"
+                            src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2k3k.jpg" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
@@ -676,8 +797,8 @@
                     </div>
                     <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Battle royale map overhead"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZjXi8Ht6WzHsqab5Q5VKU7Bzuq28tv8tNl0HzYCfxPr7Hnufui3ZFY3ZaUpn6MeHXNRBax7HseDsibIh1Bh7fhLqz7F2SZMitPlVYghgrlRVwfP0pnDCbviZhY_uYLfvBkYdLr9VGX6iiHzBaWdJwzUaAUAgKsyriM9Bm7myjRUWibiFtXtkwKhCPneDcQmFh3io3nSOxGny451RMbHM_-E8NXv2AYFHW-MDbOXLe_9yWODHmEvPVcy4UFhL8MzTG5lsagtexjpQ" />
+                            data-alt="Fortnite cover"
+                            src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2dlt.jpg" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
@@ -687,8 +808,8 @@
                     </div>
                     <div class="group relative overflow-hidden rounded-xl aspect-[3/4]">
                         <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                            data-alt="Artistic digital painting tools"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfe1O2CpYwMd8dCSxxSMGeiNtgkzyR8-hwstJkE0qhrswqGwCKec9CtsCGJVgircZDTqzbuoEVFbvE_LL33zMXz9w_UnnAu1kXIzaIAwgVzeSCSFZ6epsyIQN8bX8kKGXnCWRrHin8JJhP-kaHAqRIiIzu6K2xoXBULD-o7zhc04m1tdJ5ode84riIyR25doxpyUoCLwhCTXWQaN4v112-lMk0AMx60OcmvFFlJUTyvhUEglzsLdY8i46wTo2PKbyuAtu63gXJFeQ" />
+                            data-alt="League of Legends cover"
+                            src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4bna.jpg" />
                         <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent">
                         </div>
                         <div class="absolute bottom-3 left-3">
@@ -763,19 +884,19 @@
     <!-- Floating Mobile Nav (Suppressed for Desktop emphasis, but included for responsive integrity) -->
     <nav
         class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-high/90 backdrop-blur-xl border-t border-outline-variant/10 flex justify-around items-center h-20 px-4 z-50">
-        <button class="flex flex-col items-center text-cyan-400">
+        <a href="index.html" class="flex flex-col items-center text-cyan-400 hover:text-cyan-300 transition-colors active:-translate-y-1">
             <span class="material-symbols-outlined">home</span>
             <span class="text-[10px] font-bold mt-1">Home</span>
-        </button>
-        <button class="flex flex-col items-center text-on-surface-variant">
-            <span class="material-symbols-outlined">explore</span>
+        </a>
+        <a href="categories.html" class="flex flex-col items-center text-on-surface-variant hover:text-cyan-400 transition-colors active:-translate-y-1">
+            <span class="material-symbols-outlined">grid_view</span>
             <span class="text-[10px] font-bold mt-1">Browse</span>
-        </button>
-        <button class="flex flex-col items-center text-on-surface-variant">
-            <span class="material-symbols-outlined">search</span>
-            <span class="text-[10px] font-bold mt-1">Search</span>
-        </button>
-        <button class="flex flex-col items-center text-on-surface-variant">
+        </a>
+        <a href="esports.html" class="flex flex-col items-center text-on-surface-variant hover:text-purple-400 transition-colors active:-translate-y-1">
+            <span class="material-symbols-outlined">sports_esports</span>
+            <span class="text-[10px] font-bold mt-1">Esports</span>
+        </a>
+        <button class="flex flex-col items-center text-on-surface-variant hover:text-primary transition-colors active:-translate-y-1">
             <span class="material-symbols-outlined">person</span>
             <span class="text-[10px] font-bold mt-1">Profile</span>
         </button>
@@ -1048,6 +1169,30 @@
                 closeSchedule();
                 scheduleForm.reset();
             });
+        }
+
+        // === MOBILE SIDEBAR LOGIC ===
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mainSidebar = document.getElementById('main-sidebar');
+        const mobileSidebarOverlay = document.getElementById('mobile-sidebar-overlay');
+
+        if (mobileMenuBtn && mainSidebar && mobileSidebarOverlay) {
+            const toggleSidebar = () => {
+                const isClosed = mainSidebar.classList.contains('-translate-x-full');
+                if (isClosed) {
+                    mainSidebar.classList.remove('-translate-x-full');
+                    mobileSidebarOverlay.classList.remove('hidden');
+                    // Small delay to allow display flex to apply before opacity transition
+                    setTimeout(() => mobileSidebarOverlay.classList.remove('opacity-0'), 10);
+                } else {
+                    mainSidebar.classList.add('-translate-x-full');
+                    mobileSidebarOverlay.classList.add('opacity-0');
+                    setTimeout(() => mobileSidebarOverlay.classList.add('hidden'), 300);
+                }
+            };
+
+            mobileMenuBtn.addEventListener('click', toggleSidebar);
+            mobileSidebarOverlay.addEventListener('click', toggleSidebar);
         }
     });
     </script>
