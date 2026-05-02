@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>NEON NOCTURNE | Sign In</title>
+    <meta name="description" content="Sign in to Neon Nocturne — the premium streaming platform for gamers and creators." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="supabase.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#0e0e11",
+                        "surface-container": "#19191d",
+                        "surface-container-high": "#1f1f23",
+                        "surface-container-highest": "#25252a",
+                        "surface-container-low": "#131316",
+                        "surface-container-lowest": "#000000",
+                        "surface-variant": "#25252a",
+                        "on-surface": "#fbf8fc",
+                        "on-surface-variant": "#acaaae",
+                        "outline": "#767578",
+                        "outline-variant": "#48474b",
+                        "primary": "#cf96ff",
+                        "primary-dim": "#a533ff",
+                        "primary-container": "#c683ff",
+                        "on-primary": "#480079",
+                        "on-primary-fixed": "#000000",
+                        "secondary": "#00d9ff",
+                        "secondary-dim": "#00caed",
+                        "on-secondary": "#004755",
+                        "error": "#ff6e84",
+                        "on-error": "#490013",
+                        "tertiary": "#ff959d",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0e0e11;
+            color: #fbf8fc;
+            font-family: 'Manrope', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* ---- Animated background ---- */
+        .login-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .login-bg::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(165, 51, 255, 0.15) 0%, transparent 70%);
+            top: -10%;
+            left: -10%;
+            animation: float-orb 20s ease-in-out infinite;
+        }
+
+        .login-bg::after {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 217, 255, 0.1) 0%, transparent 70%);
+            bottom: -15%;
+            right: -10%;
+            animation: float-orb 25s ease-in-out infinite reverse;
+        }
+
+        @keyframes float-orb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(80px, 40px) scale(1.1); }
+            50% { transform: translate(-40px, 80px) scale(0.95); }
+            75% { transform: translate(60px, -30px) scale(1.05); }
+        }
+
+        /* ---- Neon grid ---- */
+        .neon-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(207, 150, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(207, 150, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            animation: grid-pan 40s linear infinite;
+        }
+
+        @keyframes grid-pan {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* ---- Floating particles ---- */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0;
+            animation: particle-float linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% { opacity: 0; transform: translateY(100vh) scale(0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-10vh) scale(1); }
+        }
+
+        /* ---- Glass card ---- */
+        .glass-card {
+            background: rgba(19, 19, 22, 0.7);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(72, 71, 75, 0.2);
+            box-shadow:
+                0 0 80px rgba(165, 51, 255, 0.05),
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(207, 150, 255, 0.05);
+        }
+
+        /* ---- Neon line accent ---- */
+        .neon-line {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #a533ff, #00d9ff, transparent);
+            border-radius: 999px;
+            animation: neon-pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes neon-pulse {
+            0%, 100% { opacity: 0.6; filter: blur(0px); }
+            50% { opacity: 1; filter: blur(1px); }
+        }
+
+        /* ---- Input focus glow ---- */
+        .input-glow:focus {
+            box-shadow: 0 0 0 2px rgba(165, 51, 255, 0.3), 0 0 20px rgba(165, 51, 255, 0.1);
+        }
+
+        /* ---- Button shimmer ---- */
+        .btn-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -100%;
+            width: 60%;
+            height: 200%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: skewX(-20deg);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { left: -100%; }
+            50% { left: 150%; }
+        }
+
+        /* ---- Password toggle ---- */
+        .pwd-toggle {
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.2s;
+        }
+
+        .pwd-toggle:hover {
+            color: #cf96ff;
+        }
+
+        /* ---- Social buttons ---- */
+        .social-btn {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* ---- Form shake on error ---- */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+            20%, 40%, 60%, 80% { transform: translateX(4px); }
+        }
+
+        .shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        /* ---- Loading spinner ---- */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: #000;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* ---- Success checkmark ---- */
+        @keyframes check-draw {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* ---- Page transition ---- */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            z-index: 200;
+            background: #0e0e11;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* ---- Scrollbar ---- */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0e0e11; }
+        ::-webkit-scrollbar-thumb { background: #48474b; border-radius: 10px; }
+
+        /* ---- Checkbox ---- */
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #48474b;
+            border-radius: 3px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .custom-checkbox:checked {
+            background: linear-gradient(135deg, #a533ff, #cf96ff);
+            border-color: #a533ff;
+        }
+        .custom-checkbox:checked::after {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 0px;
+            width: 5px;
+            height: 9px;
+            border: solid #000;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+        .custom-checkbox:hover {
+            border-color: #cf96ff;
+        }
+
+        /* ---- Error message ---- */
+        .error-msg {
+            color: #ff6e84;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 6px;
+            display: none;
+            align-items: center;
+            gap: 4px;
+        }
+        .error-msg.visible {
+            display: flex;
+        }
+
+        /* ---- Success overlay ---- */
+        .success-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 150;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            background: rgba(14, 14, 17, 0.95);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .success-overlay.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="login-bg">
+        <div class="neon-grid"></div>
+    </div>
+
+    <!-- Floating Particles (generated via JS) -->
+    <div id="particles-container"></div>
+
+    <!-- Page Transition Overlay -->
+    <div id="page-transition" class="page-transition"></div>
+
+    <!-- Success Overlay -->
+    <div id="success-overlay" class="success-overlay">
+        <div class="relative mb-6">
+            <div class="w-20 h-20 rounded-full border-2 border-secondary flex items-center justify-center" style="box-shadow: 0 0 30px rgba(0, 217, 255, 0.3);">
+                <span class="material-symbols-outlined text-secondary" style="font-size: 40px; font-variation-settings: 'FILL' 1, 'wght' 700;">check</span>
+            </div>
+        </div>
+        <h2 class="font-headline font-bold text-2xl text-on-surface mb-2">Welcome Back!</h2>
+        <p class="text-on-surface-variant text-sm font-body">Redirecting to your dashboard...</p>
+        <div class="mt-6 flex items-center gap-2">
+            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse"></div>
+            <div class="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse" style="animation-delay: 0.2s;"></div>
+            <div class="w-1.5 h-1.5 bg-primary rounded-full animate-pulse" style="animation-delay: 0.4s;"></div>
+        </div>
+    </div>
+
+    <!-- Main Login Container -->
+    <div class="relative z-10 min-h-screen flex items-center justify-center px-4 py-8">
+        <div class="w-full max-w-md">
+            <!-- Logo / Brand -->
+            <div class="text-center mb-10">
+                <div class="inline-flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-dim to-primary flex items-center justify-center shadow-lg" style="box-shadow: 0 0 25px rgba(165, 51, 255, 0.3);">
+                        <span class="material-symbols-outlined text-on-primary-fixed text-xl" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+                    </div>
+                    <span class="text-3xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-headline tracking-tight">NEON NOCTURNE</span>
+                </div>
+                <p class="text-on-surface-variant text-sm font-body leading-relaxed">Sign in to access your premium streaming experience</p>
+            </div>
+
+            <!-- =============== SIGN IN CARD =============== -->
+            <div id="login-card" class="glass-card rounded-2xl p-8 relative">
+                <!-- Neon accent line -->
+                <div class="neon-line w-24 mx-auto mb-8"></div>
+
+                <form id="login-form" novalidate>
+                    <!-- Username / Email -->
+                    <div class="mb-5">
+                        <label for="login-email" class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Email</label>
+                        <div class="relative group">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-lg">person</span>
+                            <input
+                                id="login-email"
+                                type="email"
+                                placeholder="Enter your email"
+                                autocomplete="username"
+                                
+                                class="input-glow w-full bg-surface-container-lowest border border-outline-variant/20 py-3 pl-12 pr-4 rounded-xl text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-all focus:outline-none focus:border-primary/40 font-body"
+                            />
+                        </div>
+                        <p id="email-error" class="error-msg">
+                            <span class="material-symbols-outlined text-xs">error</span>
+                            <span>Please enter your email</span>
+                        </p>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-5">
+                        <label for="login-password" class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Password</label>
+                        <div class="relative group">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-lg">lock</span>
+                            <input
+                                id="login-password"
+                                type="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                class="input-glow w-full bg-surface-container-lowest border border-outline-variant/20 py-3 pl-12 pr-12 rounded-xl text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-all focus:outline-none focus:border-primary/40 font-body"
+                            />
+                            <span id="pwd-toggle" class="material-symbols-outlined pwd-toggle absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">visibility_off</span>
+                        </div>
+                        <p id="password-error" class="error-msg">
+                            <span class="material-symbols-outlined text-xs">error</span>
+                            <span>Please enter your password</span>
+                        </p>
+                    </div>
+
+                    <!-- Remember + Forgot -->
+                    <div class="flex items-center justify-between mb-7">
+                        <label class="flex items-center gap-2 cursor-pointer">
+                            <input type="checkbox" id="remember-me" class="custom-checkbox" />
+                            <span class="text-xs text-on-surface-variant font-label font-medium">Remember me</span>
+                        </label>
+                        <a href="#" class="text-xs font-bold text-primary hover:text-secondary transition-colors font-label">Forgot Password?</a>
+                    </div>
+
+                    <!-- Login Button -->
+                    <button
+                        id="login-btn"
+                        type="submit"
+                        class="btn-shimmer w-full py-3.5 bg-gradient-to-r from-primary-dim to-primary text-on-primary-fixed font-bold rounded-xl text-sm font-headline tracking-wider uppercase transition-all hover:shadow-[0_0_35px_rgba(165,51,255,0.4)] active:scale-[0.98] flex items-center justify-center gap-2"
+                    >
+                        <span id="btn-text">Sign In</span>
+                        <span id="btn-spinner" class="spinner hidden"></span>
+                    </button>
+                </form>
+
+                <!-- General Error -->
+                <p id="general-error" class="error-msg text-center mt-4 justify-center">
+                    <span class="material-symbols-outlined text-xs">error</span>
+                    <span>Invalid credentials. Please try again.</span>
+                </p>
+
+                <!-- Divider -->
+                <div class="flex items-center gap-4 my-7">
+                    <div class="flex-1 h-px bg-outline-variant/20"></div>
+                    <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest font-label">or continue with</span>
+                    <div class="flex-1 h-px bg-outline-variant/20"></div>
+                </div>
+
+                <!-- Google Sign In -->
+                <button id="social-google" type="button" class="social-btn w-full flex items-center justify-center gap-3 py-3.5 bg-surface-container-high border border-outline-variant/15 rounded-xl hover:border-primary/30 hover:bg-surface-container-highest transition-all mb-7">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    <span class="text-sm font-bold text-on-surface font-label">Sign in with Google</span>
+                </button>
+
+                <!-- Sign Up Link -->
+                <p class="text-center text-xs text-on-surface-variant font-body">
+                    New to Neon Nocturne?
+                    <a href="#" id="show-signup" class="font-bold text-secondary hover:text-primary transition-colors">Create an account</a>
+                </p>
+            </div>
+
+            <!-- =============== SIGN UP CARD =============== -->
+            <div id="signup-card" class="glass-card rounded-2xl p-8 relative" style="display: none;">
+                <!-- Neon accent line -->
+                <div class="neon-line w-24 mx-auto mb-6"></div>
+                <h2 class="text-center font-headline font-bold text-xl text-on-surface mb-1">Create Your Account</h2>
+                <p class="text-center text-on-surface-variant text-xs font-body mb-6">Join the Neon Nocturne community</p>
+
+                <form id="signup-form" novalidate>
+                    <!-- Username -->
+                    <div class="mb-4">
+                        <label for="signup-username" class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Username</label>
+                        <div class="relative group">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-lg">badge</span>
+                            <input
+                                id="signup-username"
+                                type="text"
+                                placeholder="Choose a username"
+                                autocomplete="username"
+                                class="input-glow w-full bg-surface-container-lowest border border-outline-variant/20 py-3 pl-12 pr-4 rounded-xl text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-all focus:outline-none focus:border-primary/40 font-body"
+                            />
+                        </div>
+                        <p id="signup-username-error" class="error-msg">
+                            <span class="material-symbols-outlined text-xs">error</span>
+                            <span>Please enter a username</span>
+                        </p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-4">
+                        <label for="signup-email" class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Email</label>
+                        <div class="relative group">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-lg">mail</span>
+                            <input
+                                id="signup-email"
+                                type="email"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                class="input-glow w-full bg-surface-container-lowest border border-outline-variant/20 py-3 pl-12 pr-4 rounded-xl text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-all focus:outline-none focus:border-primary/40 font-body"
+                            />
+                        </div>
+                        <p id="signup-email-error" class="error-msg">
+                            <span class="material-symbols-outlined text-xs">error</span>
+                            <span>Please enter a valid email</span>
+                        </p>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-4">
+                        <label for="signup-password" class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Password</label>
+                        <div class="relative group">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-lg">lock</span>
+                            <input
+                                id="signup-password"
+                                type="password"
+                                placeholder="Min 6 characters"
+                                autocomplete="new-password"
+                                class="input-glow w-full bg-surface-container-lowest border border-outline-variant/20 py-3 pl-12 pr-12 rounded-xl text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-all focus:outline-none focus:border-primary/40 font-body"
+                            />
+                            <span id="signup-pwd-toggle" class="material-symbols-outlined pwd-toggle absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">visibility_off</span>
+                        </div>
+                        <p id="signup-password-error" class="error-msg">
+                            <span class="material-symbols-outlined text-xs">error</span>
+                            <span>Password must be at least 6 characters</span>
+                        </p>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="mb-6">
+                        <label for="signup-confirm" class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2 font-label">Confirm Password</label>
+                        <div class="relative group">
+                            <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors text-lg">lock_reset</span>
+                            <input
+                                id="signup-confirm"
+                                type="password"
+                                placeholder="Confirm your password"
+                                autocomplete="new-password"
+                                class="input-glow w-full bg-surface-container-lowest border border-outline-variant/20 py-3 pl-12 pr-4 rounded-xl text-sm text-on-surface placeholder:text-on-surface-variant/50 transition-all focus:outline-none focus:border-primary/40 font-body"
+                            />
+                        </div>
+                        <p id="signup-confirm-error" class="error-msg">
+                            <span class="material-symbols-outlined text-xs">error</span>
+                            <span>Passwords do not match</span>
+                        </p>
+                    </div>
+
+                    <!-- Sign Up Button -->
+                    <button
+                        id="signup-btn"
+                        type="submit"
+                        class="btn-shimmer w-full py-3.5 bg-gradient-to-r from-secondary-dim to-secondary text-on-primary-fixed font-bold rounded-xl text-sm font-headline tracking-wider uppercase transition-all hover:shadow-[0_0_35px_rgba(0,217,255,0.4)] active:scale-[0.98] flex items-center justify-center gap-2"
+                    >
+                        <span id="signup-btn-text">Create Account</span>
+                        <span id="signup-btn-spinner" class="spinner hidden"></span>
+                    </button>
+                </form>
+
+                <!-- General Error -->
+                <p id="signup-general-error" class="error-msg text-center mt-4 justify-center">
+                    <span class="material-symbols-outlined text-xs">error</span>
+                    <span>Something went wrong.</span>
+                </p>
+
+                <!-- Success message (shown after signup) -->
+                <div id="signup-success" class="hidden mt-4 text-center py-3 px-4 rounded-xl border border-secondary/30 bg-secondary/5">
+                    <span class="material-symbols-outlined text-secondary text-lg align-middle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                    <span class="text-xs font-bold text-secondary font-label ml-1">Account created! Check your email to confirm, then sign in.</span>
+                </div>
+
+                <!-- Divider -->
+                <div class="flex items-center gap-4 my-7">
+                    <div class="flex-1 h-px bg-outline-variant/20"></div>
+                    <span class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest font-label">or</span>
+                    <div class="flex-1 h-px bg-outline-variant/20"></div>
+                </div>
+
+                <!-- Google Sign Up -->
+                <button id="social-google-signup" type="button" class="social-btn w-full flex items-center justify-center gap-3 py-3.5 bg-surface-container-high border border-outline-variant/15 rounded-xl hover:border-primary/30 hover:bg-surface-container-highest transition-all mb-7">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+                        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                    </svg>
+                    <span class="text-sm font-bold text-on-surface font-label">Sign up with Google</span>
+                </button>
+
+                <!-- Back to Sign In -->
+                <p class="text-center text-xs text-on-surface-variant font-body">
+                    Already have an account?
+                    <a href="#" id="show-signin" class="font-bold text-secondary hover:text-primary transition-colors">Sign In</a>
+                </p>
+            </div>
+
+            <!-- Footer -->
+            <div class="text-center mt-8">
+                <p class="text-[10px] text-on-surface-variant/50 font-label">
+                    By signing in, you agree to our
+                    <a href="#" class="text-on-surface-variant/70 hover:text-primary transition-colors">Terms of Service</a>
+                    and
+                    <a href="#" class="text-on-surface-variant/70 hover:text-primary transition-colors">Privacy Policy</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== Floating Particles ==========
+        (function createParticles() {
+            const container = document.getElementById('particles-container');
+            const colors = ['rgba(207,150,255,0.4)', 'rgba(0,217,255,0.3)', 'rgba(165,51,255,0.3)'];
+            for (let i = 0; i < 30; i++) {
+                const p = document.createElement('div');
+                p.classList.add('particle');
+                const size = Math.random() * 4 + 1;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.background = colors[Math.floor(Math.random() * colors.length)];
+                p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+                p.style.animationDelay = (Math.random() * 10) + 's';
+                container.appendChild(p);
+            }
+        })();
+
+        // ========== Toggle Sign In / Sign Up ==========
+        const loginCard = document.getElementById('login-card');
+        const signupCard = document.getElementById('signup-card');
+
+        document.getElementById('show-signup').addEventListener('click', (e) => {
+            e.preventDefault();
+            loginCard.style.display = 'none';
+            signupCard.style.display = 'block';
+            signupCard.style.animation = 'fadeIn 0.3s ease';
+        });
+
+        document.getElementById('show-signin').addEventListener('click', (e) => {
+            e.preventDefault();
+            signupCard.style.display = 'none';
+            loginCard.style.display = 'block';
+            loginCard.style.animation = 'fadeIn 0.3s ease';
+        });
+
+        // ========== Password Toggle (Sign In) ==========
+        const pwdToggle = document.getElementById('pwd-toggle');
+        const pwdInput = document.getElementById('login-password');
+        pwdToggle.addEventListener('click', () => {
+            const isPassword = pwdInput.type === 'password';
+            pwdInput.type = isPassword ? 'text' : 'password';
+            pwdToggle.textContent = isPassword ? 'visibility' : 'visibility_off';
+        });
+
+        // ========== Password Toggle (Sign Up) ==========
+        const signupPwdToggle = document.getElementById('signup-pwd-toggle');
+        const signupPwdInput = document.getElementById('signup-password');
+        signupPwdToggle.addEventListener('click', () => {
+            const isPassword = signupPwdInput.type === 'password';
+            signupPwdInput.type = isPassword ? 'text' : 'password';
+            signupPwdToggle.textContent = isPassword ? 'visibility' : 'visibility_off';
+        });
+
+        // ========== DOM References (Sign In) ==========
+        const form = document.getElementById('login-form');
+        const emailInput = document.getElementById('login-email');
+        const emailError = document.getElementById('email-error');
+        const passwordError = document.getElementById('password-error');
+        const generalError = document.getElementById('general-error');
+        const loginBtn = document.getElementById('login-btn');
+        const btnText = document.getElementById('btn-text');
+        const btnSpinner = document.getElementById('btn-spinner');
+        const successOverlay = document.getElementById('success-overlay');
+        const pageTransition = document.getElementById('page-transition');
+
+        // Clear errors on input
+        emailInput.addEventListener('input', () => {
+            emailError.classList.remove('visible');
+            emailInput.style.borderColor = '';
+        });
+        pwdInput.addEventListener('input', () => {
+            passwordError.classList.remove('visible');
+            pwdInput.style.borderColor = '';
+        });
+
+        // ========== Show Success & Redirect ==========
+        function showSuccessAndRedirect() {
+            successOverlay.classList.add('visible');
+            setTimeout(() => {
+                pageTransition.classList.add('active');
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 600);
+            }, 1500);
+        }
+
+        // ========== Email/Password Sign In (Supabase) ==========
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let valid = true;
+
+            emailError.classList.remove('visible');
+            passwordError.classList.remove('visible');
+            generalError.classList.remove('visible');
+
+            if (!emailInput.value.trim()) {
+                emailError.classList.add('visible');
+                emailInput.style.borderColor = '#ff6e84';
+                valid = false;
+            }
+            if (!pwdInput.value.trim()) {
+                passwordError.classList.add('visible');
+                pwdInput.style.borderColor = '#ff6e84';
+                valid = false;
+            }
+
+            if (!valid) {
+                loginCard.classList.add('shake');
+                setTimeout(() => loginCard.classList.remove('shake'), 500);
+                return;
+            }
+
+            loginBtn.disabled = true;
+            btnText.textContent = 'Signing In...';
+            btnSpinner.classList.remove('hidden');
+
+            try {
+                await NeonDB.auth.signIn(emailInput.value.trim(), pwdInput.value.trim());
+
+                localStorage.setItem('neonNocturneLoggedIn', 'true');
+                localStorage.setItem('neonNocturneUser', emailInput.value.trim());
+
+                btnSpinner.classList.add('hidden');
+                btnText.textContent = 'Sign In';
+                showSuccessAndRedirect();
+            } catch (err) {
+                console.error('Login error:', err);
+                btnSpinner.classList.add('hidden');
+                btnText.textContent = 'Sign In';
+                loginBtn.disabled = false;
+
+                const errSpan = generalError.querySelector('span:last-child');
+                if (err.message.includes('Invalid login')) {
+                    errSpan.textContent = 'Invalid email or password. Please try again.';
+                } else if (err.message.includes('Email not confirmed')) {
+                    errSpan.textContent = 'Please confirm your email before signing in.';
+                } else {
+                    errSpan.textContent = err.message || 'Something went wrong. Please try again.';
+                }
+                generalError.classList.add('visible');
+                loginCard.classList.add('shake');
+                setTimeout(() => loginCard.classList.remove('shake'), 500);
+            }
+        });
+
+        // ========== Sign Up (Supabase) ==========
+        const signupForm = document.getElementById('signup-form');
+        const signupUsernameInput = document.getElementById('signup-username');
+        const signupEmailInput = document.getElementById('signup-email');
+        const signupConfirmInput = document.getElementById('signup-confirm');
+        const signupBtn = document.getElementById('signup-btn');
+        const signupBtnText = document.getElementById('signup-btn-text');
+        const signupBtnSpinner = document.getElementById('signup-btn-spinner');
+        const signupGeneralError = document.getElementById('signup-general-error');
+        const signupSuccess = document.getElementById('signup-success');
+
+        // Clear errors on typing
+        [signupUsernameInput, signupEmailInput, signupPwdInput, signupConfirmInput].forEach(el => {
+            el.addEventListener('input', () => {
+                const errEl = document.getElementById(el.id + '-error');
+                if (errEl) { errEl.classList.remove('visible'); el.style.borderColor = ''; }
+                signupGeneralError.classList.remove('visible');
+            });
+        });
+
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            let valid = true;
+            signupGeneralError.classList.remove('visible');
+            signupSuccess.classList.add('hidden');
+
+            const username = signupUsernameInput.value.trim();
+            const email = signupEmailInput.value.trim();
+            const password = signupPwdInput.value;
+            const confirm = signupConfirmInput.value;
+
+            // Validate username
+            if (!username || username.length < 3) {
+                document.getElementById('signup-username-error').classList.add('visible');
+                signupUsernameInput.style.borderColor = '#ff6e84';
+                if (!username) document.querySelector('#signup-username-error span:last-child').textContent = 'Please enter a username';
+                else document.querySelector('#signup-username-error span:last-child').textContent = 'Username must be at least 3 characters';
+                valid = false;
+            }
+
+            // Validate email
+            if (!email || !email.includes('@')) {
+                document.getElementById('signup-email-error').classList.add('visible');
+                signupEmailInput.style.borderColor = '#ff6e84';
+                valid = false;
+            }
+
+            // Validate password
+            if (!password || password.length < 6) {
+                document.getElementById('signup-password-error').classList.add('visible');
+                signupPwdInput.style.borderColor = '#ff6e84';
+                valid = false;
+            }
+
+            // Validate confirm
+            if (password !== confirm) {
+                document.getElementById('signup-confirm-error').classList.add('visible');
+                signupConfirmInput.style.borderColor = '#ff6e84';
+                valid = false;
+            }
+
+            if (!valid) {
+                signupCard.classList.add('shake');
+                setTimeout(() => signupCard.classList.remove('shake'), 500);
+                return;
+            }
+
+            // Submit
+            signupBtn.disabled = true;
+            signupBtnText.textContent = 'Creating Account...';
+            signupBtnSpinner.classList.remove('hidden');
+
+            try {
+                await NeonDB.auth.signUp(email, password, username);
+
+                signupBtnSpinner.classList.add('hidden');
+                signupBtnText.textContent = 'Create Account';
+                signupBtn.disabled = false;
+
+                // Show success
+                signupForm.style.display = 'none';
+                signupSuccess.classList.remove('hidden');
+
+                // Auto switch to sign in after 3 seconds
+                setTimeout(() => {
+                    signupForm.style.display = 'block';
+                    signupSuccess.classList.add('hidden');
+                    signupCard.style.display = 'none';
+                    loginCard.style.display = 'block';
+                    loginCard.style.animation = 'fadeIn 0.3s ease';
+                    // Pre-fill email in login form
+                    emailInput.value = email;
+                }, 3000);
+            } catch (err) {
+                console.error('Signup error:', err);
+                signupBtnSpinner.classList.add('hidden');
+                signupBtnText.textContent = 'Create Account';
+                signupBtn.disabled = false;
+
+                const errSpan = signupGeneralError.querySelector('span:last-child');
+                if (err.message.includes('already registered')) {
+                    errSpan.textContent = 'This email is already registered. Try signing in.';
+                } else {
+                    errSpan.textContent = err.message || 'Something went wrong. Please try again.';
+                }
+                signupGeneralError.classList.add('visible');
+                signupCard.classList.add('shake');
+                setTimeout(() => signupCard.classList.remove('shake'), 500);
+            }
+        });
+
+        // ========== Google Sign In (Supabase OAuth) ==========
+        function handleGoogleSignIn() {
+            try {
+                // Check if opening from file:// (won't work with OAuth)
+                if (window.location.protocol === 'file:') {
+                    const errSpan = generalError.querySelector('span:last-child');
+                    errSpan.textContent = 'Google sign-in requires a web server. Use "Sign In" with email/password, or run via Live Server.';
+                    generalError.classList.add('visible');
+                    return;
+                }
+                NeonDB.auth.signInWithProvider('google');
+            } catch (err) {
+                console.error('Google sign-in error:', err);
+                const errSpan = generalError.querySelector('span:last-child');
+                errSpan.textContent = 'Google sign-in failed. Please try again.';
+                generalError.classList.add('visible');
+            }
+        }
+
+        document.getElementById('social-google').addEventListener('click', handleGoogleSignIn);
+        document.getElementById('social-google-signup').addEventListener('click', handleGoogleSignIn);
+
+        // ========== Enter key on inputs ==========
+        emailInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); pwdInput.focus(); }
+        });
+
+        // ========== Check if already logged in (Supabase session) ==========
+        (async () => {
+            try {
+                const session = await NeonDB.auth.getSession();
+                if (session) {
+                    window.location.href = 'index.html';
+                }
+            } catch (e) {
+                // Not logged in — stay on login page
+            }
+        })();
+    </script>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</body>
+</html>
+
