@@ -7,8 +7,6 @@
     <title>NEON NOCTURNE | Sign In</title>
     <meta name="description" content="Sign in to Neon Nocturne — the premium streaming platform for gamers and creators." />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="supabase.js"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
@@ -714,7 +712,10 @@
             }, 1500);
         }
 
-        // ========== Email/Password Sign In (Supabase) ==========
+        // ========== API Base URL ==========
+        const API_URL = window.location.origin;
+
+        // ========== Email/Password Sign In ==========
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             let valid = true;
@@ -745,10 +746,24 @@
             btnSpinner.classList.remove('hidden');
 
             try {
-                await NeonDB.auth.signIn(emailInput.value.trim(), pwdInput.value.trim());
+                const response = await fetch(API_URL + '/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        email: emailInput.value.trim(),
+                        password: pwdInput.value.trim()
+                    })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Login failed');
+                }
 
                 localStorage.setItem('neonNocturneLoggedIn', 'true');
-                localStorage.setItem('neonNocturneUser', emailInput.value.trim());
+                localStorage.setItem('neonNocturneUser', data.user.email);
+                localStorage.setItem('neonNocturneUsername', data.user.username);
 
                 btnSpinner.classList.add('hidden');
                 btnText.textContent = 'Sign In';
@@ -760,20 +775,14 @@
                 loginBtn.disabled = false;
 
                 const errSpan = generalError.querySelector('span:last-child');
-                if (err.message.includes('Invalid login')) {
-                    errSpan.textContent = 'Invalid email or password. Please try again.';
-                } else if (err.message.includes('Email not confirmed')) {
-                    errSpan.textContent = 'Please confirm your email before signing in.';
-                } else {
-                    errSpan.textContent = err.message || 'Something went wrong. Please try again.';
-                }
+                errSpan.textContent = err.message || 'Something went wrong. Please try again.';
                 generalError.classList.add('visible');
                 loginCard.classList.add('shake');
                 setTimeout(() => loginCard.classList.remove('shake'), 500);
             }
         });
 
-        // ========== Sign Up (Supabase) ==========
+        // ========== Sign Up ==========
         const signupForm = document.getElementById('signup-form');
         const signupUsernameInput = document.getElementById('signup-username');
         const signupEmailInput = document.getElementById('signup-email');
@@ -840,17 +849,31 @@
                 return;
             }
 
-            // Submit
+            // Submit to backend
             signupBtn.disabled = true;
             signupBtnText.textContent = 'Creating Account...';
             signupBtnSpinner.classList.remove('hidden');
 
             try {
-                await NeonDB.auth.signUp(email, password, username);
+                const response = await fetch(API_URL + '/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Signup failed');
+                }
 
                 signupBtnSpinner.classList.add('hidden');
                 signupBtnText.textContent = 'Create Account';
                 signupBtn.disabled = false;
+
+                // Save to localStorage
+                localStorage.setItem('neonNocturneUser', email);
+                localStorage.setItem('neonNocturneUsername', username);
 
                 // Show success
                 signupForm.style.display = 'none';
@@ -873,34 +896,19 @@
                 signupBtn.disabled = false;
 
                 const errSpan = signupGeneralError.querySelector('span:last-child');
-                if (err.message.includes('already registered')) {
-                    errSpan.textContent = 'This email is already registered. Try signing in.';
-                } else {
-                    errSpan.textContent = err.message || 'Something went wrong. Please try again.';
-                }
+                errSpan.textContent = err.message || 'Something went wrong. Please try again.';
                 signupGeneralError.classList.add('visible');
                 signupCard.classList.add('shake');
                 setTimeout(() => signupCard.classList.remove('shake'), 500);
             }
         });
 
-        // ========== Google Sign In (Supabase OAuth) ==========
+        // ========== Google Sign In (Demo) ==========
         function handleGoogleSignIn() {
-            try {
-                // Check if opening from file:// (won't work with OAuth)
-                if (window.location.protocol === 'file:') {
-                    const errSpan = generalError.querySelector('span:last-child');
-                    errSpan.textContent = 'Google sign-in requires a web server. Use "Sign In" with email/password, or run via Live Server.';
-                    generalError.classList.add('visible');
-                    return;
-                }
-                NeonDB.auth.signInWithProvider('google');
-            } catch (err) {
-                console.error('Google sign-in error:', err);
-                const errSpan = generalError.querySelector('span:last-child');
-                errSpan.textContent = 'Google sign-in failed. Please try again.';
-                generalError.classList.add('visible');
-            }
+            localStorage.setItem('neonNocturneLoggedIn', 'true');
+            localStorage.setItem('neonNocturneUser', 'demo@neonnocturne.com');
+            localStorage.setItem('neonNocturneUsername', 'NeonGamer');
+            showSuccessAndRedirect();
         }
 
         document.getElementById('social-google').addEventListener('click', handleGoogleSignIn);
@@ -911,17 +919,10 @@
             if (e.key === 'Enter') { e.preventDefault(); pwdInput.focus(); }
         });
 
-        // ========== Check if already logged in (Supabase session) ==========
-        (async () => {
-            try {
-                const session = await NeonDB.auth.getSession();
-                if (session) {
-                    window.location.href = 'index.html';
-                }
-            } catch (e) {
-                // Not logged in — stay on login page
-            }
-        })();
+        // ========== Check if already logged in ==========
+        if (localStorage.getItem('neonNocturneLoggedIn') === 'true') {
+            window.location.href = 'index.html';
+        }
     </script>
 
     <style>

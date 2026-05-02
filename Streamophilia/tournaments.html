@@ -7,8 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>NEON NOCTURNE | Premium Streaming</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
-    <script src="supabase.js"></script>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
         rel="stylesheet" />
@@ -134,11 +133,11 @@
             <nav class="hidden md:flex items-center gap-x-8 ml-8">
                 <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
                     href="index.html">Browse</a>
-                <a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-colors duration-300"
+                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
                     href="esports.html">Esports</a>
                 <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
                     href="#">Music</a>
-                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
+                <a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-colors duration-300"
                     href="tournaments.html">Tournaments</a>
             </nav>
         </div>
@@ -152,7 +151,10 @@
             </div>
         </div>
         <div class="flex items-center gap-x-6">
-            <button class="top-dashboard-btn flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-lg border border-primary/20 hover:border-primary/50 text-primary transition-colors active:scale-95" title="Your Wallet"><span class="material-symbols-outlined text-sm">account_balance_wallet</span><span class="text-xs font-bold"><span id="wallet-balance">500</span> COINS</span></button>
+            <button class="top-dashboard-btn flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-lg border border-primary/20 hover:border-primary/50 text-primary transition-colors active:scale-95" title="Your Wallet">
+                <span class="material-symbols-outlined text-sm">account_balance_wallet</span> 
+                <span class="text-xs font-bold"><span id="wallet-balance">500</span> COINS</span>
+            </button>
             <!-- Notification Button + Panel -->
             <div class="relative" id="notif-wrapper">
                 <button id="notif-btn" class="relative text-on-surface-variant hover:text-primary transition-colors active:scale-95">
@@ -391,7 +393,7 @@
                         <span class="material-symbols-outlined text-xl">grid_view</span>
                         <span>Categories</span>
                     </a>
-                    <a class="flex items-center gap-3 p-2 bg-neutral-800/80 text-cyan-400 rounded-md transition-all border-l-2 border-cyan-400"
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
                         href="esports.html">
                         <span class="material-symbols-outlined text-xl">sports_esports</span>
                         <span>Esports</span>
@@ -422,113 +424,172 @@
         <main class="flex-1 lg:ml-64 p-8 min-h-screen pt-24">
     <div class="flex justify-between items-center mb-10">
         <div>
-            <h1 class="text-4xl font-headline font-bold text-on-surface mb-2 flex items-center gap-3">
-                <span class="material-symbols-outlined text-primary text-5xl">sports_esports</span> Esports Hub
-            </h1>
-            <p class="text-on-surface-variant font-body mb-6">Watch live professional matches, follow your favorite teams, and catch up on VODs.</p>
+            <h1 class="text-4xl font-headline font-bold text-on-surface mb-2">Tournaments Hub</h1>
+            <p class="text-on-surface-variant font-body">Compete in your favorite games, climb the ranks, and win epic prizes.</p>
         </div>
-        <div class="flex gap-3 h-fit">
-            <button class="bg-surface-container border border-outline-variant/30 text-on-surface px-6 py-2.5 rounded-lg font-bold hover:bg-surface-container-high transition-colors">Schedule</button>
-            <button class="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed px-6 py-2.5 rounded-lg font-bold shadow-[0_0_15px_rgba(207,150,255,0.3)] hover:shadow-[0_0_25px_rgba(207,150,255,0.5)] transition-all active:scale-95">Standings</button>
+        <button id="create-tournament-btn" class="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed px-8 py-3 rounded-lg font-bold shadow-[0_0_20px_rgba(207,150,255,0.3)] hover:shadow-[0_0_30px_rgba(207,150,255,0.5)] transition-all active:scale-95 flex items-center gap-2">
+            <span class="material-symbols-outlined">add_circle</span> Create Tournament
+        </button>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        <div class="glass-panel p-6 rounded-2xl border border-outline-variant/5 hover:border-primary/20 transition-all">
+            <h3 class="text-on-surface-variant text-sm font-medium mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-sm">emoji_events</span> Total Active Tournaments
+            </h3>
+            <div class="text-4xl font-headline font-bold text-on-surface">124</div>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-outline-variant/5 hover:border-secondary/20 transition-all">
+            <h3 class="text-on-surface-variant text-sm font-medium mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-sm">payments</span> Total Prize Pool
+            </h3>
+            <div class="text-4xl font-headline font-bold text-secondary">$245,000</div>
+        </div>
+        <div class="glass-panel p-6 rounded-2xl border border-outline-variant/5 hover:border-emerald-400/20 transition-all">
+            <h3 class="text-on-surface-variant text-sm font-medium mb-4 flex items-center gap-2">
+                <span class="material-symbols-outlined text-emerald-400 text-sm">groups</span> Players Competing
+            </h3>
+            <div class="text-4xl font-headline font-bold text-on-surface">18,452</div>
         </div>
     </div>
 
-    <!-- Live Matches Featured -->
-    <h2 class="text-2xl font-headline font-bold text-on-surface mb-6 flex items-center gap-2">
-        <span class="w-2.5 h-2.5 rounded-full bg-error shadow-[0_0_10px_rgba(255,110,132,0.8)] animate-pulse"></span> Live Matches
-    </h2>
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
-        <!-- Match 1 -->
-        <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 relative overflow-hidden group hover:border-primary/30 transition-all cursor-pointer">
-            <div class="absolute right-0 top-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
-            <div class="flex justify-between items-center mb-6 relative z-10">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-3 py-1 rounded shadow-[0_0_10px_rgba(207,150,255,0.2)]">VCT Masters</span>
-                <span class="text-[10px] font-bold text-error bg-error/10 px-2.5 py-1 rounded border border-error/20 flex items-center gap-1.5 shadow-[0_0_10px_rgba(255,110,132,0.2)]">
-                    <span class="w-1.5 h-1.5 bg-error rounded-full animate-pulse"></span> LIVE
-                </span>
-            </div>
-            <div class="flex justify-between items-center relative z-10">
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/10 group-hover:border-primary/50 group-hover:shadow-[0_0_15px_rgba(207,150,255,0.2)] transition-all">
-                        <span class="text-xl font-bold font-headline">SEN</span>
-                    </div>
-                    <span class="font-bold text-sm tracking-wide">Sentinels</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                    <span class="text-4xl font-headline font-black text-on-surface bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-400">1 - 0</span>
-                    <span class="text-xs font-bold text-on-surface-variant mt-2 tracking-widest uppercase">Map 2: Ascent</span>
-                </div>
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/10 group-hover:border-secondary/50 group-hover:shadow-[0_0_15px_rgba(0,217,255,0.2)] transition-all">
-                        <span class="text-xl font-bold font-headline">FNC</span>
-                    </div>
-                    <span class="font-bold text-sm tracking-wide">Fnatic</span>
-                </div>
-            </div>
-            <a href="stream.html" class="w-full mt-8 bg-surface-container flex justify-center items-center hover:bg-primary/20 hover:border-primary/50 text-on-surface hover:text-primary py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/10 relative z-10 active:scale-95 shadow-md">
-                Watch Stream
-            </a>
-        </div>
+    <!-- Tabs -->
+    <div class="flex gap-8 border-b border-outline-variant/20 mb-8">
+        <button class="pb-4 border-b-2 border-primary text-primary font-bold text-base font-headline uppercase tracking-widest hover:text-primary transition-colors">Active</button>
+        <button class="pb-4 text-on-surface-variant hover:text-on-surface font-headline font-bold text-base uppercase tracking-widest transition-colors border-b-2 border-transparent">Upcoming</button>
+        <button class="pb-4 text-on-surface-variant hover:text-on-surface font-headline font-bold text-base uppercase tracking-widest transition-colors border-b-2 border-transparent">My Tournaments</button>
+    </div>
 
-        <!-- Match 2 -->
-        <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 relative overflow-hidden group hover:border-secondary/30 transition-all cursor-pointer">
-            <div class="absolute right-0 top-0 w-32 h-32 bg-secondary/10 blur-3xl rounded-full"></div>
-            <div class="flex justify-between items-center mb-6 relative z-10">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-secondary bg-secondary/10 px-3 py-1 rounded shadow-[0_0_10px_rgba(0,217,255,0.2)]">CDL Major 3</span>
-                <span class="text-[10px] font-bold text-error bg-error/10 px-2.5 py-1 rounded border border-error/20 flex items-center gap-1.5 shadow-[0_0_10px_rgba(255,110,132,0.2)]">
-                    <span class="w-1.5 h-1.5 bg-error rounded-full animate-pulse"></span> LIVE
-                </span>
-            </div>
-            <div class="flex justify-between items-center relative z-10">
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/10 group-hover:border-[#00ff00]/50 transition-all">
-                        <span class="text-xl font-bold font-headline">OG</span>
-                    </div>
-                    <span class="font-bold text-sm tracking-wide">OpTic Texas</span>
-                </div>
-                <div class="flex flex-col items-center justify-center">
-                    <span class="text-4xl font-headline font-black text-on-surface bg-clip-text text-transparent bg-gradient-to-br from-white to-neutral-400">2 - 2</span>
-                    <span class="text-xs font-bold text-on-surface-variant mt-2 tracking-widest uppercase">Map 5: SND</span>
-                </div>
-                <div class="flex flex-col items-center gap-3">
-                    <div class="w-16 h-16 rounded-full bg-surface-container-highest flex items-center justify-center border border-outline-variant/10 group-hover:border-error/50 transition-all">
-                        <span class="text-xl font-bold font-headline">FAZE</span>
-                    </div>
-                    <span class="font-bold text-sm tracking-wide">ATL FaZe</span>
-                </div>
-            </div>
-            <a href="stream.html" class="w-full mt-8 bg-surface-container flex justify-center items-center hover:bg-secondary/20 hover:border-secondary/50 text-on-surface hover:text-secondary py-3 rounded-lg font-bold text-sm transition-all border border-outline-variant/10 relative z-10 active:scale-95 shadow-md">
-                Watch Stream
-            </a>
+    <!-- Filters/Search -->
+    <div class="flex justify-between items-center mb-8">
+        <div class="flex gap-3">
+            <button class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-bold uppercase tracking-wider">All Games</button>
+            <button class="px-4 py-2 bg-surface-container border border-outline-variant/20 text-on-surface-variant hover:text-on-surface rounded-full text-xs font-bold uppercase tracking-wider transition-colors">FPS</button>
+            <button class="px-4 py-2 bg-surface-container border border-outline-variant/20 text-on-surface-variant hover:text-on-surface rounded-full text-xs font-bold uppercase tracking-wider transition-colors">Strategy</button>
+        </div>
+        <div class="relative w-64">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+            <input type="text" placeholder="Search tournaments..." class="w-full bg-surface-container border border-outline-variant/20 py-2 pl-9 pr-4 rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary transition-all text-on-surface outline-none">
         </div>
     </div>
 
-    <!-- Teams and Standings -->
-    <h2 class="text-2xl font-headline font-bold text-on-surface mb-6 mt-10">Popular Teams</h2>
-    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-        <!-- Team cards -->
-        <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:bg-surface-container-high hover:border-outline-variant/30 hover:-translate-y-1 transition-all cursor-pointer shadow-lg">
-            <div class="w-16 h-16 bg-gradient-to-br from-surface-container-lowest to-surface-container-highest rounded-full flex items-center justify-center font-black font-headline text-2xl border border-outline-variant/5 shadow-inner text-error">T1</div>
-            <span class="text-sm font-bold tracking-wide">T1</span>
+    <!-- Tournament Grid -->
+    <div id="tournaments-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+        <!-- Banner 1: Live Valorant -->
+        <div class="glass-panel border-l-4 border-l-error rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
+            <div class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=800&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Valorant Live">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block"></div>
+                <div class="absolute top-3 left-3 bg-error text-on-error px-2 py-0.5 rounded text-[10px] font-bold tracking-wider shadow-[0_0_10px_rgba(255,110,132,0.5)] flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-on-error animate-pulse"></span> LIVE NOW
+                </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between z-10">
+                <div>
+                    <div class="flex justify-between items-start mb-2 gap-4">
+                        <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Valorant Champions Series</h3>
+                        <span class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">$50,000</span>
+                    </div>
+                    <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">The grand finals have begun! Watch the top teams compete for the ultimate prize.</p>
+                </div>
+                <div class="flex gap-3 mt-auto pt-4">
+                    <a href="stream.html" class="flex-1 flex justify-center items-center bg-gradient-to-r from-error to-error-dim hover:shadow-[0_0_20px_rgba(255,110,132,0.5)] border-none py-2.5 rounded-lg font-bold text-sm transition-all text-white active:scale-95">Watch Stream</a>
+                </div>
+            </div>
         </div>
-        <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:bg-surface-container-high hover:border-outline-variant/30 hover:-translate-y-1 transition-all cursor-pointer shadow-lg">
-            <div class="w-16 h-16 bg-gradient-to-br from-surface-container-lowest to-surface-container-highest rounded-full flex items-center justify-center font-black font-headline text-2xl border border-outline-variant/5 shadow-inner text-on-surface">G2</div>
-            <span class="text-sm font-bold tracking-wide">G2 Esports</span>
+
+        <!-- Banner 2: Chess Tournament -->
+        <div class="glass-panel border-l-4 border-l-secondary rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
+            <div class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
+                <img src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=600&h=800&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Chess Tournament">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block"></div>
+                <div class="absolute top-3 left-3 bg-secondary text-surface px-2 py-0.5 rounded text-[10px] font-bold tracking-wider shadow-[0_0_10px_rgba(0,217,255,0.4)]">OPEN</div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between z-10">
+                <div>
+                    <div class="flex justify-between items-start mb-2 gap-4">
+                        <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Grandmaster Rapid Blitz</h3>
+                        <span class="bg-secondary/10 text-secondary border border-secondary/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">ENTRY: 50 COINS</span>
+                    </div>
+                    <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">Test your mind against the smartest tacticians in this classic chess tournament.</p>
+                    <div class="bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/5 mb-4">
+                        <div class="flex justify-between text-xs mb-1 font-bold">
+                            <span class="text-on-surface-variant uppercase tracking-widest text-[9px]">Seats Left</span>
+                            <span class="text-secondary"><span id="chess-seats">6</span> / 50</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
+                            <div class="h-full bg-secondary w-[88%]"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex gap-3 mt-auto">
+                    <button onclick="openJoinModal('Grandmaster Rapid Blitz', 50, this)" class="flex-1 bg-surface-container border border-outline-variant/20 hover:border-secondary/50 hover:bg-secondary/10 hover:text-secondary py-2.5 rounded-lg font-bold text-sm transition-all text-on-surface active:scale-95">Join Tournament</button>
+                </div>
+            </div>
         </div>
-        <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:bg-surface-container-high hover:border-outline-variant/30 hover:-translate-y-1 transition-all cursor-pointer shadow-lg">
-            <div class="w-16 h-16 bg-gradient-to-br from-surface-container-lowest to-surface-container-highest rounded-full flex items-center justify-center font-black font-headline text-2xl border border-outline-variant/5 shadow-inner text-[#002f6c]">TL</div>
-            <span class="text-sm font-bold tracking-wide">Team Liquid</span>
+
+        <!-- Banner 3: Watchlist -->
+        <div class="glass-panel border-l-4 border-l-primary rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
+            <div class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
+                <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=600&h=800&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 grayscale hover:grayscale-0" alt="Upcoming Tournament">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block"></div>
+                <div class="absolute top-3 left-3 bg-surface-container-highest text-on-surface px-2 py-0.5 rounded text-[10px] font-bold tracking-wider border border-outline-variant/20">UPCOMING</div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between z-10">
+                <div>
+                    <div class="flex justify-between items-start mb-2 gap-4">
+                        <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Neon Overdrive CS2 Cup</h3>
+                        <span class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">$15,000</span>
+                    </div>
+                    <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">The premier CS2 event of the season. Teams from NA and EU battle it out.</p>
+                </div>
+                <div class="flex gap-3 mt-auto pt-4">
+                    <button class="flex-1 bg-primary/20 border border-primary/50 text-primary py-2.5 rounded-lg font-bold text-sm transition-all cursor-default flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-[18px]">bookmark_added</span> In Watchlist
+                    </button>
+                </div>
+            </div>
         </div>
-        <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:bg-surface-container-high hover:border-outline-variant/30 hover:-translate-y-1 transition-all cursor-pointer shadow-lg">
-            <div class="w-16 h-16 bg-gradient-to-br from-surface-container-lowest to-surface-container-highest rounded-full flex items-center justify-center font-black font-headline text-2xl border border-outline-variant/5 shadow-inner text-primary">PRX</div>
-            <span class="text-sm font-bold tracking-wide">Paper Rex</span>
-        </div>
-        <div class="bg-surface-container border border-outline-variant/10 rounded-2xl p-6 flex flex-col items-center justify-center gap-4 hover:bg-surface-container-high hover:border-outline-variant/30 hover:-translate-y-1 transition-all cursor-pointer shadow-lg">
-            <div class="w-16 h-16 bg-gradient-to-br from-surface-container-lowest to-surface-container-highest rounded-full flex items-center justify-center font-black font-headline text-2xl border border-outline-variant/5 shadow-inner text-secondary">C9</div>
-            <span class="text-sm font-bold tracking-wide">Cloud9</span>
+
+        <!-- Banner 4: Free Custom Tournament -->
+        <div class="glass-panel border-l-4 border-l-emerald-400 rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
+            <div class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?w=600&h=800&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" alt="Minecraft Event">
+                <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block"></div>
+                <div class="absolute top-3 left-3 bg-emerald-400/20 text-emerald-400 border border-emerald-400/30 px-2 py-0.5 rounded text-[10px] font-bold tracking-wider">FREE ENTRY</div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between z-10">
+                <div>
+                    <div class="flex justify-between items-start mb-2 gap-4">
+                        <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Community Clash: Minecraft</h3>
+                        <span class="bg-emerald-400/10 text-emerald-400 border border-emerald-400/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">PRIZE: MYSTERY</span>
+                    </div>
+                    <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">A fun community-organized building contest. No entry fee required!</p>
+                </div>
+                <div class="flex gap-3 mt-auto pt-4">
+                    <button onclick="alert('Successfully registered for Community Clash!')" class="flex-1 bg-surface-container border border-emerald-400/30 hover:bg-emerald-400 hover:text-on-primary-fixed py-2.5 rounded-lg font-bold text-sm transition-colors text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.1)] hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] active:scale-95">Register for Free</button>
+                    <button class="w-12 flex items-center justify-center bg-surface-container text-on-surface-variant py-2.5 rounded-lg hover:text-on-surface transition-colors border border-outline-variant/20"><span class="material-symbols-outlined text-lg">share</span></button>
+                </div>
+            </div>
         </div>
     </div>
 </main>
+    </div>
+
+    <!-- Join Tournament Modal -->
+    <div id="join-modal" class="hidden fixed inset-0 z-[110] flex items-center justify-center bg-neutral-950/80 backdrop-blur-sm animate-fade-in">
+        <div class="bg-surface-container-high border border-outline-variant/20 p-8 rounded-2xl w-full max-w-sm shadow-[0_20px_80px_rgba(0,0,0,0.8)] relative text-center">
+            <h2 class="text-xl font-headline font-bold text-on-surface mb-2" id="join-modal-title">Join Tournament</h2>
+            <div class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mx-auto my-6 border-2 border-secondary/30">
+                <span class="material-symbols-outlined text-secondary text-3xl">token</span>
+            </div>
+            <p class="text-on-surface-variant text-sm mb-6">Entry requires <span class="font-bold text-secondary" id="join-modal-cost">50</span> coins. This will be deducted from your wallet balance instantly.</p>
+            <div class="flex gap-3">
+                <button onclick="closeJoinModal()" class="flex-1 px-4 py-2.5 bg-surface-container border border-outline-variant/30 hover:bg-surface-container-highest text-on-surface font-bold rounded-lg transition-colors">Cancel</button>
+                <button onclick="confirmJoinTournament()" class="flex-1 px-4 py-2.5 bg-secondary text-surface font-bold rounded-lg hover:shadow-[0_0_15px_rgba(0,217,255,0.4)] transition-all active:scale-95">Confirm</button>
+            </div>
+        </div>
     </div>
 
     <!-- Create Tournament Modal -->
@@ -952,9 +1013,55 @@
                 createForm.reset();
             });
         }
+
+        // === TOURNAMENT JOIN LOGIC ===
+        window.openJoinModal = function(title, cost, btnObj) {
+            document.getElementById('join-modal-title').textContent = title;
+            document.getElementById('join-modal-cost').textContent = cost;
+            document.getElementById('join-modal').classList.remove('hidden');
+            window.currentJoinBtn = btnObj;
+            window.currentJoinCost = cost;
+        };
+
+        window.closeJoinModal = function() {
+            document.getElementById('join-modal').classList.add('hidden');
+        };
+
+        window.confirmJoinTournament = function() {
+            let balanceSpan = document.getElementById('wallet-balance');
+            let currentBalance = parseInt(balanceSpan.textContent);
+            
+            if (currentBalance >= window.currentJoinCost) {
+                // Deduct coins
+                balanceSpan.textContent = currentBalance - window.currentJoinCost;
+                
+                // Update seats
+                let seatsSpan = document.getElementById('chess-seats');
+                if(seatsSpan) {
+                    let seats = parseInt(seatsSpan.textContent);
+                    seatsSpan.textContent = Math.max(0, seats - 1);
+                }
+
+                // Update Join button state
+                if (window.currentJoinBtn) {
+                    window.currentJoinBtn.textContent = 'Registered ✓';
+                    window.currentJoinBtn.classList.replace('hover:bg-secondary/10', 'bg-surface-container-highest');
+                    window.currentJoinBtn.classList.replace('hover:border-secondary/50', 'border-outline-variant/20');
+                    window.currentJoinBtn.classList.replace('hover:text-secondary', 'text-emerald-400');
+                    window.currentJoinBtn.removeAttribute('onclick');
+                    window.currentJoinBtn.classList.add('cursor-default');
+                }
+                
+                closeJoinModal();
+                alert('Successfully registered! ' + window.currentJoinCost + ' coins were deducted from your wallet.');
+            } else {
+                alert('Insufficient coin balance in your wallet!');
+                closeJoinModal();
+            }
+        };
+
     });
     </script>
-    <script src="tournament_logic.js"></script>
 </body>
 
 </html>
