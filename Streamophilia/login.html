@@ -919,10 +919,10 @@
             if (e.key === 'Enter') { e.preventDefault(); pwdInput.focus(); }
         });
 
-        // ========== Check if already logged in ==========
-        if (localStorage.getItem('neonNocturneLoggedIn') === 'true') {
-            window.location.href = 'index.html';
-        }
+        // Remove auto-redirect so the user can see the login page if they manually visit it.
+        // if (localStorage.getItem('neonNocturneLoggedIn') === 'true') {
+        //     window.location.href = 'index.html';
+        // }
     </script>
 
     <style>
