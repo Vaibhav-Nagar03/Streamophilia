@@ -3,6 +3,12 @@
 <html class="dark" lang="en">
 
 <head>
+    <!-- === AUTH GUARD === -->
+    <script>
+        if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>NEON NOCTURNE | Premium Streaming</title>
@@ -1233,11 +1239,6 @@
     </style>
 
     <script>
-    // === AUTH GUARD — redirect to login if not logged in ===
-    if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
-        window.location.href = 'login.html';
-    }
-
     document.addEventListener('DOMContentLoaded', () => {
         // === SHOW USERNAME IN PROFILE ===
         const storedUser = localStorage.getItem('neonNocturneUser');
