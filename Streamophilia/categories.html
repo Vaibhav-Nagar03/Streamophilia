@@ -81,28 +81,28 @@
             </div>
         </div>
 
-        <div class="flex gap-4 mb-8 overflow-x-auto custom-scrollbar pb-2">
-            <button class="px-5 py-2 whitespace-nowrap bg-primary text-black font-bold rounded-full hover:bg-primary-dim transition-colors">All Categories</button>
-            <button class="px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors">Games</button>
-            <button class="px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors">IRL / Chatting</button>
-            <button class="px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors">Esports</button>
-            <button class="px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors">Creative</button>
+        <div id="category-filters" class="flex gap-4 mb-8 overflow-x-auto custom-scrollbar pb-2">
+            <button class="cat-filter-btn px-5 py-2 whitespace-nowrap bg-primary text-black font-bold rounded-full hover:bg-primary-dim transition-colors active:scale-95" data-filter="all">All Categories</button>
+            <button class="cat-filter-btn px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors active:scale-95" data-filter="games">Games</button>
+            <button class="cat-filter-btn px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors active:scale-95" data-filter="irl">IRL / Chatting</button>
+            <button class="cat-filter-btn px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors active:scale-95" data-filter="esports">Esports</button>
+            <button class="cat-filter-btn px-5 py-2 whitespace-nowrap bg-surface-container-high text-on-surface font-bold rounded-full hover:bg-surface-container-highest transition-colors active:scale-95" data-filter="creative">Creative</button>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
-            <!-- Category Item 1 -->
-            <a href="#" class="group cursor-pointer">
+        <div id="categories-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+            <!-- Category Item 1 - Just Chatting -->
+            <a href="#" class="category-card group cursor-pointer" data-category="irl">
                 <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/509658-285x380.jpg" />
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/509658-285x380.jpg" alt="Just Chatting" />
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
                 </div>
                 <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">Just Chatting</h4>
                 <p class="text-[11px] text-on-surface-variant font-medium">950k Viewers</p>
             </a>
-            <!-- Category Item 2 -->
-            <a href="#" class="group cursor-pointer">
+            <!-- Category Item 2 - VALORANT -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games esports">
                 <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2mvt.jpg" />
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/516575-285x380.jpg" alt="VALORANT" />
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
                 </div>
                 <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">VALORANT</h4>
@@ -111,10 +111,10 @@
                     <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Shooter</span>
                 </div>
             </a>
-            <!-- Category Item 3 -->
-            <a href="#" class="group cursor-pointer">
+            <!-- Category Item 3 - BGMI -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games esports">
                 <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-surface-container-high">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2k3k.jpg" />
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/1745812498-285x380.jpg" alt="BGMI" />
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
                 </div>
                 <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">BGMI</h4>
@@ -123,10 +123,10 @@
                     <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Mobile</span>
                 </div>
             </a>
-            <!-- Category Item 4 -->
-            <a href="#" class="group cursor-pointer">
+            <!-- Category Item 4 - Fortnite -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games esports">
                 <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-surface-container-high">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co2dlt.jpg" />
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/33214-285x380.jpg" alt="Fortnite" />
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
                 </div>
                 <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">Fortnite</h4>
@@ -135,10 +135,10 @@
                     <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Battle Royale</span>
                 </div>
             </a>
-            <!-- Category Item 5 -->
-            <a href="#" class="group cursor-pointer">
+            <!-- Category Item 5 - League of Legends -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games esports">
                 <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3 bg-surface-container-high">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co4bna.jpg" />
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/21779-285x380.jpg" alt="League of Legends" />
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
                 </div>
                 <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">League of Legends</h4>
@@ -147,16 +147,88 @@
                     <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">MOBA</span>
                 </div>
             </a>
-            <!-- Category Item 6 -->
-            <a href="#" class="group cursor-pointer">
+            <!-- Category Item 6 - EA Sports FC 24 -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games esports">
                 <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
-                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://images.igdb.com/igdb/image/upload/t_cover_big/co6tms.jpg" />
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/2085823543-285x380.jpg" alt="EA Sports FC 24" />
                     <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
                 </div>
                 <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">EA Sports FC 24</h4>
                 <p class="text-[11px] text-on-surface-variant font-medium">150k Viewers</p>
                 <div class="flex gap-1 mt-1">
                     <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Sports</span>
+                </div>
+            </a>
+            <!-- Category Item 7 - Minecraft -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games">
+                <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/27471_IGDB-285x380.jpg" alt="Minecraft" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+                </div>
+                <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">Minecraft</h4>
+                <p class="text-[11px] text-on-surface-variant font-medium">180k Viewers</p>
+                <div class="flex gap-1 mt-1">
+                    <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Sandbox</span>
+                </div>
+            </a>
+            <!-- Category Item 8 - CS2 -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games esports">
+                <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/32399_IGDB-285x380.jpg" alt="Counter-Strike 2" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+                </div>
+                <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">Counter-Strike 2</h4>
+                <p class="text-[11px] text-on-surface-variant font-medium">280k Viewers</p>
+                <div class="flex gap-1 mt-1">
+                    <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">FPS</span>
+                </div>
+            </a>
+            <!-- Category Item 9 - GTA V -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games">
+                <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/32982_IGDB-285x380.jpg" alt="GTA V" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+                </div>
+                <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">GTA V</h4>
+                <p class="text-[11px] text-on-surface-variant font-medium">220k Viewers</p>
+                <div class="flex gap-1 mt-1">
+                    <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Open World</span>
+                </div>
+            </a>
+            <!-- Category Item 10 - Art -->
+            <a href="#" class="category-card group cursor-pointer" data-category="creative">
+                <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/509660-285x380.jpg" alt="Art" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+                </div>
+                <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">Art</h4>
+                <p class="text-[11px] text-on-surface-variant font-medium">85k Viewers</p>
+                <div class="flex gap-1 mt-1">
+                    <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Creative</span>
+                </div>
+            </a>
+            <!-- Category Item 11 - Music -->
+            <a href="#" class="category-card group cursor-pointer" data-category="creative">
+                <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/26936-285x380.jpg" alt="Music" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+                </div>
+                <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">Music</h4>
+                <p class="text-[11px] text-on-surface-variant font-medium">65k Viewers</p>
+                <div class="flex gap-1 mt-1">
+                    <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Creative</span>
+                </div>
+            </a>
+            <!-- Category Item 12 - Apex Legends -->
+            <a href="#" class="category-card group cursor-pointer" data-category="games esports">
+                <div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-3">
+                    <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://static-cdn.jtvnw.net/ttv-boxart/511224-285x380.jpg" alt="Apex Legends" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent opacity-80"></div>
+                </div>
+                <h4 class="font-bold text-on-surface truncate group-hover:text-primary transition-colors">Apex Legends</h4>
+                <p class="text-[11px] text-on-surface-variant font-medium">120k Viewers</p>
+                <div class="flex gap-1 mt-1">
+                    <span class="bg-surface-container-highest px-1.5 py-0.5 rounded text-[9px] text-on-surface-variant font-bold">Battle Royale</span>
                 </div>
             </a>
         </div>
@@ -185,6 +257,39 @@
         .custom-scrollbar::-webkit-scrollbar { height: 4px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
         .custom-scrollbar::-webkit-scrollbar-thumb { background: #48474b; border-radius: 10px; }
+        .category-card { transition: opacity 0.3s ease, transform 0.3s ease; }
+        .category-card.hidden-card { display: none; }
     </style>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns = document.querySelectorAll('.cat-filter-btn');
+        const cards = document.querySelectorAll('.category-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button styling
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-primary', 'text-black');
+                    b.classList.add('bg-surface-container-high', 'text-on-surface');
+                });
+                btn.classList.remove('bg-surface-container-high', 'text-on-surface');
+                btn.classList.add('bg-primary', 'text-black');
+
+                const filter = btn.dataset.filter;
+
+                cards.forEach(card => {
+                    const categories = card.dataset.category || '';
+                    if (filter === 'all' || categories.includes(filter)) {
+                        card.classList.remove('hidden-card');
+                    } else {
+                        card.classList.add('hidden-card');
+                    }
+                });
+            });
+        });
+    });
+    </script>
 </body>
 </html>
+

@@ -130,23 +130,14 @@
 
 <body class="bg-surface text-on-surface">
     <!-- TopAppBar -->
-    <header
-        class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
+    <header class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
         <div class="flex items-center gap-x-[1.2rem]">
-            <span
-                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight">NEON
-                NOCTURNE</span>
-            <nav class="hidden md:flex items-center gap-x-8 ml-8">
-                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="index.html">Discover</a>
-                <a class="text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="esports.html">Esports</a>
-                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="categories.html">Categories</a>
-                <a class="text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300"
-                    href="tournaments.html">Events</a>
-            </nav>
+            <a href="index.html" class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
         </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
         <div class="flex-1 max-w-xl mx-12">
             <div class="relative group">
                 <span
@@ -386,32 +377,27 @@
                     </h3>
                 </div>
                 <nav class="space-y-1">
-                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1"
                         href="#">
-                        <span class="material-symbols-outlined text-xl">star</span>
-                        <span>Recommended</span>
+                        <span class="material-symbols-outlined text-xl">favorite</span>
+                        <span>Following</span>
                     </a>
-                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
-                        href="#">
-                        <span class="material-symbols-outlined text-xl">grid_view</span>
-                        <span>Categories</span>
-                    </a>
-                    <a class="flex items-center gap-3 p-2 bg-neutral-800/80 text-cyan-400 rounded-md transition-all border-l-2 border-cyan-400"
-                        href="esports.html">
-                        <span class="material-symbols-outlined text-xl">sports_esports</span>
-                        <span>Esports</span>
-                    </a>
-                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1"
                         href="#">
                         <span class="material-symbols-outlined text-xl">palette</span>
                         <span>Creative</span>
+                    </a>
+                    <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1"
+                        href="#">
+                        <span class="material-symbols-outlined text-xl">movie</span>
+                        <span>Clips</span>
                     </a>
                 </nav>
             </div>
             <div class="pt-8 mt-auto">
                 <nav class="space-y-1 border-t border-outline-variant/10 pt-6">
                     <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all"
-                        href="#">
+                        href="setting.html">
                         <span class="material-symbols-outlined text-xl">settings</span>
                         <span>Settings</span>
                     </a>
@@ -433,7 +419,7 @@
             <p class="text-on-surface-variant font-body mb-6">Watch live professional matches, follow your favorite teams, and catch up on VODs.</p>
         </div>
         <div class="flex gap-3 h-fit">
-            <button class="bg-surface-container border border-outline-variant/30 text-on-surface px-6 py-2.5 rounded-lg font-bold hover:bg-surface-container-high transition-colors">Schedule</button>
+            <button id="schedule-btn" class="bg-surface-container border border-outline-variant/30 text-on-surface px-6 py-2.5 rounded-lg font-bold hover:bg-surface-container-high transition-colors active:scale-95">Schedule</button>
             <button class="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed px-6 py-2.5 rounded-lg font-bold shadow-[0_0_15px_rgba(207,150,255,0.3)] hover:shadow-[0_0_25px_rgba(207,150,255,0.5)] transition-all active:scale-95">Standings</button>
         </div>
     </div>
@@ -534,6 +520,102 @@
         </div>
     </div>
 </main>
+    </div>
+
+    <!-- Schedule Modal -->
+    <div id="schedule-modal" class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-neutral-950/80 backdrop-blur-sm animate-fade-in">
+        <div class="bg-surface-container-high border border-outline-variant/20 p-8 rounded-2xl w-full max-w-2xl shadow-[0_20px_80px_rgba(0,0,0,0.8)] relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+            <button id="close-schedule-btn" class="absolute top-4 right-4 text-on-surface-variant hover:text-error transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <h2 class="text-2xl font-headline font-bold text-on-surface mb-6 flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">calendar_month</span> Upcoming Schedule
+            </h2>
+            <div class="space-y-4">
+                <!-- Schedule Item 1 -->
+                <div class="flex items-center gap-4 bg-surface-container/80 border border-outline-variant/10 rounded-xl p-4 hover:border-primary/30 transition-all">
+                    <div class="text-center min-w-[60px]">
+                        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">TODAY</div>
+                        <div class="text-lg font-headline font-bold text-secondary">18:00</div>
+                    </div>
+                    <div class="w-px h-12 bg-outline-variant/20"></div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded">VCT Masters</span>
+                            <span class="text-[10px] font-bold text-error bg-error/10 px-2 py-0.5 rounded flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</span>
+                        </div>
+                        <p class="font-bold text-on-surface">Sentinels vs Fnatic</p>
+                        <p class="text-xs text-on-surface-variant">Best of 5 — Grand Finals</p>
+                    </div>
+                    <a href="stream.html" class="px-4 py-2 bg-error/20 text-error border border-error/30 rounded-lg text-xs font-bold hover:bg-error/30 transition-colors">Watch Live</a>
+                </div>
+                <!-- Schedule Item 2 -->
+                <div class="flex items-center gap-4 bg-surface-container/80 border border-outline-variant/10 rounded-xl p-4 hover:border-secondary/30 transition-all">
+                    <div class="text-center min-w-[60px]">
+                        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">TODAY</div>
+                        <div class="text-lg font-headline font-bold text-secondary">20:30</div>
+                    </div>
+                    <div class="w-px h-12 bg-outline-variant/20"></div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-secondary bg-secondary/10 px-2 py-0.5 rounded">CDL Major 3</span>
+                            <span class="text-[10px] font-bold text-error bg-error/10 px-2 py-0.5 rounded flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</span>
+                        </div>
+                        <p class="font-bold text-on-surface">OpTic Texas vs ATL FaZe</p>
+                        <p class="text-xs text-on-surface-variant">Best of 5 — Winners Final</p>
+                    </div>
+                    <a href="stream.html" class="px-4 py-2 bg-error/20 text-error border border-error/30 rounded-lg text-xs font-bold hover:bg-error/30 transition-colors">Watch Live</a>
+                </div>
+                <!-- Schedule Item 3 -->
+                <div class="flex items-center gap-4 bg-surface-container/80 border border-outline-variant/10 rounded-xl p-4 hover:border-primary/30 transition-all">
+                    <div class="text-center min-w-[60px]">
+                        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">TOMORROW</div>
+                        <div class="text-lg font-headline font-bold text-on-surface-variant">14:00</div>
+                    </div>
+                    <div class="w-px h-12 bg-outline-variant/20"></div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-primary bg-primary/10 px-2 py-0.5 rounded">VCT Masters</span>
+                        </div>
+                        <p class="font-bold text-on-surface">T1 vs Paper Rex</p>
+                        <p class="text-xs text-on-surface-variant">Best of 3 — Semi Finals</p>
+                    </div>
+                    <span class="px-4 py-2 bg-surface-container-highest text-on-surface-variant border border-outline-variant/20 rounded-lg text-xs font-bold">Upcoming</span>
+                </div>
+                <!-- Schedule Item 4 -->
+                <div class="flex items-center gap-4 bg-surface-container/80 border border-outline-variant/10 rounded-xl p-4 hover:border-secondary/30 transition-all">
+                    <div class="text-center min-w-[60px]">
+                        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">TOMORROW</div>
+                        <div class="text-lg font-headline font-bold text-on-surface-variant">17:00</div>
+                    </div>
+                    <div class="w-px h-12 bg-outline-variant/20"></div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-secondary bg-secondary/10 px-2 py-0.5 rounded">CDL Major 3</span>
+                        </div>
+                        <p class="font-bold text-on-surface">Cloud9 vs G2 Esports</p>
+                        <p class="text-xs text-on-surface-variant">Best of 3 — Losers Round 3</p>
+                    </div>
+                    <span class="px-4 py-2 bg-surface-container-highest text-on-surface-variant border border-outline-variant/20 rounded-lg text-xs font-bold">Upcoming</span>
+                </div>
+                <!-- Schedule Item 5 -->
+                <div class="flex items-center gap-4 bg-surface-container/80 border border-outline-variant/10 rounded-xl p-4 hover:border-primary/30 transition-all">
+                    <div class="text-center min-w-[60px]">
+                        <div class="text-xs text-on-surface-variant font-bold uppercase tracking-wider">MAY 06</div>
+                        <div class="text-lg font-headline font-bold text-on-surface-variant">15:00</div>
+                    </div>
+                    <div class="w-px h-12 bg-outline-variant/20"></div>
+                    <div class="flex-1">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded">League Championship</span>
+                        </div>
+                        <p class="font-bold text-on-surface">Team Liquid vs G2 Esports</p>
+                        <p class="text-xs text-on-surface-variant">Best of 5 — Grand Finals</p>
+                    </div>
+                    <span class="px-4 py-2 bg-surface-container-highest text-on-surface-variant border border-outline-variant/20 rounded-lg text-xs font-bold">Upcoming</span>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Create Tournament Modal -->
@@ -849,6 +931,26 @@
         });
 
         // === SCHEDULE MODAL LOGIC ===
+        const scheduleBtn = document.getElementById('schedule-btn');
+        const scheduleModal = document.getElementById('schedule-modal');
+        const closeScheduleBtn = document.getElementById('close-schedule-btn');
+
+        if (scheduleBtn && scheduleModal) {
+            scheduleBtn.addEventListener('click', () => {
+                scheduleModal.classList.remove('hidden');
+            });
+
+            closeScheduleBtn.addEventListener('click', () => {
+                scheduleModal.classList.add('hidden');
+            });
+
+            scheduleModal.addEventListener('click', (e) => {
+                if (e.target === scheduleModal) {
+                    scheduleModal.classList.add('hidden');
+                }
+            });
+        }
+
         // === HERO CAROUSEL ===
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.carousel-dot');

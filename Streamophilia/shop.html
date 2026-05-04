@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <!-- === AUTH GUARD === -->
+    <script>
+        if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Shop | NEON NOCTURNE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary-fixed": "#39000b", "surface-container-high": "#1f1f23", "on-primary": "#480079",
+                        "inverse-primary": "#8d00e6", "error": "#ff6e84", "surface": "#0e0e11",
+                        "secondary-fixed": "#6ce1ff", "secondary": "#00d9ff", "on-primary-container": "#37005f",
+                        "surface-dim": "#0e0e11", "on-error": "#490013", "primary-fixed-dim": "#bc6fff",
+                        "surface-variant": "#25252a", "on-secondary": "#004755", "background": "#0e0e11",
+                        "secondary-container": "#00687b", "secondary-fixed-dim": "#00d6fb",
+                        "on-error-container": "#ffb2b9", "on-background": "#fbf8fc",
+                        "surface-container": "#19191d", "outline": "#767578", "error-container": "#a70138",
+                        "secondary-dim": "#00caed", "on-primary-fixed-variant": "#450074",
+                        "on-tertiary": "#680a1f", "on-secondary-container": "#ecfaff", "tertiary": "#ff959d",
+                        "on-secondary-fixed": "#003a46", "tertiary-container": "#fe7e8a",
+                        "surface-container-low": "#131316", "surface-tint": "#cf96ff",
+                        "outline-variant": "#48474b", "inverse-surface": "#fbf8fc",
+                        "primary-container": "#c683ff", "surface-bright": "#2c2c30",
+                        "primary-fixed": "#c683ff", "on-tertiary-container": "#570015",
+                        "primary-dim": "#a533ff", "error-dim": "#d73357",
+                        "on-tertiary-fixed-variant": "#721325", "tertiary-fixed": "#ff9099",
+                        "tertiary-dim": "#f47783", "on-secondary-fixed-variant": "#005969",
+                        "inverse-on-surface": "#555458", "primary": "#cf96ff",
+                        "surface-container-highest": "#25252a", "on-primary-fixed": "#000000",
+                        "tertiary-fixed-dim": "#fb7c88", "on-surface": "#fbf8fc",
+                        "on-surface-variant": "#acaaae", "surface-container-lowest": "#000000"
+                    },
+                    fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"], "label": ["Manrope"] },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        body { background-color: #0e0e11; color: #fbf8fc; font-family: 'Manrope', sans-serif; overflow-x: hidden; }
+        .glass-panel { background: rgba(31, 31, 35, 0.6); backdrop-filter: blur(40px); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0e0e11; }
+        ::-webkit-scrollbar-thumb { background: #48474b; border-radius: 10px; }
+        .coin-pack:hover { transform: translateY(-4px); box-shadow: 0 0 30px rgba(207, 150, 255, 0.15); }
+        .coin-pack { transition: all 0.3s ease; }
+        .featured-badge { background: linear-gradient(135deg, #a533ff, #cf96ff); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+    <!-- TopAppBar - will be updated by nav_components.js -->
+    <header class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <a href="index.html" class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
+        </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
+
+    <div class="flex pt-16">
+        <!-- Mobile Sidebar Overlay -->
+        <div id="mobile-sidebar-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0 lg:hidden"></div>
+        <!-- SideNavBar -->
+        <aside id="main-sidebar" class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10"></aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 p-8 min-h-screen">
+            <!-- Page Header -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+                <div>
+                    <h1 class="text-4xl lg:text-5xl font-headline font-bold text-on-surface mb-2 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary text-5xl">storefront</span> Shop
+                    </h1>
+                    <p class="text-on-surface-variant text-lg font-body">Spend your coins on exclusive items, badges, and upgrades.</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="glass-panel px-5 py-3 rounded-xl border border-primary/20 flex items-center gap-3">
+                        <span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase tracking-widest font-bold">Your Balance</p>
+                            <p class="text-xl font-headline font-bold text-primary"><span id="shop-balance">500</span> COINS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coin Packs Section -->
+            <section class="mb-14">
+                <h2 class="text-2xl font-headline font-bold text-on-surface mb-2">Buy Coins</h2>
+                <div class="w-20 h-1 bg-secondary rounded-full mb-8"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Pack 1 -->
+                    <div class="coin-pack glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-primary/30 cursor-pointer relative">
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center border border-primary/20">
+                                <span class="material-symbols-outlined text-primary text-3xl">toll</span>
+                            </div>
+                            <h3 class="font-headline font-bold text-xl text-on-surface mb-1">100 Coins</h3>
+                            <p class="text-on-surface-variant text-sm mb-4">Starter Pack</p>
+                            <button class="w-full bg-surface-container border border-outline-variant/20 hover:border-primary/50 hover:bg-primary/10 text-on-surface py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">₹79</button>
+                        </div>
+                    </div>
+                    <!-- Pack 2 - Popular -->
+                    <div class="coin-pack glass-panel p-6 rounded-2xl border border-primary/30 cursor-pointer relative overflow-hidden">
+                        <div class="absolute top-0 right-0 featured-badge text-on-primary-fixed px-3 py-1 rounded-bl-xl text-[10px] font-bold tracking-wider">POPULAR</div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 shadow-[0_0_20px_rgba(207,150,255,0.2)]">
+                                <span class="material-symbols-outlined text-primary text-3xl">monetization_on</span>
+                            </div>
+                            <h3 class="font-headline font-bold text-xl text-on-surface mb-1">500 Coins</h3>
+                            <p class="text-on-surface-variant text-sm mb-1">Value Pack</p>
+                            <p class="text-secondary text-xs font-bold mb-4">Save 10%</p>
+                            <button class="w-full bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed py-2.5 rounded-lg font-bold text-sm hover:shadow-[0_0_20px_rgba(207,150,255,0.4)] transition-all active:scale-95">₹349</button>
+                        </div>
+                    </div>
+                    <!-- Pack 3 -->
+                    <div class="coin-pack glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-secondary/30 cursor-pointer relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-secondary text-surface px-3 py-1 rounded-bl-xl text-[10px] font-bold tracking-wider">BEST VALUE</div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-secondary/10 flex items-center justify-center border border-secondary/20">
+                                <span class="material-symbols-outlined text-secondary text-3xl">diamond</span>
+                            </div>
+                            <h3 class="font-headline font-bold text-xl text-on-surface mb-1">1,200 Coins</h3>
+                            <p class="text-on-surface-variant text-sm mb-1">Pro Pack</p>
+                            <p class="text-secondary text-xs font-bold mb-4">Save 20%</p>
+                            <button class="w-full bg-surface-container border border-secondary/30 hover:bg-secondary/10 text-secondary py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">₹699</button>
+                        </div>
+                    </div>
+                    <!-- Pack 4 -->
+                    <div class="coin-pack glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-emerald-400/30 cursor-pointer relative overflow-hidden">
+                        <div class="absolute top-0 right-0 bg-emerald-400 text-surface px-3 py-1 rounded-bl-xl text-[10px] font-bold tracking-wider">WHALE 🐋</div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-emerald-400/10 flex items-center justify-center border border-emerald-400/20">
+                                <span class="material-symbols-outlined text-emerald-400 text-3xl">workspace_premium</span>
+                            </div>
+                            <h3 class="font-headline font-bold text-xl text-on-surface mb-1">5,000 Coins</h3>
+                            <p class="text-on-surface-variant text-sm mb-1">Elite Pack</p>
+                            <p class="text-emerald-400 text-xs font-bold mb-4">Save 30%</p>
+                            <button class="w-full bg-surface-container border border-emerald-400/30 hover:bg-emerald-400/10 text-emerald-400 py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">₹2,499</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Exclusive Items Section -->
+            <section class="mb-14">
+                <h2 class="text-2xl font-headline font-bold text-on-surface mb-2">Exclusive Items</h2>
+                <div class="w-20 h-1 bg-primary rounded-full mb-8"></div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Item 1 - Profile Badge -->
+                    <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-primary/30 transition-all group cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary/20 to-secondary/10 flex items-center justify-center border border-primary/20">
+                                <span class="material-symbols-outlined text-primary text-2xl">verified</span>
+                            </div>
+                            <span class="bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded text-xs font-bold">150 COINS</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg text-on-surface mb-1 group-hover:text-primary transition-colors">Verified Badge</h3>
+                        <p class="text-on-surface-variant text-sm mb-4">Get the purple verified checkmark on your profile. Stand out from the crowd.</p>
+                        <button class="w-full bg-surface-container border border-outline-variant/20 hover:border-primary/50 hover:bg-primary/10 text-on-surface py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">Purchase</button>
+                    </div>
+                    <!-- Item 2 - Custom Emotes -->
+                    <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-secondary/30 transition-all group cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-secondary/20 to-primary/10 flex items-center justify-center border border-secondary/20">
+                                <span class="material-symbols-outlined text-secondary text-2xl">mood</span>
+                            </div>
+                            <span class="bg-secondary/10 text-secondary border border-secondary/20 px-3 py-1 rounded text-xs font-bold">200 COINS</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg text-on-surface mb-1 group-hover:text-secondary transition-colors">Custom Emote Pack</h3>
+                        <p class="text-on-surface-variant text-sm mb-4">Unlock 12 exclusive animated emotes for use in any live chat across the platform.</p>
+                        <button class="w-full bg-surface-container border border-outline-variant/20 hover:border-secondary/50 hover:bg-secondary/10 text-on-surface py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">Purchase</button>
+                    </div>
+                    <!-- Item 3 - Profile Banner -->
+                    <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-tertiary/30 transition-all group cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-tertiary/20 to-error/10 flex items-center justify-center border border-tertiary/20">
+                                <span class="material-symbols-outlined text-tertiary text-2xl">image</span>
+                            </div>
+                            <span class="bg-tertiary/10 text-tertiary border border-tertiary/20 px-3 py-1 rounded text-xs font-bold">300 COINS</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg text-on-surface mb-1 group-hover:text-tertiary transition-colors">Neon Banner Pack</h3>
+                        <p class="text-on-surface-variant text-sm mb-4">5 premium animated profile banners with neon aesthetics. Make your channel pop.</p>
+                        <button class="w-full bg-surface-container border border-outline-variant/20 hover:border-tertiary/50 hover:bg-tertiary/10 text-on-surface py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">Purchase</button>
+                    </div>
+                    <!-- Item 4 - Chat Color -->
+                    <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-emerald-400/30 transition-all group cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-400/20 to-secondary/10 flex items-center justify-center border border-emerald-400/20">
+                                <span class="material-symbols-outlined text-emerald-400 text-2xl">palette</span>
+                            </div>
+                            <span class="bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 px-3 py-1 rounded text-xs font-bold">100 COINS</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg text-on-surface mb-1 group-hover:text-emerald-400 transition-colors">Chat Name Color</h3>
+                        <p class="text-on-surface-variant text-sm mb-4">Choose any custom color for your username in live chats. Express yourself.</p>
+                        <button class="w-full bg-surface-container border border-outline-variant/20 hover:border-emerald-400/50 hover:bg-emerald-400/10 text-on-surface py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">Purchase</button>
+                    </div>
+                    <!-- Item 5 - VIP Access -->
+                    <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-amber-400/30 transition-all group cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-400/20 to-orange-400/10 flex items-center justify-center border border-amber-400/20">
+                                <span class="material-symbols-outlined text-amber-400 text-2xl">star</span>
+                            </div>
+                            <span class="bg-amber-400/10 text-amber-400 border border-amber-400/20 px-3 py-1 rounded text-xs font-bold">500 COINS</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg text-on-surface mb-1 group-hover:text-amber-400 transition-colors">VIP Lounge Access</h3>
+                        <p class="text-on-surface-variant text-sm mb-4">30-day access to exclusive VIP streams, early tournament entries, and priority support.</p>
+                        <button class="w-full bg-surface-container border border-outline-variant/20 hover:border-amber-400/50 hover:bg-amber-400/10 text-on-surface py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">Purchase</button>
+                    </div>
+                    <!-- Item 6 - Gift Sub -->
+                    <div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 hover:border-pink-400/30 transition-all group cursor-pointer">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-pink-400/20 to-primary/10 flex items-center justify-center border border-pink-400/20">
+                                <span class="material-symbols-outlined text-pink-400 text-2xl">redeem</span>
+                            </div>
+                            <span class="bg-pink-400/10 text-pink-400 border border-pink-400/20 px-3 py-1 rounded text-xs font-bold">250 COINS</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg text-on-surface mb-1 group-hover:text-pink-400 transition-colors">Gift Subscription</h3>
+                        <p class="text-on-surface-variant text-sm mb-4">Gift a 1-month subscription to any streamer's channel. Spread the love!</p>
+                        <button class="w-full bg-surface-container border border-outline-variant/20 hover:border-pink-400/50 hover:bg-pink-400/10 text-on-surface py-2.5 rounded-lg font-bold text-sm transition-all active:scale-95">Purchase</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Mobile Nav -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-high/90 backdrop-blur-xl border-t border-outline-variant/10 flex justify-around items-center h-20 px-4 z-50">
+        <a href="index.html" class="flex flex-col items-center text-on-surface-variant"><span class="material-symbols-outlined">home</span><span class="text-[10px] font-bold mt-1">Home</span></a>
+        <a href="streams.html" class="flex flex-col items-center text-on-surface-variant"><span class="material-symbols-outlined">live_tv</span><span class="text-[10px] font-bold mt-1">Streams</span></a>
+        <a href="shop.html" class="flex flex-col items-center text-primary"><span class="material-symbols-outlined">storefront</span><span class="text-[10px] font-bold mt-1">Shop</span></a>
+        <a href="tournaments.html" class="flex flex-col items-center text-on-surface-variant"><span class="material-symbols-outlined">emoji_events</span><span class="text-[10px] font-bold mt-1">Events</span></a>
+    </nav>
+
+    <script src="nav_components.js"></script>
+</body>
+</html>
