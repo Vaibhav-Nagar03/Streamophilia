@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <script>
+        if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Live Streams | NEON NOCTURNE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#1f1f23","on-primary": "#480079","inverse-primary": "#8d00e6","error": "#ff6e84","surface": "#0e0e11","secondary-fixed": "#6ce1ff","secondary": "#00d9ff","on-primary-container": "#37005f","surface-dim": "#0e0e11","on-error": "#490013","primary-fixed-dim": "#bc6fff","surface-variant": "#25252a","on-secondary": "#004755","background": "#0e0e11","secondary-container": "#00687b","secondary-fixed-dim": "#00d6fb","on-error-container": "#ffb2b9","on-background": "#fbf8fc","surface-container": "#19191d","outline": "#767578","error-container": "#a70138","secondary-dim": "#00caed","on-primary-fixed-variant": "#450074","on-tertiary": "#680a1f","on-secondary-container": "#ecfaff","tertiary": "#ff959d","on-secondary-fixed": "#003a46","tertiary-container": "#fe7e8a","surface-container-low": "#131316","surface-tint": "#cf96ff","outline-variant": "#48474b","inverse-surface": "#fbf8fc","primary-container": "#c683ff","surface-bright": "#2c2c30","primary-fixed": "#c683ff","on-tertiary-container": "#570015","primary-dim": "#a533ff","error-dim": "#d73357","tertiary-fixed": "#ff9099","tertiary-dim": "#f47783","on-secondary-fixed-variant": "#005969","inverse-on-surface": "#555458","primary": "#cf96ff","surface-container-highest": "#25252a","on-primary-fixed": "#000000","tertiary-fixed-dim": "#fb7c88","on-surface": "#fbf8fc","on-surface-variant": "#acaaae","surface-container-lowest": "#000000"
+                    },
+                    fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"], "label": ["Manrope"] },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        body { background-color: #0e0e11; color: #fbf8fc; font-family: 'Manrope', sans-serif; overflow-x: hidden; }
+        .glass-panel { background: rgba(31, 31, 35, 0.6); backdrop-filter: blur(40px); }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0e0e11; }
+        ::-webkit-scrollbar-thumb { background: #48474b; border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+    <header class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <a href="index.html" class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
+        </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
+    <div class="flex pt-16">
+        <aside id="main-sidebar" class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10"></aside>
+        <main class="flex-1 lg:ml-64 p-8 min-h-screen">
+            <section class="mb-10">
+                <h1 class="text-4xl font-['Space_Grotesk'] font-bold mb-2">Live Streams</h1>
+                <p class="text-on-surface-variant">Watch your favorite creators streaming right now.</p>
+            </section>
+            <!-- Filter Bar -->
+            <section class="flex flex-wrap gap-3 mb-10">
+                <button class="stream-filter-btn px-5 py-2 bg-secondary/20 text-secondary border border-secondary/30 rounded-full text-sm font-bold" data-filter="all">All</button>
+                <button class="stream-filter-btn px-5 py-2 bg-surface-container text-on-surface-variant border border-outline-variant/20 rounded-full text-sm font-bold hover:text-on-surface" data-filter="fps">FPS</button>
+                <button class="stream-filter-btn px-5 py-2 bg-surface-container text-on-surface-variant border border-outline-variant/20 rounded-full text-sm font-bold hover:text-on-surface" data-filter="moba">MOBA</button>
+                <button class="stream-filter-btn px-5 py-2 bg-surface-container text-on-surface-variant border border-outline-variant/20 rounded-full text-sm font-bold hover:text-on-surface" data-filter="rpg">RPG</button>
+                <button class="stream-filter-btn px-5 py-2 bg-surface-container text-on-surface-variant border border-outline-variant/20 rounded-full text-sm font-bold hover:text-on-surface" data-filter="strategy">Strategy</button>
+            </section>
+            <!-- Streams Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-12">
+                <a href="stream.html" class="group cursor-pointer block" data-category="fps">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Valorant gameplay" src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=640&h=360&fit=crop&q=80" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">42.1k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRl_N-XFeKwtYd6QaNgpupYYtVkYjmNQX0HEZ3juYEie-GiAg3e2U57V6uxL0eYqfHt4PLm8X_GfV8KiQAtPKPhV_MiyaBk0cPhes2PVj-rFGx6L7VEQNIHK6wF0ED4NktQUXSZzKQ0S3e4zKpTOQ2yzqtYzOafprdU5oK5uQfe7M1VfJrf_chH5WyOXH34rtplMaZk60k-n6vKOlelj2xsLMZeo1GPL_0Ex1t-f0KsiTcvZm_2ESWHsFdSO_ZbigzLXs_YV4YC34" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">INSANE 1v5 Clutch in Radiant Lobbies!</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">ViperScope</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">VALORANT</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="stream.html" class="group cursor-pointer block" data-category="strategy">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Chess gameplay" src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=640&h=360&fit=crop&q=80" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">18.3k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1535930749574-1399327ce78f?w=100&h=100&fit=crop&q=80" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">Grandmaster Rapid Blitz — Road to 3000 ELO!</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">GrandMaster_Magnus</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">CHESS</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="stream.html" class="group cursor-pointer block" data-category="fps">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="PUBG gameplay" src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=640&h=360&fit=crop&q=80" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">31.5k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=100&h=100&fit=crop&q=80" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">Solo vs Squad — 30 Kill Challenge PUBG PC</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">BattleKing_X</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">PUBG PC</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="stream.html" class="group cursor-pointer block" data-category="strategy">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Clash of Clans" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=640&h=360&fit=crop&q=80" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">12.8k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=100&h=100&fit=crop&q=80" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">TH16 Legend League Push — Max Base Attacks!</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">ChiefDestroyer</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">CLASH OF CLANS</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="stream.html" class="group cursor-pointer block" data-category="fps">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Call of Duty" src="https://images.unsplash.com/photo-1560419015-7c427e8ae5ba?w=640&h=360&fit=crop&q=80" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">55.2k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=100&h=100&fit=crop&q=80" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">Warzone Ranked — Dropping 40 Bombs All Night!</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">WarzoneLegend</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">CALL OF DUTY</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="stream.html" class="group cursor-pointer block" data-category="rpg">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Minecraft" src="https://images.unsplash.com/photo-1587573089734-09cb69c0f2b4?w=640&h=360&fit=crop&q=80" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">24.6k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1599566150163-29194dcabd9c?w=100&h=100&fit=crop&q=80" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">Hardcore Survival Day 500 — Mega Castle Build!</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">BlockMaster_Pro</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">MINECRAFT</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="stream.html" class="group cursor-pointer block" data-category="moba">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="League of Legends" src="https://images.unsplash.com/photo-1620078726581-22879f4c330f?w=800&auto=format&fit=crop" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">48.9k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdaeaBuyP8NsyHaN1F_b_LLC6Py5HWAb1dunqUtrMZO61Jr23QP5QVtWtTQGWoKnzru46ffSwQEcGJGFDHZdoHxOvoCdqFJ2LdQrtpQP0U0wFPZ7dg4Y9WDXttOsq41tM3fISCcuLPm7IKi4Hnd0AnnC3u3btFjEqheQ3b7o43_Zdmanw2ml-uhTp0A-QCjE0vLc3qLRiiUEurMyZN8y8f44k0MCOAjeM4M4RiUYta5ptt0yoGoaL74-giuIK6h9WO1CmnzSrYqCo" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">Korean Challenger Grind!!</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">Lumina_LoL</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">League of Legends</span>
+                        </div>
+                    </div>
+                </a>
+                <a href="stream.html" class="group cursor-pointer block" data-category="rpg">
+                    <div class="relative aspect-video rounded-xl overflow-hidden mb-4 bg-surface-container-high">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Albion Online" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=640&h=360&fit=crop&q=80" />
+                        <div class="absolute top-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-error flex items-center gap-1"><span class="w-1 h-1 bg-error rounded-full animate-pulse"></span> LIVE</div>
+                        <div class="absolute bottom-3 left-3 bg-neutral-950/70 backdrop-blur px-2 py-1 rounded text-[10px] font-bold text-on-surface">8.7k viewers</div>
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center"><span class="material-symbols-outlined text-4xl text-on-primary-fixed bg-primary rounded-full p-2">play_arrow</span></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-10 h-10 rounded-xl overflow-hidden ring-2 ring-secondary/20 flex-shrink-0"><img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80" /></div>
+                        <div class="flex-1 overflow-hidden">
+                            <h3 class="font-bold text-on-surface text-sm truncate mb-1 group-hover:text-secondary transition-colors">ZvZ Massive Guild War — 200v200!</h3>
+                            <p class="text-on-surface-variant text-xs font-medium">AlbionKnight</p>
+                            <span class="px-2 py-0.5 bg-surface-container-highest text-on-surface-variant text-[10px] font-bold rounded mt-1 inline-block">ALBION ONLINE</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </main>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Filter buttons
+        document.querySelectorAll('.stream-filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.stream-filter-btn').forEach(b => {
+                    b.classList.remove('bg-secondary/20','text-secondary','border-secondary/30');
+                    b.classList.add('bg-surface-container','text-on-surface-variant','border-outline-variant/20');
+                });
+                btn.classList.remove('bg-surface-container','text-on-surface-variant','border-outline-variant/20');
+                btn.classList.add('bg-secondary/20','text-secondary','border-secondary/30');
+                const filter = btn.dataset.filter;
+                document.querySelectorAll('[data-category]').forEach(card => {
+                    card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+                });
+            });
+        });
+    });
+    </script>
+    <script src="nav_components.js"></script>
+</body>
+</html>

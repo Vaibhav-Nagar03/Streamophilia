@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <script>if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') { window.location.href = 'login.html'; }</script>
+    <meta charset="utf-8" /><meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Leaderboards | NEON NOCTURNE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = { darkMode: "class", theme: { extend: { colors: { "surface-container-high":"#1f1f23","on-primary":"#480079","error":"#ff6e84","surface":"#0e0e11","secondary":"#00d9ff","surface-dim":"#0e0e11","surface-variant":"#25252a","background":"#0e0e11","secondary-container":"#00687b","on-background":"#fbf8fc","surface-container":"#19191d","outline":"#767578","secondary-dim":"#00caed","on-secondary-container":"#ecfaff","surface-container-low":"#131316","surface-tint":"#cf96ff","outline-variant":"#48474b","primary-container":"#c683ff","surface-bright":"#2c2c30","primary-dim":"#a533ff","primary":"#cf96ff","surface-container-highest":"#25252a","on-primary-fixed":"#000000","on-surface":"#fbf8fc","on-surface-variant":"#acaaae","surface-container-lowest":"#000000" }, fontFamily: { "headline":["Space Grotesk"],"body":["Manrope"] }, borderRadius: { "DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem" } } } }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+        body { background-color: #0e0e11; color: #fbf8fc; font-family: 'Manrope', sans-serif; }
+        .glass-panel { background: rgba(31,31,35,0.6); backdrop-filter: blur(40px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+    <header class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <a href="index.html" class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
+        </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
+    <div class="flex pt-16">
+        <aside id="main-sidebar" class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10"></aside>
+        <main class="flex-1 lg:ml-64 p-8 min-h-screen">
+            <section class="mb-10">
+                <h1 class="text-4xl font-['Space_Grotesk'] font-bold mb-2 flex items-center gap-3"><span class="material-symbols-outlined text-secondary text-4xl">leaderboard</span>Leaderboards</h1>
+                <p class="text-on-surface-variant">Top streamers ranked by performance across the platform.</p>
+            </section>
+            <!-- Tab Switcher -->
+            <div class="flex gap-2 mb-10 border-b border-outline-variant/10 pb-1">
+                <button class="lb-tab px-5 py-2 text-sm font-bold text-secondary border-b-2 border-secondary" data-tab="viewers">Most Watched</button>
+                <button class="lb-tab px-5 py-2 text-sm font-bold text-on-surface-variant border-b-2 border-transparent hover:text-on-surface" data-tab="followers">Most Followers</button>
+                <button class="lb-tab px-5 py-2 text-sm font-bold text-on-surface-variant border-b-2 border-transparent hover:text-on-surface" data-tab="subs">Top Subscribers</button>
+            </div>
+            <!-- Leaderboard Table -->
+            <div class="glass-panel rounded-2xl border border-outline-variant/10 overflow-hidden">
+                <table class="w-full">
+                    <thead><tr class="border-b border-outline-variant/10">
+                        <th class="text-left px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Rank</th>
+                        <th class="text-left px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Streamer</th>
+                        <th class="text-left px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Game</th>
+                        <th class="text-right px-6 py-4 text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Score</th>
+                    </tr></thead>
+                    <tbody id="lb-body"></tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    <script>
+    const lbData = {
+        viewers: [
+            { name:'Viper_RP', game:'GTA V', score:'122K viewers', avatar:'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=80&h=80&fit=crop' },
+            { name:'CS2_Esports', game:'CS2', score:'85.2K viewers', avatar:'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=80&h=80&fit=crop' },
+            { name:'WarzoneLegend', game:'Call of Duty', score:'55.2K viewers', avatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop' },
+            { name:'Lumina_LoL', game:'League of Legends', score:'48.9K viewers', avatar:'https://images.unsplash.com/photo-1535930749574-1399327ce78f?w=80&h=80&fit=crop' },
+            { name:'ViperScope', game:'Valorant', score:'42.1K viewers', avatar:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=80&h=80&fit=crop' },
+            { name:'BattleKing_X', game:'PUBG PC', score:'31.5K viewers', avatar:'https://images.unsplash.com/photo-1599566150163-29194dcabd9c?w=80&h=80&fit=crop' },
+        ],
+        followers: [
+            { name:'ViperScope', game:'Valorant', score:'2.4M followers', avatar:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=80&h=80&fit=crop' },
+            { name:'Viper_RP', game:'GTA V', score:'1.8M followers', avatar:'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=80&h=80&fit=crop' },
+            { name:'BlockMaster_Pro', game:'Minecraft', score:'1.5M followers', avatar:'https://images.unsplash.com/photo-1599566150163-29194dcabd9c?w=80&h=80&fit=crop' },
+            { name:'CS2_Esports', game:'CS2', score:'1.2M followers', avatar:'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=80&h=80&fit=crop' },
+            { name:'WarzoneLegend', game:'Call of Duty', score:'980K followers', avatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop' },
+            { name:'GrandMaster_Magnus', game:'Chess', score:'750K followers', avatar:'https://images.unsplash.com/photo-1535930749574-1399327ce78f?w=80&h=80&fit=crop' },
+        ],
+        subs: [
+            { name:'Viper_RP', game:'GTA V', score:'48.2K subs', avatar:'https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=80&h=80&fit=crop' },
+            { name:'ViperScope', game:'Valorant', score:'35.1K subs', avatar:'https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=80&h=80&fit=crop' },
+            { name:'CS2_Esports', game:'CS2', score:'28.7K subs', avatar:'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=80&h=80&fit=crop' },
+            { name:'Lumina_LoL', game:'League of Legends', score:'22.3K subs', avatar:'https://images.unsplash.com/photo-1535930749574-1399327ce78f?w=80&h=80&fit=crop' },
+            { name:'BlockMaster_Pro', game:'Minecraft', score:'19.8K subs', avatar:'https://images.unsplash.com/photo-1599566150163-29194dcabd9c?w=80&h=80&fit=crop' },
+            { name:'BattleKing_X', game:'PUBG PC', score:'15.4K subs', avatar:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop' },
+        ]
+    };
+    function renderLB(tab) {
+        const body = document.getElementById('lb-body');
+        const medalColors = ['text-yellow-400','text-gray-300','text-amber-600'];
+        body.innerHTML = lbData[tab].map((r,i) => `
+            <tr class="border-b border-outline-variant/5 hover:bg-surface-container-high/50 transition-colors cursor-pointer">
+                <td class="px-6 py-4 font-['Space_Grotesk'] font-bold text-lg ${medalColors[i]||'text-on-surface-variant'}">${i<3?['🥇','🥈','🥉'][i]:(i+1)}</td>
+                <td class="px-6 py-4"><div class="flex items-center gap-3"><img class="w-10 h-10 rounded-full object-cover" src="${r.avatar}"/><span class="font-bold text-on-surface">${r.name}</span></div></td>
+                <td class="px-6 py-4 text-on-surface-variant text-sm">${r.game}</td>
+                <td class="px-6 py-4 text-right font-bold ${i===0?'text-secondary':'text-on-surface'}">${r.score}</td>
+            </tr>`).join('');
+    }
+    renderLB('viewers');
+    document.querySelectorAll('.lb-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.lb-tab').forEach(b => { b.classList.remove('text-secondary','border-secondary'); b.classList.add('text-on-surface-variant','border-transparent'); });
+            btn.classList.remove('text-on-surface-variant','border-transparent');
+            btn.classList.add('text-secondary','border-secondary');
+            renderLB(btn.dataset.tab);
+        });
+    });
+    </script>
+    <script src="nav_components.js"></script>
+</body>
+</html>

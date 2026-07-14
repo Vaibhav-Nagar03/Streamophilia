@@ -66,7 +66,7 @@ if(actions){
       </div>
       <div class="py-1">
         <a href="shop.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">redeem</span>Redeem Rewards</a>
-        <a href="#" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">receipt_long</span>Transaction History</a>
+        <a href="shop.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">receipt_long</span>Transaction History</a>
       </div>
     </div>
   </div>
@@ -144,7 +144,7 @@ if(actions){
       </div>
       <div class="py-1">
         <a href="setting.html" class="flex items-center gap-3 px-5 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">settings</span>Settings</a>
-        <a href="#" class="flex items-center gap-3 px-5 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">person</span>My Channel</a>
+        <a href="streams.html" class="flex items-center gap-3 px-5 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">person</span>My Channel</a>
       </div>
       <div class="border-t border-outline-variant/10 py-1">
         <button id="logout-btn" class="flex items-center gap-3 px-5 py-2.5 text-sm text-error hover:bg-error/10 transition-colors w-full text-left"><span class="material-symbols-outlined text-lg">logout</span>Sign Out</button>
@@ -204,7 +204,7 @@ if(sidebar){
     <nav class="space-y-1">
       <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="setting.html">
         <span class="material-symbols-outlined text-xl">dashboard</span><span>Profile / Dashboard</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="#">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="streams.html">
         <span class="material-symbols-outlined text-xl">favorite</span><span>Following</span></a>
       <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="streams.html">
         <span class="material-symbols-outlined text-xl">sensors</span><span>Live Now</span>
@@ -221,11 +221,11 @@ if(sidebar){
     <nav class="space-y-1">
       <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
         <span class="material-symbols-outlined text-xl">sports_esports</span><span>All Games</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="#">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
         <span class="material-symbols-outlined text-xl">target</span><span>FPS / Shooter</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="#">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
         <span class="material-symbols-outlined text-xl">strategy</span><span>Strategy / MOBA</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="#">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
         <span class="material-symbols-outlined text-xl">landscape</span><span>Battle Royale</span></a>
     </nav>
   </div>
@@ -233,7 +233,7 @@ if(sidebar){
   <div class="mb-6">
     <div class="px-2 mb-4"><h3 class="font-bold text-on-surface-variant uppercase tracking-widest text-[0.65rem]">Social</h3></div>
     <nav class="space-y-1">
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="#">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="leaderboards.html">
         <span class="material-symbols-outlined text-xl">group</span><span>Friends / Messages</span></a>
     </nav>
   </div>
@@ -242,7 +242,7 @@ if(sidebar){
     <nav class="space-y-1 border-t border-outline-variant/10 pt-4">
       <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all" href="setting.html">
         <span class="material-symbols-outlined text-xl">settings</span><span>Settings</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all" href="#">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all" href="index.html">
         <span class="material-symbols-outlined text-xl">help_outline</span><span>Help</span></a>
     </nav>
   </div>`;

@@ -119,9 +119,9 @@
                 Neon Nocturne Creator</h1>
             <nav class="hidden md:flex gap-6 items-center">
                 <a class="font-['Space_Grotesk'] font-bold tracking-tight text-cyan-400 border-b-2 border-cyan-400 pb-1"
-                    href="#">Analytics</a>
+                    href="setting.html">Analytics</a>
                 <a class="font-['Space_Grotesk'] font-bold tracking-tight text-neutral-400 hover:text-neutral-200 transition-colors duration-300"
-                    href="#">Stream Setup</a>
+                    href="index.html">Home</a>
             </nav>
         </div>
         <div class="flex items-center gap-6">
@@ -132,14 +132,14 @@
                     placeholder="Search data..." type="text" />
             </div>
             <div class="flex gap-4">
-                <button
-                    class="material-symbols-outlined text-neutral-400 hover:bg-purple-500/10 p-2 rounded-full transition-all duration-300">notifications</button>
-                <button
-                    class="material-symbols-outlined text-neutral-400 hover:bg-purple-500/10 p-2 rounded-full transition-all duration-300">settings</button>
+                <button id="notif-toggle-btn"
+                    class="material-symbols-outlined text-neutral-400 hover:bg-purple-500/10 p-2 rounded-full transition-all duration-300 relative">notifications<span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span></button>
+                <a href="setting.html"
+                    class="material-symbols-outlined text-cyan-400 hover:bg-purple-500/10 p-2 rounded-full transition-all duration-300">settings</a>
             </div>
-            <button
-                class="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed px-6 py-2 rounded-lg font-bold active:scale-95 duration-200">Go
-                Live</button>
+            <a href="stream.html"
+                class="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed px-6 py-2 rounded-lg font-bold active:scale-95 duration-200 inline-block">Go
+                Live</a>
             <img alt="Creator Profile" class="w-10 h-10 rounded-full object-cover"
                 data-alt="Close up portrait of a young male gamer with neon lighting highlights on his face, wearing high-end headphones"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCN4DGncYjfk32z7GaXutNlGDJAvn2cNTr2DgJMvVGk8guKBgx43T0uguVdtvVu3QQdw1lYPZHVjnjVGPhXoEz1pEyLjQuQqNReWAJclFUI9S3Z7I-0kAWiHUdPWhx0c45R2zMZrJW2xfnucnefFgS4cd-hA8Sxwe0awJ1Zzv1XGDJhctp63ZLYqzrnbgPFLRRp7RGR8VvQPTQkEkdb4xhBceTB4VYpIJoKGh45GFIEQqT6v_4JfEh5zOBqo7cLg67jQoGuKLedZxs" />
@@ -161,45 +161,44 @@
         </div>
         <nav class="flex-1 space-y-1">
             <a class="flex items-center gap-3 text-neutral-500 hover:text-neutral-300 px-6 py-3 hover:bg-neutral-800/50 transition-all hover:translate-x-1 duration-200"
-                href="#">
+                href="index.html">
                 <span class="material-symbols-outlined">dashboard</span>
                 <span class="font-['Manrope'] font-medium text-sm">Dashboard</span>
             </a>
             <a class="flex items-center gap-3 bg-gradient-to-r from-purple-600/20 to-transparent text-purple-400 font-bold border-l-4 border-purple-500 px-6 py-3 transition-all"
-                href="#">
+                href="setting.html">
                 <span class="material-symbols-outlined">insights</span>
                 <span class="font-['Manrope'] text-sm">Analytics</span>
             </a>
             <a class="flex items-center gap-3 text-neutral-500 hover:text-neutral-300 px-6 py-3 hover:bg-neutral-800/50 transition-all hover:translate-x-1 duration-200"
-                href="#">
+                href="streams.html">
                 <span class="material-symbols-outlined">settings_input_component</span>
                 <span class="font-['Manrope'] font-medium text-sm">Stream Setup</span>
             </a>
             <a class="flex items-center gap-3 text-neutral-500 hover:text-neutral-300 px-6 py-3 hover:bg-neutral-800/50 transition-all hover:translate-x-1 duration-200"
-                href="#">
+                href="leaderboards.html">
                 <span class="material-symbols-outlined">groups</span>
                 <span class="font-['Manrope'] font-medium text-sm">Community</span>
             </a>
             <a class="flex items-center gap-3 text-neutral-500 hover:text-neutral-300 px-6 py-3 hover:bg-neutral-800/50 transition-all hover:translate-x-1 duration-200"
-                href="#">
+                href="shop.html">
                 <span class="material-symbols-outlined">payments</span>
                 <span class="font-['Manrope'] font-medium text-sm">Revenue</span>
             </a>
         </nav>
         <div class="px-6 py-4">
-            <button
-                class="w-full py-3 bg-primary/10 border border-primary/30 text-primary font-bold rounded-lg text-sm hover:bg-primary/20 transition-all">
+            <a href="stream.html"
+                class="w-full py-3 bg-primary/10 border border-primary/30 text-primary font-bold rounded-lg text-sm hover:bg-primary/20 transition-all block text-center">
                 Broadcast Now
-            </button>
+            </a>
         </div>
         <div class="mt-auto space-y-1">
             <a class="flex items-center gap-3 text-neutral-500 hover:text-neutral-300 px-6 py-3 hover:bg-neutral-800/50 transition-all"
-                href="#">
+                href="index.html">
                 <span class="material-symbols-outlined">help</span>
                 <span class="font-['Manrope'] font-medium text-sm">Support</span>
             </a>
-            <a class="flex items-center gap-3 text-neutral-500 hover:text-neutral-300 px-6 py-3 hover:bg-neutral-800/50 transition-all"
-                href="#">
+            <a id="setting-logout-btn" class="flex items-center gap-3 text-neutral-500 hover:text-red-400 px-6 py-3 hover:bg-red-500/10 transition-all cursor-pointer">
                 <span class="material-symbols-outlined">logout</span>
                 <span class="font-['Manrope'] font-medium text-sm">Log Out</span>
             </a>
@@ -510,7 +509,40 @@
             </div>
         </section>
     </main>
-    <!-- Contextual FAB - Suppression on Analytics as per mandate, but included for complete UI feel if requested on Dashboard -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Logout
+        const logoutBtn = document.getElementById('setting-logout-btn');
+        if (logoutBtn) {
+            logoutBtn.addEventListener('click', () => {
+                localStorage.removeItem('neonNocturneLoggedIn');
+                localStorage.removeItem('neonNocturneUser');
+                window.location.href = 'login.html';
+            });
+        }
+        // Notification toggle
+        const notifBtn = document.getElementById('notif-toggle-btn');
+        if (notifBtn) {
+            notifBtn.addEventListener('click', () => {
+                const dot = notifBtn.querySelector('span.bg-red-500');
+                if (dot) dot.classList.toggle('hidden');
+                alert('No new notifications');
+            });
+        }
+        // Time range buttons
+        const timeButtons = document.querySelectorAll('section .flex.items-center.gap-4 button');
+        timeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                timeButtons.forEach(b => { b.classList.remove('bg-surface-container-highest','text-secondary','shadow-lg','font-bold'); b.classList.add('text-on-surface-variant','font-medium'); });
+                btn.classList.add('bg-surface-container-highest','text-secondary','shadow-lg','font-bold');
+                btn.classList.remove('text-on-surface-variant','font-medium');
+            });
+        });
+        // View Detailed Report
+        const reportBtn = document.querySelector('button.text-secondary.text-sm.font-bold');
+        if (reportBtn) reportBtn.addEventListener('click', () => window.location.href = 'leaderboards.html');
+    });
+    </script>
 </body>
 
 </html>
