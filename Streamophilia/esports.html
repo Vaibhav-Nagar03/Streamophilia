@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-
 <html class="dark" lang="en">
 
 <head>
-    <!-- === AUTH GUARD === -->
     <script>
         if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
             window.location.href = 'login.html';
@@ -11,82 +9,22 @@
     </script>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>NEON NOCTURNE | Premium Streaming</title>
+    <title>Esports | NEON NOCTURNE</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script id="tailwind-config">
+    <script>
         tailwind.config = {
             darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "on-tertiary-fixed": "#39000b",
-                        "surface-container-high": "#1f1f23",
-                        "on-primary": "#480079",
-                        "inverse-primary": "#8d00e6",
-                        "error": "#ff6e84",
-                        "surface": "#0e0e11",
-                        "secondary-fixed": "#6ce1ff",
-                        "secondary": "#00d9ff",
-                        "on-primary-container": "#37005f",
-                        "surface-dim": "#0e0e11",
-                        "on-error": "#490013",
-                        "primary-fixed-dim": "#bc6fff",
-                        "surface-variant": "#25252a",
-                        "on-secondary": "#004755",
-                        "background": "#0e0e11",
-                        "secondary-container": "#00687b",
-                        "secondary-fixed-dim": "#00d6fb",
-                        "on-error-container": "#ffb2b9",
-                        "on-background": "#fbf8fc",
-                        "surface-container": "#19191d",
-                        "outline": "#767578",
-                        "error-container": "#a70138",
-                        "secondary-dim": "#00caed",
-                        "on-primary-fixed-variant": "#450074",
-                        "on-tertiary": "#680a1f",
-                        "on-secondary-container": "#ecfaff",
-                        "tertiary": "#ff959d",
-                        "on-secondary-fixed": "#003a46",
-                        "tertiary-container": "#fe7e8a",
-                        "surface-container-low": "#131316",
-                        "surface-tint": "#cf96ff",
-                        "outline-variant": "#48474b",
-                        "inverse-surface": "#fbf8fc",
-                        "primary-container": "#c683ff",
-                        "surface-bright": "#2c2c30",
-                        "primary-fixed": "#c683ff",
-                        "on-tertiary-container": "#570015",
-                        "primary-dim": "#a533ff",
-                        "error-dim": "#d73357",
-                        "on-tertiary-fixed-variant": "#721325",
-                        "tertiary-fixed": "#ff9099",
-                        "tertiary-dim": "#f47783",
-                        "on-secondary-fixed-variant": "#005969",
-                        "inverse-on-surface": "#555458",
-                        "primary": "#cf96ff",
-                        "surface-container-highest": "#25252a",
-                        "on-primary-fixed": "#000000",
-                        "tertiary-fixed-dim": "#fb7c88",
-                        "on-surface": "#fbf8fc",
-                        "on-surface-variant": "#acaaae",
-                        "surface-container-lowest": "#000000"
+                        "surface-container-high": "#1f1f23", "on-primary": "#480079", "inverse-primary": "#8d00e6", "error": "#ff6e84", "surface": "#0e0e11", "secondary-fixed": "#6ce1ff", "secondary": "#00d9ff", "on-primary-container": "#37005f", "surface-dim": "#0e0e11", "on-error": "#490013", "primary-fixed-dim": "#bc6fff", "surface-variant": "#25252a", "on-secondary": "#004755", "background": "#0e0e11", "secondary-container": "#00687b", "secondary-fixed-dim": "#00d6fb", "on-error-container": "#ffb2b9", "on-background": "#fbf8fc", "surface-container": "#19191d", "outline": "#767578", "error-container": "#a70138", "secondary-dim": "#00caed", "on-primary-fixed-variant": "#450074", "on-tertiary": "#680a1f", "on-secondary-container": "#ecfaff", "tertiary": "#ff959d", "on-secondary-fixed": "#003a46", "tertiary-container": "#fe7e8a", "surface-container-low": "#131316", "surface-tint": "#cf96ff", "outline-variant": "#48474b", "inverse-surface": "#fbf8fc", "primary-container": "#c683ff", "surface-bright": "#2c2c30", "primary-fixed": "#c683ff", "on-tertiary-container": "#570015", "primary-dim": "#a533ff", "error-dim": "#d73357", "tertiary-fixed": "#ff9099", "tertiary-dim": "#f47783", "on-secondary-fixed-variant": "#005969", "inverse-on-surface": "#555458", "primary": "#cf96ff", "surface-container-highest": "#25252a", "on-primary-fixed": "#000000", "tertiary-fixed-dim": "#fb7c88", "on-surface": "#fbf8fc", "on-surface-variant": "#acaaae", "surface-container-lowest": "#000000"
                     },
-                    fontFamily: {
-                        "headline": ["Space Grotesk"],
-                        "body": ["Manrope"],
-                        "label": ["Manrope"]
-                    },
-                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+                    fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"], "label": ["Manrope"] },
                 },
             },
         }
@@ -104,17 +42,9 @@
             overflow-x: hidden;
         }
 
-        .neon-glow-primary {
-            box-shadow: 0 0 20px rgba(207, 150, 255, 0.2);
-        }
-
-        .glass-panel {
-            background: rgba(31, 31, 35, 0.6);
-            backdrop-filter: blur(40px);
-        }
-
         ::-webkit-scrollbar {
-            width: 4px;
+            width: 6px;
+            height: 6px;
         }
 
         ::-webkit-scrollbar-track {
@@ -125,655 +55,564 @@
             background: #48474b;
             border-radius: 10px;
         }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cf96ff;
+        }
     </style>
 </head>
 
 <body class="bg-surface text-on-surface">
-    <!-- TopAppBar -->
+    <!-- Header Content: Handled by nav_components.js -->
     <header
         class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
         <div class="flex items-center gap-x-[1.2rem]">
             <a href="index.html"
-                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON
+                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-headline tracking-tight whitespace-nowrap">NEON
                 NOCTURNE</a>
             <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
         </div>
         <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
         <div class="flex items-center gap-x-6" id="top-actions"></div>
     </header>
-    <div class="flex pt-16">
-        <!-- Mobile Sidebar Overlay -->
-        <div id="mobile-sidebar-overlay"
-            class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0 lg:hidden">
-        </div>
 
-        <!-- SideNavBar -->
+    <div class="flex pt-16">
         <aside id="main-sidebar"
-            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10">
+            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-body text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 z-[70] border-r border-outline-variant/10">
         </aside>
 
-        <!-- Main Content Area -->
         <main class="flex-1 lg:ml-64 p-8 min-h-screen">
-            <div class="flex justify-between items-center mb-10">
-                <div>
-                    <h1 class="text-4xl font-headline font-bold text-on-surface mb-2">Tournaments Hub</h1>
-                    <p class="text-on-surface-variant font-body">Compete in your favorite games, climb the ranks, and
-                        win epic prizes.</p>
-                </div>
-                <button id="create-tournament-btn"
-                    class="bg-gradient-to-br from-primary-dim to-primary text-on-primary-fixed px-8 py-3 rounded-lg font-bold shadow-[0_0_20px_rgba(207,150,255,0.3)] hover:shadow-[0_0_30px_rgba(207,150,255,0.5)] transition-all active:scale-95 flex items-center gap-2">
-                    <span class="material-symbols-outlined">add_circle</span> Create Tournament
-                </button>
-            </div>
+            <div class="max-w-6xl mx-auto">
+                <section class="mb-10 lg:flex items-end justify-between">
+                    <div>
+                        <h1 class="text-4xl font-headline font-bold mb-2 text-primary">Esports Central</h1>
+                        <p class="text-on-surface-variant text-sm">Live scores, stats, and upcoming pro matches.</p>
+                    </div>
+                </section>
 
-            <!-- Stats Row -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-                <div
-                    class="glass-panel p-6 rounded-2xl border border-outline-variant/5 hover:border-primary/20 transition-all">
-                    <h3 class="text-on-surface-variant text-sm font-medium mb-4 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-primary text-sm">emoji_events</span> Total Active
-                        Tournaments
-                    </h3>
-                    <div class="text-4xl font-headline font-bold text-on-surface">124</div>
-                </div>
-                <div
-                    class="glass-panel p-6 rounded-2xl border border-outline-variant/5 hover:border-secondary/20 transition-all">
-                    <h3 class="text-on-surface-variant text-sm font-medium mb-4 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-secondary text-sm">payments</span> Total Prize Pool
-                    </h3>
-                    <div class="text-4xl font-headline font-bold text-secondary">$245,000</div>
-                </div>
-                <div
-                    class="glass-panel p-6 rounded-2xl border border-outline-variant/5 hover:border-emerald-400/20 transition-all">
-                    <h3 class="text-on-surface-variant text-sm font-medium mb-4 flex items-center gap-2">
-                        <span class="material-symbols-outlined text-emerald-400 text-sm">groups</span> Players Competing
-                    </h3>
-                    <div class="text-4xl font-headline font-bold text-on-surface">18,452</div>
-                </div>
-            </div>
+                <div class="grid grid-cols-1 xl:grid-cols-3 gap-8">
+                    <!-- Left/Main Column - 2 spans -->
+                    <div class="xl:col-span-2 space-y-8">
 
-            <!-- Tabs -->
-            <div class="flex gap-8 border-b border-outline-variant/20 mb-8">
-                <button
-                    class="pb-4 border-b-2 border-primary text-primary font-bold text-base font-headline uppercase tracking-widest hover:text-primary transition-colors">Active</button>
-                <button
-                    class="pb-4 text-on-surface-variant hover:text-on-surface font-headline font-bold text-base uppercase tracking-widest transition-colors border-b-2 border-transparent">Upcoming</button>
-                <button
-                    class="pb-4 text-on-surface-variant hover:text-on-surface font-headline font-bold text-base uppercase tracking-widest transition-colors border-b-2 border-transparent">My
-                    Tournaments</button>
-            </div>
-
-            <!-- Filters/Search -->
-            <div class="flex justify-between items-center mb-8">
-                <div class="flex gap-3">
-                    <button
-                        class="px-4 py-2 bg-primary/20 text-primary border border-primary/30 rounded-full text-xs font-bold uppercase tracking-wider">All
-                        Games</button>
-                    <button
-                        class="px-4 py-2 bg-surface-container border border-outline-variant/20 text-on-surface-variant hover:text-on-surface rounded-full text-xs font-bold uppercase tracking-wider transition-colors">FPS</button>
-                    <button
-                        class="px-4 py-2 bg-surface-container border border-outline-variant/20 text-on-surface-variant hover:text-on-surface rounded-full text-xs font-bold uppercase tracking-wider transition-colors">Strategy</button>
-                </div>
-                <div class="relative w-64">
-                    <span
-                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-                    <input type="text" placeholder="Search tournaments..."
-                        class="w-full bg-surface-container border border-outline-variant/20 py-2 pl-9 pr-4 rounded-lg text-sm focus:border-primary focus:ring-1 focus:ring-primary transition-all text-on-surface outline-none">
-                </div>
-            </div>
-
-            <!-- Tournament Grid -->
-            <div id="tournaments-grid" class="grid grid-cols-1 xl:grid-cols-2 gap-6">
-                <!-- Banner 1: Live Valorant -->
-                <div
-                    class="glass-panel border-l-4 border-l-error rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
-                    <div
-                        class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
-                        <img src="https://static-cdn.jtvnw.net/ttv-boxart/516575-600x800.jpg"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80"
-                            alt="Valorant Champions Series">
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block">
-                        </div>
+                        <!-- Next Match Countdown -->
                         <div
-                            class="absolute top-3 left-3 bg-error text-on-error px-2 py-0.5 rounded text-[10px] font-bold tracking-wider shadow-[0_0_10px_rgba(255,110,132,0.5)] flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-on-error animate-pulse"></span> LIVE NOW
-                        </div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between z-10">
-                        <div>
-                            <div class="flex justify-between items-start mb-2 gap-4">
-                                <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Valorant
-                                    Champions Series</h3>
-                                <span
-                                    class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">$50,000</span>
-                            </div>
-                            <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">The grand finals have begun!
-                                Watch the top teams compete for the ultimate prize.</p>
-                        </div>
-                        <div class="flex gap-3 mt-auto pt-4">
-                            <a href="stream.html"
-                                class="flex-1 flex justify-center items-center bg-gradient-to-r from-error to-error-dim hover:shadow-[0_0_20px_rgba(255,110,132,0.5)] border-none py-2.5 rounded-lg font-bold text-sm transition-all text-white active:scale-95">Watch
-                                Stream</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Banner 2: Chess Tournament -->
-                <div
-                    class="glass-panel border-l-4 border-l-secondary rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
-                    <div
-                        class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
-                        <img src="https://static-cdn.jtvnw.net/ttv-boxart/743_IGDB-600x800.jpg"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80"
-                            alt="Grandmaster Rapid Blitz Chess">
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block">
-                        </div>
-                        <div
-                            class="absolute top-3 left-3 bg-secondary text-surface px-2 py-0.5 rounded text-[10px] font-bold tracking-wider shadow-[0_0_10px_rgba(0,217,255,0.4)]">
-                            OPEN</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between z-10">
-                        <div>
-                            <div class="flex justify-between items-start mb-2 gap-4">
-                                <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Grandmaster
-                                    Rapid Blitz</h3>
-                                <span
-                                    class="bg-secondary/10 text-secondary border border-secondary/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">ENTRY:
-                                    50 COINS</span>
-                            </div>
-                            <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">Test your mind against the
-                                smartest tacticians in this classic chess tournament.</p>
+                            class="bg-surface-container-high rounded-3xl p-8 border border-outline-variant/20 shadow-2xl relative overflow-hidden bg-gradient-to-br from-[#1f1f23] to-[#0e0e11]">
                             <div
-                                class="bg-surface-container-lowest p-3 rounded-lg border border-outline-variant/5 mb-4">
-                                <div class="flex justify-between text-xs mb-1 font-bold">
-                                    <span class="text-on-surface-variant uppercase tracking-widest text-[9px]">Seats
-                                        Left</span>
-                                    <span class="text-secondary"><span id="chess-seats">6</span> / 50</span>
-                                </div>
-                                <div class="w-full h-1.5 bg-surface-container-highest rounded-full overflow-hidden">
-                                    <div class="h-full bg-secondary w-[88%]"></div>
-                                </div>
+                                class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-secondary to-secondary-dim">
                             </div>
-                        </div>
-                        <div class="flex gap-3 mt-auto">
-                            <button onclick="openJoinModal('Grandmaster Rapid Blitz', 50, this)"
-                                class="flex-1 bg-surface-container border border-outline-variant/20 hover:border-secondary/50 hover:bg-secondary/10 hover:text-secondary py-2.5 rounded-lg font-bold text-sm transition-all text-on-surface active:scale-95">Join
-                                Tournament</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Banner 3: Watchlist -->
-                <div
-                    class="glass-panel border-l-4 border-l-primary rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
-                    <div
-                        class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
-                        <img src="https://static-cdn.jtvnw.net/ttv-boxart/32399_IGDB-600x800.jpg"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-60 grayscale hover:grayscale-0"
-                            alt="CS2 Neon Overdrive Cup">
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block">
-                        </div>
-                        <div
-                            class="absolute top-3 left-3 bg-surface-container-highest text-on-surface px-2 py-0.5 rounded text-[10px] font-bold tracking-wider border border-outline-variant/20">
-                            UPCOMING</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between z-10">
-                        <div>
-                            <div class="flex justify-between items-start mb-2 gap-4">
-                                <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Neon Overdrive
-                                    CS2 Cup</h3>
-                                <span
-                                    class="bg-primary/10 text-primary border border-primary/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">$15,000</span>
-                            </div>
-                            <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">The premier CS2 event of the
-                                season. Teams from NA and EU battle it out.</p>
-                        </div>
-                        <div class="flex gap-3 mt-auto pt-4">
-                            <button
-                                class="flex-1 bg-primary/20 border border-primary/50 text-primary py-2.5 rounded-lg font-bold text-sm transition-all cursor-default flex items-center justify-center gap-2">
-                                <span class="material-symbols-outlined text-[18px]">bookmark_added</span> In Watchlist
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Banner 4: Free Custom Tournament -->
-                <div
-                    class="glass-panel border-l-4 border-l-emerald-400 rounded-r-2xl border-y border-r border-outline-variant/10 overflow-hidden group hover:bg-surface-container-low transition-colors flex flex-col sm:flex-row h-full">
-                    <div
-                        class="w-full sm:w-2/5 aspect-video sm:aspect-auto relative overflow-hidden bg-surface-container-lowest">
-                        <img src="https://static-cdn.jtvnw.net/ttv-boxart/27471_IGDB-600x800.jpg"
-                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80"
-                            alt="Community Clash Minecraft">
-                        <div class="absolute inset-0 bg-gradient-to-r from-transparent to-surface/90 hidden sm:block">
-                        </div>
-                        <div
-                            class="absolute top-3 left-3 bg-emerald-400/20 text-emerald-400 border border-emerald-400/30 px-2 py-0.5 rounded text-[10px] font-bold tracking-wider">
-                            FREE ENTRY</div>
-                    </div>
-                    <div class="p-6 flex-1 flex flex-col justify-between z-10">
-                        <div>
-                            <div class="flex justify-between items-start mb-2 gap-4">
-                                <h3 class="text-xl font-headline font-bold text-on-surface leading-tight">Community
-                                    Clash: Minecraft</h3>
-                                <span
-                                    class="bg-emerald-400/10 text-emerald-400 border border-emerald-400/30 px-3 py-1 rounded w-max text-xs font-bold tracking-wider">PRIZE:
-                                    MYSTERY</span>
-                            </div>
-                            <p class="text-sm text-on-surface-variant mb-4 line-clamp-2">A fun community-organized
-                                building contest. No entry fee required!</p>
-                        </div>
-                        <div class="flex gap-3 mt-auto pt-4">
-                            <button onclick="alert('Successfully registered for Community Clash!')"
-                                class="flex-1 bg-surface-container border border-emerald-400/30 hover:bg-emerald-400 hover:text-on-primary-fixed py-2.5 rounded-lg font-bold text-sm transition-colors text-emerald-400 shadow-[0_0_15px_rgba(52,211,153,0.1)] hover:shadow-[0_0_20px_rgba(52,211,153,0.4)] active:scale-95">Register
-                                for Free</button>
-                            <button
-                                class="w-12 flex items-center justify-center bg-surface-container text-on-surface-variant py-2.5 rounded-lg hover:text-on-surface transition-colors border border-outline-variant/20"><span
-                                    class="material-symbols-outlined text-lg">share</span></button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Join Tournament Modal -->
-            <div id="join-modal"
-                class="hidden fixed inset-0 z-[110] flex items-center justify-center bg-neutral-950/80 backdrop-blur-sm animate-fade-in">
-                <div
-                    class="bg-surface-container-high border border-outline-variant/20 p-8 rounded-2xl w-full max-w-sm shadow-[0_20px_80px_rgba(0,0,0,0.8)] relative text-center">
-                    <h2 class="text-xl font-headline font-bold text-on-surface mb-2" id="join-modal-title">Join
-                        Tournament</h2>
-                    <div
-                        class="w-16 h-16 rounded-full bg-secondary/10 flex items-center justify-center mx-auto my-6 border-2 border-secondary/30">
-                        <span class="material-symbols-outlined text-secondary text-3xl">token</span>
-                    </div>
-                    <p class="text-on-surface-variant text-sm mb-6">Entry requires <span
-                            class="font-bold text-secondary" id="join-modal-cost">50</span> coins. This will be deducted
-                        from your wallet balance instantly.</p>
-                    <div class="flex gap-3">
-                        <button onclick="closeJoinModal()"
-                            class="flex-1 px-4 py-2.5 bg-surface-container border border-outline-variant/30 hover:bg-surface-container-highest text-on-surface font-bold rounded-lg transition-colors">Cancel</button>
-                        <button onclick="confirmJoinTournament()"
-                            class="flex-1 px-4 py-2.5 bg-secondary text-surface font-bold rounded-lg hover:shadow-[0_0_15px_rgba(0,217,255,0.4)] transition-all active:scale-95">Confirm</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Create Tournament Modal -->
-            <div id="create-modal"
-                class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-neutral-950/80 backdrop-blur-sm animate-fade-in p-4 lg:p-8 overflow-y-auto">
-                <div
-                    class="bg-surface-container w-full max-w-3xl my-auto rounded-2xl border border-outline-variant/20 shadow-[0_20px_80px_rgba(0,0,0,0.8)] relative">
-                    <div
-                        class="sticky top-0 bg-surface-container border-b border-outline-variant/10 px-8 py-5 flex justify-between items-center z-10 rounded-t-2xl">
-                        <h2 class="text-2xl font-headline font-bold text-primary flex items-center gap-2">
-                            <span class="material-symbols-outlined">add_circle</span> Create New Tournament
-                        </h2>
-                        <button id="close-create-btn"
-                            class="text-on-surface-variant hover:text-white transition-colors"><span
-                                class="material-symbols-outlined">close</span></button>
-                    </div>
-
-                    <div class="p-8">
-                        <form id="create-form" class="space-y-6">
-                            <!-- Basic Info -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label
-                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Tournament
-                                        Name</label>
-                                    <input type="text" id="t-name" required
-                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors"
-                                        placeholder="e.g. Summer Showdown 2026">
-                                </div>
-                                <div>
-                                    <label
-                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Game
-                                        Selection</label>
-                                    <select id="t-game" required
-                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
-                                        <option value="VALORANT">VALORANT</option>
-                                        <option value="BGMI">BGMI</option>
-                                        <option value="Chess">Chess</option>
-                                        <option value="Fortnite">Fortnite</option>
-                                        <option value="Custom">Custom / Other</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Dates -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label
-                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Start
-                                        Date & Time</label>
-                                    <input type="datetime-local" id="t-start" required
-                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface [color-scheme:dark]">
-                                </div>
-                                <div>
-                                    <label
-                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">End
-                                        Date & Time</label>
-                                    <input type="datetime-local" id="t-end" required
-                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface [color-scheme:dark]">
-                                </div>
-                            </div>
-
-                            <!-- Capacity -->
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div>
-                                    <label
-                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Min
-                                        Members</label>
-                                    <input type="number" id="t-min" min="2" value="2" required
-                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
-                                </div>
-                                <div>
-                                    <label
-                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Max
-                                        Members</label>
-                                    <input type="number" id="t-max" min="2" value="32" required
-                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
-                                </div>
-                            </div>
-
-                            <!-- Prize Flow & Economics -->
-                            <div class="p-5 rounded-xl border border-primary/30 bg-primary/5 space-y-5">
-                                <h3 class="font-bold text-primary flex items-center gap-2"><span
-                                        class="material-symbols-outlined">diamond</span> Tournament Economics</h3>
-
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label
-                                            class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2 text-primary-dim">Prize
-                                            Allocation</label>
-                                        <select id="t-alloc"
-                                            class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
-                                            <option>Individual Pool (Winner Takes All)</option>
-                                            <option>Individual Pool (Top 3 Split)</option>
-                                            <option>Team Based Allocation</option>
-                                        </select>
+                            <div class="flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+                                <div class="text-center md:text-left">
+                                    <span
+                                        class="bg-secondary/20 text-secondary border border-secondary/30 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest mb-4 inline-block shadow-[0_0_15px_rgba(0,217,255,0.3)]">Next
+                                        Major</span>
+                                    <h2 class="text-2xl lg:text-3xl font-bold font-headline text-white leading-tight">
+                                        Valorant Champions Tour <br /> Global Finals 2026</h2>
+                                    <div class="flex items-center justify-center md:justify-start gap-4 mt-6">
+                                        <!-- Teams -->
+                                        <div class="flex items-center gap-3">
+                                            <div
+                                                class="w-12 h-12 bg-black rounded-lg border border-primary/40 flex items-center justify-center p-2">
+                                                <span class="font-extrabold text-primary font-headline">SEN</span>
+                                            </div>
+                                            <span
+                                                class="text-sm font-bold text-on-surface-variant text-white">SEN</span>
+                                        </div>
+                                        <div class="text-xl font-bold text-on-surface-variant">VS</div>
+                                        <div class="flex items-center gap-3">
+                                            <span
+                                                class="text-sm font-bold text-on-surface-variant text-white">FNC</span>
+                                            <div
+                                                class="w-12 h-12 bg-black rounded-lg border border-secondary/40 flex items-center justify-center p-2">
+                                                <span class="font-extrabold text-secondary font-headline">FNC</span>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <label
-                                            class="block text-xs font-bold text-error uppercase tracking-wider mb-2">Host
-                                            Investment Setup (Coins)</label>
-                                        <input type="number" id="host-investment" min="100" value="500" required
-                                            class="w-full bg-surface-container-highest border border-error/50 rounded-lg px-4 py-3 text-sm focus:border-error focus:ring-1 focus:ring-error text-on-surface transition-colors">
+                                </div>
+
+                                <!-- Timer -->
+                                <div class="flex gap-4 timer-container">
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-14 h-14 md:w-16 md:h-16 bg-surface-container border border-outline-variant/30 rounded-xl flex items-center justify-center text-2xl md:text-3xl font-headline font-bold text-primary shadow-inner timer-val"
+                                            data-val="2">02</div>
+                                        <span
+                                            class="text-[10px] uppercase text-on-surface-variant mt-2 font-bold tracking-widest">Days</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-14 h-14 md:w-16 md:h-16 bg-surface-container border border-outline-variant/30 rounded-xl flex items-center justify-center text-2xl md:text-3xl font-headline font-bold text-on-surface shadow-inner timer-val"
+                                            id="timer-hours">14</div>
+                                        <span
+                                            class="text-[10px] uppercase text-on-surface-variant mt-2 font-bold tracking-widest">Hours</span>
+                                    </div>
+                                    <div class="flex flex-col items-center">
+                                        <div class="w-14 h-14 md:w-16 md:h-16 bg-surface-container border border-outline-variant/30 rounded-xl flex items-center justify-center text-2xl md:text-3xl font-headline font-bold text-on-surface shadow-inner timer-val"
+                                            id="timer-mins">45</div>
+                                        <span
+                                            class="text-[10px] uppercase text-on-surface-variant mt-2 font-bold tracking-widest">Mins</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Background watermark -->
+                            <span
+                                class="material-symbols-outlined text-[200px] absolute -bottom-10 -right-10 text-on-surface-variant/5 rotate-12 pointer-events-none">sports_esports</span>
+                        </div>
+
+                        <!-- Live & Recent Scores -->
+                        <div>
+                            <h3 class="text-lg font-bold font-headline mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary">score</span> Live & Recent Scores
+                            </h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Match 1 -->
+                                <div
+                                    class="bg-surface-container-high border border-outline-variant/20 rounded-2xl p-5 hover:border-primary/50 transition-colors cursor-pointer group shadow-lg">
+                                    <div
+                                        class="flex justify-between items-center mb-4 border-b border-outline-variant/10 pb-3">
+                                        <span
+                                            class="text-[10px] font-bold text-secondary uppercase tracking-widest flex items-center gap-1"><span
+                                                class="w-1.5 h-1.5 bg-secondary rounded-full animate-pulse"></span> LIVE
+                                            NOW</span>
+                                        <span
+                                            class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">BO3
+                                            • MAP 2</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-7 h-7 rounded bg-surface/50 border border-outline-variant/20 flex items-center justify-center font-bold text-[10px]">
+                                                    T1</div><span
+                                                    class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">T1
+                                                    Esports</span>
+                                            </div>
+                                            <span class="text-xl font-bold font-headline text-white">1</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-7 h-7 rounded bg-surface border border-outline-variant/20 flex items-center justify-center font-bold text-[10px]">
+                                                    DRX</div><span
+                                                    class="text-sm font-bold text-on-surface-variant group-hover:text-primary transition-colors">DRX</span>
+                                            </div>
+                                            <span
+                                                class="text-xl font-bold font-headline text-on-surface-variant">0</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Match 2 -->
+                                <div
+                                    class="bg-surface-container-high border border-outline-variant/10 rounded-2xl p-5 hover:border-primary/50 transition-colors cursor-pointer group shadow-lg">
+                                    <div
+                                        class="flex justify-between items-center mb-4 border-b border-outline-variant/10 pb-3">
+                                        <span
+                                            class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">FINAL</span>
+                                        <span
+                                            class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider">CS:GO
+                                            MAJOR</span>
+                                    </div>
+                                    <div class="space-y-3">
+                                        <div class="flex justify-between items-center">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-7 h-7 rounded bg-surface border border-outline-variant/20 flex items-center justify-center font-bold text-[10px]">
+                                                    NAV</div><span
+                                                    class="text-sm font-bold text-on-surface-variant group-hover:text-primary transition-colors">Natus
+                                                    Vincere</span>
+                                            </div>
+                                            <span
+                                                class="text-xl font-bold font-headline text-on-surface-variant opacity-60">1</span>
+                                        </div>
+                                        <div class="flex justify-between items-center">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-7 h-7 rounded bg-surface border border-outline-variant/20 flex items-center justify-center font-bold text-[10px]">
+                                                    VIT</div><span
+                                                    class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">Team
+                                                    Vitality</span>
+                                            </div>
+                                            <span
+                                                class="text-xl font-bold font-headline text-white flex items-center gap-1">2
+                                                <span class="material-symbols-outlined text-primary text-xs"
+                                                    style="font-variation-settings: 'FILL' 1;">emoji_events</span></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Different Games List -->
+                        <div>
+                            <h3 class="text-lg font-bold font-headline mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary">category</span> Supported Games
+                            </h3>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div
+                                    class="bg-surface-container rounded-2xl py-6 flex flex-col items-center justify-center border border-outline-variant/10 hover:bg-surface-container-high hover:border-primary/50 transition-all cursor-pointer group shadow-md hover:shadow-primary/10">
+                                    <div
+                                        class="w-14 h-14 bg-black rounded-full mb-3 flex items-center justify-center p-3 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined text-3xl text-primary">gamepad</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-on-surface">Valorant</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container rounded-2xl py-6 flex flex-col items-center justify-center border border-outline-variant/10 hover:bg-surface-container-high hover:border-primary/50 transition-all cursor-pointer group shadow-md hover:shadow-primary/10">
+                                    <div
+                                        class="w-14 h-14 bg-black rounded-full mb-3 flex items-center justify-center p-2 group-hover:scale-110 transition-transform">
+                                        <span
+                                            class="material-symbols-outlined text-3xl text-secondary">sports_esports</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-on-surface">CS:GO</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container rounded-2xl py-6 flex flex-col items-center justify-center border border-outline-variant/10 hover:bg-surface-container-high hover:border-primary/50 transition-all cursor-pointer group shadow-md hover:shadow-primary/10">
+                                    <div
+                                        class="w-14 h-14 bg-black rounded-full mb-3 flex items-center justify-center p-2 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined text-3xl text-primary-dim">token</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-on-surface">League of Legends</span>
+                                </div>
+                                <div
+                                    class="bg-surface-container rounded-2xl py-6 flex flex-col items-center justify-center border border-outline-variant/10 hover:bg-surface-container-high hover:border-primary/50 transition-all cursor-pointer group shadow-md hover:shadow-primary/10">
+                                    <div
+                                        class="w-14 h-14 bg-black rounded-full mb-3 flex items-center justify-center p-2.5 group-hover:scale-110 transition-transform">
+                                        <span
+                                            class="material-symbols-outlined text-3xl text-secondary-dim">rocket_launch</span>
+                                    </div>
+                                    <span class="text-xs font-bold text-on-surface">Rocket League</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="space-y-8">
+
+                        <!-- Winning Percentage Graph (Mock UI) -->
+                        <div
+                            class="bg-surface-container-high rounded-3xl p-6 border border-outline-variant/10 shadow-lg">
+                            <h3 class="text-lg font-bold font-headline mb-8 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-secondary">pie_chart</span> Team Win Rates
+                            </h3>
+
+                            <!-- Circular Graph Mock utilizing css border overlaps to create simple pie chart -->
+                            <div class="flex justify-center mb-10 relative">
+                                <!-- Base Ring (Background) -->
+                                <div class="w-48 h-48 rounded-full border-[18px] border-surface-container shadow-inner">
+                                </div>
+
+                                <!-- Segment 1 (Primary) -->
+                                <div
+                                    class="absolute top-0 w-48 h-48 rounded-full border-[18px] border-transparent border-t-primary border-r-primary rotate-12 transition-all">
+                                </div>
+
+                                <!-- Segment 2 (Secondary) -->
+                                <div
+                                    class="absolute top-0 w-48 h-48 rounded-full border-[18px] border-transparent border-b-secondary -rotate-12 transition-all">
+                                </div>
+
+                                <!-- Center Stats -->
+                                <div class="absolute inset-0 flex flex-col items-center justify-center mt-2">
+                                    <span
+                                        class="text-4xl font-bold font-headline text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">68%</span>
+                                    <span
+                                        class="text-[9px] text-on-surface-variant uppercase tracking-[0.2em] font-bold mt-1">Top
+                                        Seed Win %</span>
+                                </div>
+                            </div>
+
+                            <!-- Stats Legends -->
+                            <div class="space-y-4 px-2">
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-2">
+                                        <span class="flex items-center gap-2"><span
+                                                class="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_rgba(207,150,255,0.6)]"></span>
+                                            Sentinels</span>
+                                        <span class="text-on-surface">68%</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                        <div class="h-full bg-primary rounded-full transition-all duration-1000"
+                                            style="width: 68%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-2">
+                                        <span class="flex items-center gap-2"><span
+                                                class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,217,255,0.6)]"></span>
+                                            Fnatic</span>
+                                        <span class="text-on-surface">54%</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                        <div class="h-full bg-secondary rounded-full transition-all duration-1000"
+                                            style="width: 54%;"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-xs font-bold mb-2">
+                                        <span class="flex items-center gap-2"><span
+                                                class="w-2.5 h-2.5 rounded-full bg-outline-variant"></span>
+                                            Others</span>
+                                        <span class="text-on-surface-variant">32%</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+                                        <div class="h-full bg-outline-variant rounded-full transition-all duration-1000"
+                                            style="width: 32%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Trending Articles (Extra feature to make it look premium) -->
+                        <div
+                            class="bg-surface-container-high rounded-3xl p-6 border border-outline-variant/10 shadow-lg">
+                            <h3 class="text-lg font-bold font-headline mb-4 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-primary-dim">article</span> Top Headlines
+                            </h3>
+                            <ul class="space-y-5">
+                                <li class="cursor-pointer group flex items-start gap-4">
+                                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=100"
+                                        class="w-16 h-12 object-cover rounded shadow-sm opacity-80 group-hover:opacity-100 transition-opacity" />
+                                    <div class="flex-1">
                                         <p
-                                            class="text-[10px] text-on-surface-variant mt-2 leading-relaxed italic border-l-2 border-error pl-2">
-                                            <strong class="text-error">Rule:</strong> The host pays <span
-                                                id="display-inv">500</span> coins. If only 1 user registers, <span
-                                                id="display-half">250</span> coins (half) are automatically won by that
-                                            user.
-                                        </p>
+                                            class="text-xs font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-relaxed">
+                                            New Valorant Agent shakes up the competitive meta completely.</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-1.5 font-bold">2 HOURS AGO</p>
+                                    </div>
+                                </li>
+                                <li
+                                    class="cursor-pointer group flex items-start gap-4 pt-4 border-t border-outline-variant/10">
+                                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=100"
+                                        class="w-16 h-12 object-cover rounded shadow-sm opacity-80 group-hover:opacity-100 transition-opacity" />
+                                    <div class="flex-1">
+                                        <p
+                                            class="text-xs font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-relaxed">
+                                            Faker signs massive extension with T1 ahead of Worlds.</p>
+                                        <p class="text-[10px] text-on-surface-variant mt-1.5 font-bold">5 HOURS AGO</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Esports Points & Game-wise Schedule -->
+                <div class="mt-8 grid grid-cols-1 xl:grid-cols-3 gap-8 pb-10">
+
+                    <!-- Ongoing Esport Points (Left - 1 col) -->
+                    <div class="xl:col-span-1 space-y-6">
+                        <h3 class="text-lg font-bold font-headline flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">leaderboard</span> Ongoing Points
+                        </h3>
+
+                        <div
+                            class="bg-surface-container-high rounded-3xl p-6 border border-outline-variant/10 shadow-lg relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none">
+                            </div>
+                            <div class="flex items-center justify-between mb-5 relative z-10">
+                                <span
+                                    class="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest">Global
+                                    Standings</span>
+                                <span
+                                    class="bg-primary/10 border border-primary/20 text-primary text-[9px] px-2 py-1 rounded font-bold uppercase tracking-wider">2026
+                                    Season</span>
+                            </div>
+
+                            <div class="space-y-3 relative z-10">
+                                <!-- Header -->
+                                <div
+                                    class="flex text-[9px] text-on-surface-variant font-bold uppercase tracking-widest mb-1 px-3">
+                                    <div class="w-8">#</div>
+                                    <div class="flex-1">Team</div>
+                                    <div class="w-16 text-right">Pts</div>
+                                </div>
+
+                                <!-- Row 1 -->
+                                <div
+                                    class="flex items-center px-3 py-2.5 rounded-xl bg-surface/80 border border-primary/30 shadow-[0_0_15px_rgba(207,150,255,0.1)]">
+                                    <div class="w-8 text-primary font-black text-sm">1</div>
+                                    <div class="flex-1 text-xs font-bold text-white flex items-center gap-2">
+                                        <span class="font-headline tracking-tighter">SEN</span>
+                                    </div>
+                                    <div class="w-16 text-right font-headline font-black text-primary">1250</div>
+                                </div>
+
+                                <!-- Row 2 -->
+                                <div
+                                    class="flex items-center px-3 py-2.5 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group border border-transparent hover:border-outline-variant/10">
+                                    <div
+                                        class="w-8 text-on-surface-variant group-hover:text-white transition-colors font-bold text-sm">
+                                        2</div>
+                                    <div class="flex-1 text-xs font-bold text-on-surface flex items-center gap-2">
+                                        <span class="font-headline tracking-tighter">FNC</span>
+                                    </div>
+                                    <div class="w-16 text-right font-headline font-bold text-white opacity-90">1080
+                                    </div>
+                                </div>
+
+                                <!-- Row 3 -->
+                                <div
+                                    class="flex items-center px-3 py-2.5 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group border border-transparent hover:border-outline-variant/10">
+                                    <div
+                                        class="w-8 text-on-surface-variant group-hover:text-white transition-colors font-bold text-sm">
+                                        3</div>
+                                    <div class="flex-1 text-xs font-bold text-on-surface flex items-center gap-2">
+                                        <span class="font-headline tracking-tighter">PRX</span>
+                                    </div>
+                                    <div class="w-16 text-right font-headline font-bold text-white opacity-80">920</div>
+                                </div>
+
+                                <!-- Row 4 -->
+                                <div
+                                    class="flex items-center px-3 py-2.5 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group border border-transparent hover:border-outline-variant/10">
+                                    <div
+                                        class="w-8 text-on-surface-variant group-hover:text-white transition-colors font-bold text-sm">
+                                        4</div>
+                                    <div class="flex-1 text-xs font-bold text-on-surface flex items-center gap-2">
+                                        <span class="font-headline tracking-tighter">T1</span>
+                                    </div>
+                                    <div class="w-16 text-right font-headline font-bold text-white opacity-70">850</div>
+                                </div>
+
+                                <!-- Row 5 -->
+                                <div
+                                    class="flex items-center px-3 py-2.5 rounded-xl hover:bg-surface-container transition-colors cursor-pointer group border border-transparent hover:border-outline-variant/10">
+                                    <div
+                                        class="w-8 text-on-surface-variant group-hover:text-white transition-colors font-bold text-sm">
+                                        5</div>
+                                    <div class="flex-1 text-xs font-bold text-on-surface flex items-center gap-2">
+                                        <span class="font-headline tracking-tighter">DRX</span>
+                                    </div>
+                                    <div class="w-16 text-right font-headline font-bold text-white opacity-60">740</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Weekly Schedule (Game-wise) (Right - 2 cols) -->
+                    <div class="xl:col-span-2 space-y-6">
+                        <h3 class="text-lg font-bold font-headline mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-secondary">calendar_today</span> Weekly Schedule
+                            <span class="text-sm font-normal text-on-surface-variant ml-2">(By Game)</span>
+                        </h3>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Valorant Schedule Card -->
+                            <div
+                                class="bg-surface-container-high rounded-3xl p-6 border border-outline-variant/10 shadow-lg group hover:border-primary/30 transition-all">
+                                <div class="flex items-center gap-4 mb-6 border-b border-outline-variant/10 pb-4">
+                                    <div
+                                        class="w-12 h-12 bg-surface rounded-2xl flex items-center justify-center border border-outline-variant/20 group-hover:bg-primary/10 group-hover:border-primary/30 transition-colors shadow-inner">
+                                        <span class="material-symbols-outlined text-primary text-2xl">gamepad</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-white font-headline leading-tight">Valorant
+                                        </h4>
+                                        <p
+                                            class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mt-0.5">
+                                            Masters Tokyo</p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-3">
+                                    <div
+                                        class="flex justify-between items-center bg-surface-container p-4 rounded-2xl border border-transparent hover:border-outline-variant/20 transition-colors cursor-pointer">
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-xs font-bold text-white">SEN vs NRG</span>
+                                            <span
+                                                class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider flex items-center gap-1"><span
+                                                    class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                                Today • 18:00 EST</span>
+                                        </div>
+                                        <span
+                                            class="text-[9px] bg-secondary/10 border border-secondary/20 text-secondary px-2 py-1 rounded-md font-black uppercase tracking-wider">Groups</span>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between items-center bg-surface-container p-4 rounded-2xl border border-transparent hover:border-outline-variant/20 transition-colors cursor-pointer">
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-xs font-bold text-white">LOUD vs LEV</span>
+                                            <span
+                                                class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider flex items-center gap-1"><span
+                                                    class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> Tomorrow
+                                                • 15:00 EST</span>
+                                        </div>
+                                        <span
+                                            class="text-[9px] bg-secondary/10 border border-secondary/20 text-secondary px-2 py-1 rounded-md font-black uppercase tracking-wider">Groups</span>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="pt-6 border-t border-outline-variant/10 flex justify-end gap-4">
-                                <button type="button" id="cancel-create-btn"
-                                    class="px-6 py-3 rounded-lg text-sm font-bold text-on-surface-variant hover:text-white transition-colors">Cancel</button>
-                                <button type="submit"
-                                    class="px-8 py-3 rounded-lg font-bold text-[#000] bg-primary hover:bg-primary-dim transition-colors shadow-[0_0_15px_rgba(207,150,255,0.3)] min-w-[200px]">Publish
-                                    Tournament</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                            <!-- CS:GO Schedule Card -->
+                            <div
+                                class="bg-surface-container-high rounded-3xl p-6 border border-outline-variant/10 shadow-lg group hover:border-secondary/30 transition-all">
+                                <div class="flex items-center gap-4 mb-6 border-b border-outline-variant/10 pb-4">
+                                    <div
+                                        class="w-12 h-12 bg-surface rounded-2xl flex items-center justify-center border border-outline-variant/20 group-hover:bg-secondary/10 group-hover:border-secondary/30 transition-colors shadow-inner">
+                                        <span
+                                            class="material-symbols-outlined text-secondary text-2xl">sports_esports</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-lg font-bold text-white font-headline leading-tight">CS:GO</h4>
+                                        <p
+                                            class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest mt-0.5">
+                                            Blast Premier</p>
+                                    </div>
+                                </div>
 
-            <!-- Leaderboard Modal -->
-            <div id="leaderboard-modal"
-                class="hidden fixed inset-0 z-[110] flex items-center justify-center bg-neutral-950/80 backdrop-blur-sm animate-fade-in p-4 lg:p-8">
-                <div
-                    class="bg-surface-container w-full max-w-2xl max-h-[80vh] overflow-y-auto rounded-2xl border border-outline-variant/20 shadow-2xl">
-                    <div
-                        class="sticky top-0 bg-surface-container border-b border-outline-variant/10 px-8 py-5 flex justify-between items-center z-10 rounded-t-2xl">
-                        <h2 class="text-xl font-headline font-bold text-on-surface" id="lb-title">Tournament Leaderboard
-                        </h2>
-                        <button id="close-leaderboard"
-                            class="text-on-surface-variant hover:text-white transition-colors"><span
-                                class="material-symbols-outlined">close</span></button>
-                    </div>
-                    <div class="p-8 space-y-3">
-                        <div
-                            class="flex items-center gap-4 bg-surface-container-highest p-4 rounded-xl border border-secondary/20 fade-in">
-                            <div class="w-8 flex-shrink-0 text-center"><span
-                                    class="font-headline font-bold text-2xl text-secondary">#1</span></div>
-                            <div
-                                class="w-10 h-10 rounded-full bg-primary/20 flex flex-shrink-0 items-center justify-center text-primary font-bold">
-                                VS</div>
-                            <div class="flex-1 min-w-0">
-                                <p class="font-bold text-on-surface">ViperScope</p>
-                                <p class="text-xs text-on-surface-variant">Wins: 5 | K/D: 2.4</p>
+                                <div class="space-y-3">
+                                    <div
+                                        class="flex justify-between items-center bg-surface-container p-4 rounded-2xl border border-transparent hover:border-outline-variant/20 transition-colors cursor-pointer">
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-xs font-bold text-white">Na'Vi vs FaZe</span>
+                                            <span
+                                                class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider flex items-center gap-1"><span
+                                                    class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> Fri,
+                                                20:00 EST</span>
+                                        </div>
+                                        <span
+                                            class="text-[9px] bg-primary/10 border border-primary/20 text-primary-dim px-2 py-1 rounded-md font-black uppercase tracking-wider">Semi-Final</span>
+                                    </div>
+
+                                    <div
+                                        class="flex justify-between items-center bg-surface-container p-4 rounded-2xl border border-transparent hover:border-outline-variant/20 transition-colors cursor-pointer">
+                                        <div class="flex flex-col gap-1">
+                                            <span class="text-xs font-bold text-white">Vitality vs G2</span>
+                                            <span
+                                                class="text-[10px] text-on-surface-variant font-bold uppercase tracking-wider flex items-center gap-1"><span
+                                                    class="w-1.5 h-1.5 rounded-full bg-outline-variant"></span> Sat,
+                                                14:00 EST</span>
+                                        </div>
+                                        <span
+                                            class="text-[9px] bg-primary/10 border border-primary/20 text-primary-dim px-2 py-1 rounded-md font-black uppercase tracking-wider">Semi-Final</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="font-bold text-xl text-primary font-headline">1,500 <span
-                                    class="text-xs font-body text-on-surface-variant">pts</span></div>
-                        </div>
-                        <div class="flex items-center gap-4 bg-surface rounded-xl p-4 fade-in">
-                            <div class="w-8 flex-shrink-0 text-center"><span
-                                    class="font-headline font-bold pl-1 text-lg text-on-surface-variant">#2</span></div>
-                            <div
-                                class="w-10 h-10 rounded-full bg-secondary/20 flex flex-shrink-0 items-center justify-center text-secondary font-bold">
-                                LD</div>
-                            <div class="flex-1 min-w-0">
-                                <p class="font-bold text-on-surface">Lumina_Dev</p>
-                            </div>
-                            <div class="font-bold text-xl text-on-surface font-headline">1,250 <span
-                                    class="text-xs font-body text-on-surface-variant">pts</span></div>
-                        </div>
-                        <div class="flex items-center gap-4 bg-surface rounded-xl p-4 fade-in">
-                            <div class="w-8 flex-shrink-0 text-center"><span
-                                    class="font-headline font-bold pl-1 text-lg text-on-surface-variant">#3</span></div>
-                            <img class="w-10 h-10 rounded-full object-cover flex-shrink-0"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuANOKMIQ0ezd4yMmcN8c1253CdjbU46dwJdxb6gtAZlaohmKJzz5arK9Opgbuxx_io7iUTpxMGGXxp73GcCTYSmZRMLCKAhpU-B6X9RoU_5gxg0IC1JuKiXLr_x2d7goJwzwY9VC0M_Edb68nbnRsGAxbQk19Oe4e7wRbvuErsAIFsbQcSsRWCbJ_tSqTOZaUh9nnqu2lPKtZi5jnBwwxUTsXmPkb66Yawt13E1-L8K_pIlK7giyOCg5vroUzH4-YvmveKVjEtk_1E" />
-                            <div class="flex-1 min-w-0">
-                                <p class="font-bold text-on-surface">Krona_Gaming</p>
-                            </div>
-                            <div class="font-bold text-xl text-on-surface font-headline">980 <span
-                                    class="text-xs font-body text-on-surface-variant">pts</span></div>
+
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </main>
     </div>
 
-    <nav
-        class="md:hidden fixed bottom-0 left-0 w-full bg-surface-container-high/90 backdrop-blur-xl border-t border-outline-variant/10 flex justify-around items-center h-20 px-4 z-50">
-        <button class="flex flex-col items-center text-cyan-400">
-            <span class="material-symbols-outlined">home</span>
-            <span class="text-[10px] font-bold mt-1">Home</span>
-        </button>
-        <button class="flex flex-col items-center text-on-surface-variant">
-            <span class="material-symbols-outlined">explore</span>
-            <span class="text-[10px] font-bold mt-1">Browse</span>
-        </button>
-        <button class="flex flex-col items-center text-on-surface-variant">
-            <span class="material-symbols-outlined">search</span>
-            <span class="text-[10px] font-bold mt-1">Search</span>
-        </button>
-        <button class="flex flex-col items-center text-on-surface-variant">
-            <span class="material-symbols-outlined">person</span>
-            <span class="text-[10px] font-bold mt-1">Profile</span>
-        </button>
-    </nav>
-
-    <style>
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fadeInDown 0.2s ease-out;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 4px;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: transparent;
-        }
-
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #48474b;
-            border-radius: 10px;
-        }
-
-        .msg-sent {
-            background: linear-gradient(135deg, #a533ff, #cf96ff);
-            color: #000;
-            border-radius: 16px 16px 4px 16px;
-            padding: 8px 14px;
-            max-width: 75%;
-            margin-left: auto;
-            font-size: 12px;
-            word-wrap: break-word;
-        }
-
-        .msg-received {
-            background: #1f1f23;
-            color: #fbf8fc;
-            border-radius: 16px 16px 16px 4px;
-            padding: 8px 14px;
-            max-width: 75%;
-            font-size: 12px;
-            word-wrap: break-word;
-        }
-
-        .msg-time {
-            font-size: 9px;
-            color: #767578;
-            margin-top: 2px;
-        }
-    </style>
-
+    <script src="nav_components.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-
-            // === CREATE TOURNAMENT MODAL LOGIC ===
-            const createBtn = document.getElementById('create-tournament-btn');
-            const createModal = document.getElementById('create-modal');
-            const closeCreateBtn = document.getElementById('close-create-btn');
-            const cancelCreateBtn = document.getElementById('cancel-create-btn');
-            const createForm = document.getElementById('create-form');
-            const hostInvestment = document.getElementById('host-investment');
-            const displayInv = document.getElementById('display-inv');
-            const displayHalf = document.getElementById('display-half');
-            const lbModal = document.getElementById('leaderboard-modal');
-            const closeLbBtn = document.getElementById('close-leaderboard');
-
-            if (hostInvestment) {
-                hostInvestment.addEventListener('input', () => {
-                    const val = parseInt(hostInvestment.value) || 0;
-                    displayInv.textContent = val;
-                    displayHalf.textContent = Math.floor(val / 2);
-                });
+            // Very simple Mock Countdown decrementer to make the UI feel alive
+            const minsEl = document.getElementById('timer-mins');
+            if (minsEl) {
+                setInterval(() => {
+                    let mins = parseInt(minsEl.textContent);
+                    if (mins > 0) {
+                        mins -= 1;
+                        minsEl.textContent = mins.toString().padStart(2, '0');
+                    }
+                }, 60000); // decrement every minute
             }
-
-            if (createBtn && createModal) {
-                createBtn.addEventListener('click', () => {
-                    createModal.classList.remove('hidden');
-                });
-
-                const closeCreate = () => {
-                    createModal.classList.add('hidden');
-                };
-
-                closeCreateBtn.addEventListener('click', closeCreate);
-                cancelCreateBtn.addEventListener('click', closeCreate);
-
-                createModal.addEventListener('mousedown', (e) => {
-                    if (e.target === createModal) {
-                        closeCreate();
-                    }
-                });
-
-                if (closeLbBtn) {
-                    closeLbBtn.addEventListener('click', () => {
-                        lbModal.classList.add('hidden');
-                    });
-                }
-
-                // Temporary dev bind for the leaderboard modal to demonstrate it
-                window.viewLeaderboard = function () {
-                    lbModal.classList.remove('hidden');
-                };
-
-                createForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-
-                    const name = document.getElementById('t-name').value;
-                    const inv = hostInvestment ? hostInvestment.value : 0;
-
-                    alert(`Tournament "${name}" created successfully!\n\n${inv} Coins have been deducted from your wallet to host this event as escrow.\nAs per tournament rules: If only 1 user registers, they will automatically receive ${Math.floor(inv / 2)} coins.`);
-                    closeCreate();
-                    createForm.reset();
-                    if (displayInv) displayInv.textContent = '500';
-                    if (displayHalf) displayHalf.textContent = '250';
-                });
-            }
-
-            // === TOURNAMENT JOIN LOGIC ===
-            window.openJoinModal = function (title, cost, btnObj) {
-                document.getElementById('join-modal-title').textContent = title;
-                document.getElementById('join-modal-cost').textContent = cost;
-                document.getElementById('join-modal').classList.remove('hidden');
-                window.currentJoinBtn = btnObj;
-                window.currentJoinCost = cost;
-            };
-
-            window.closeJoinModal = function () {
-                document.getElementById('join-modal').classList.add('hidden');
-            };
-
-            window.confirmJoinTournament = function () {
-                let balanceSpan = document.getElementById('wallet-balance');
-                let currentBalance = parseInt(balanceSpan.textContent);
-
-                if (currentBalance >= window.currentJoinCost) {
-                    // Deduct coins
-                    balanceSpan.textContent = currentBalance - window.currentJoinCost;
-
-                    // Update seats
-                    let seatsSpan = document.getElementById('chess-seats');
-                    if (seatsSpan) {
-                        let seats = parseInt(seatsSpan.textContent);
-                        seatsSpan.textContent = Math.max(0, seats - 1);
-                    }
-
-                    // Update Join button state
-                    if (window.currentJoinBtn) {
-                        window.currentJoinBtn.textContent = 'Registered ✓';
-                        window.currentJoinBtn.classList.replace('hover:bg-secondary/10', 'bg-surface-container-highest');
-                        window.currentJoinBtn.classList.replace('hover:border-secondary/50', 'border-outline-variant/20');
-                        window.currentJoinBtn.classList.replace('hover:text-secondary', 'text-emerald-400');
-                        window.currentJoinBtn.removeAttribute('onclick');
-                        window.currentJoinBtn.classList.add('cursor-default');
-                    }
-
-                    closeJoinModal();
-                    alert('Successfully registered! ' + window.currentJoinCost + ' coins were deducted from your wallet.');
-                } else {
-                    alert('Insufficient coin balance in your wallet!');
-                    closeJoinModal();
-                }
-            };
-
         });
     </script>
-    <script src="nav_components.js"></script>
 </body>
 
 </html>
