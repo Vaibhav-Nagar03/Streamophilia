@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Tournaments | NEON NOCTURNE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#0e0e11",
+                        "surface-container": "#19191d",
+                        "surface-container-high": "#1f1f23",
+                        "surface-container-highest": "#25252a",
+                        "on-surface": "#fbf8fc",
+                        "on-surface-variant": "#acaaae",
+                        "primary": "#cf96ff",
+                        "primary-dim": "#a533ff",
+                        "secondary": "#00d9ff",
+                        "error": "#ff6e84",
+                        "outline-variant": "#48474b"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0e0e11;
+            color: #fbf8fc;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #48474b;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface">
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <a href="index.html"
+                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON
+                NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
+        </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
+
+    <div class="flex pt-16">
+        <div id="mobile-sidebar-overlay"
+            class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0 lg:hidden">
+        </div>
+
+        <!-- SideNavBar -->
+        <aside id="main-sidebar"
+            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10">
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 p-8 min-h-screen mx-auto max-w-7xl pt-24 pb-20">
+            <!-- Header Section -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-4">
+                <div>
+                    <h1 class="text-4xl lg:text-5xl font-headline font-bold text-on-surface mb-2">My Tournaments</h1>
+                    <p class="text-on-surface-variant text-lg">Manage tournaments you host and those you participate in.
+                    </p>
+                </div>
+                <button id="open-create-modal"
+                    class="group relative flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-primary-dim text-[#000] rounded-xl font-bold font-headline tracking-wide hover:shadow-[0_0_20px_rgba(207,150,255,0.4)] transition-all active:scale-95">
+                    <span
+                        class="material-symbols-outlined text-lg transition-transform group-hover:rotate-90">add_task</span>
+                    Create Tournament
+                </button>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+                <!-- Hosted by me -->
+                <div class="bg-surface-container rounded-2xl p-6 border border-outline-variant/10 shadow-lg">
+                    <h2 class="text-2xl font-headline font-bold mb-6 flex items-center gap-2 text-primary">
+                        <span class="material-symbols-outlined">shield_person</span> Hosted by Me
+                    </h2>
+
+                    <div id="hosted-list" class="space-y-4">
+                        <div class="bg-surface-container-high rounded-xl p-5 border border-outline-variant/5">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="font-bold text-lg text-on-surface">Neon Invitational Phase 1</h3>
+                                    <p class="text-xs text-on-surface-variant">Game: VALORANT</p>
+                                </div>
+                                <span
+                                    class="bg-emerald-400/20 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded">ACTIVE</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-4 mb-4">
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Prize Pool
+                                    </p>
+                                    <p class="font-bold text-secondary">25,000 Coins</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Members</p>
+                                    <p class="font-bold text-on-surface">12 / 16</p>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Ends</p>
+                                    <p class="font-bold text-on-surface text-sm">Tomorrow</p>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full py-2 bg-surface rounded-lg text-on-surface-variant hover:text-white hover:bg-surface-container-highest transition-colors text-sm font-bold border border-outline-variant/20">Manage
+                                & View Leaderboard</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Participating -->
+                <div class="bg-surface-container rounded-2xl p-6 border border-outline-variant/10 shadow-lg">
+                    <h2 class="text-2xl font-headline font-bold mb-6 flex items-center gap-2 text-secondary">
+                        <span class="material-symbols-outlined">swords</span> My Entries
+                    </h2>
+
+                    <div class="space-y-4">
+                        <div class="bg-surface-container-high rounded-xl p-5 border border-outline-variant/5">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="font-bold text-lg text-on-surface">Saturday Night Chess</h3>
+                                    <p class="text-xs text-on-surface-variant">Game: Chess</p>
+                                </div>
+                                <span
+                                    class="bg-secondary/20 text-secondary text-[10px] font-bold px-2 py-1 rounded">STARTING
+                                    SOON</span>
+                            </div>
+                            <div class="mb-4">
+                                <p class="text-[10px] text-on-surface-variant uppercase tracking-wider mb-1">Your
+                                    Current Rank</p>
+                                <p class="font-bold text-xl text-on-surface">- <span
+                                        class="text-sm text-on-surface-variant font-normal">/ 50 Players</span></p>
+                            </div>
+                            <button
+                                class="w-full py-2 bg-secondary text-black rounded-lg hover:bg-cyan-300 transition-colors text-sm font-bold">Go
+                                to Match Lobby</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extracted bottom boundary -->
+
+            <!-- CREATE TOURNAMENT MODAL -->
+            <div id="create-modal"
+                class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 lg:p-8">
+                <div
+                    class="bg-surface-container w-full max-w-3xl max-h-full overflow-y-auto custom-scrollbar rounded-2xl border border-outline-variant/20 shadow-2xl">
+                    <div
+                        class="sticky top-0 bg-surface-container border-b border-outline-variant/10 px-8 py-5 flex justify-between items-center z-10">
+                        <h2 class="text-2xl font-headline font-bold text-primary">Create New Tournament</h2>
+                        <button id="close-modal"
+                            class="text-on-surface-variant hover:text-white transition-colors active:scale-95"><span
+                                class="material-symbols-outlined">close</span></button>
+                    </div>
+
+                    <div class="p-8">
+                        <form id="create-form" class="space-y-6">
+                            <!-- Basic Info -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Tournament
+                                        Name</label>
+                                    <input type="text" required
+                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors"
+                                        placeholder="e.g. Summer Showdown 2026">
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Game
+                                        Selection</label>
+                                    <select required
+                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
+                                        <option value="VALORANT">VALORANT</option>
+                                        <option value="BGMI">BGMI</option>
+                                        <option value="Chess">Chess</option>
+                                        <option value="Fortnite">Fortnite</option>
+                                        <option value="Custom">Custom / Other</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Dates -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Start
+                                        Date & Time</label>
+                                    <input type="datetime-local" required
+                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface [color-scheme:dark]">
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">End
+                                        Date & Time</label>
+                                    <input type="datetime-local" required
+                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface [color-scheme:dark]">
+                                </div>
+                            </div>
+
+                            <!-- Capacity -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Min
+                                        Members</label>
+                                    <input type="number" min="2" value="2" required
+                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
+                                </div>
+                                <div>
+                                    <label
+                                        class="block text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-2">Max
+                                        Members</label>
+                                    <input type="number" min="2" value="32" required
+                                        class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
+                                </div>
+                            </div>
+
+                            <!-- Prize Flow & Economics -->
+                            <div class="p-5 rounded-xl border border-primary/30 bg-primary/5 space-y-5">
+                                <h3 class="font-bold text-primary flex items-center gap-2"><span
+                                        class="material-symbols-outlined">diamond</span> Tournament Economics</h3>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-on-surface uppercase tracking-wider mb-2 text-primary-dim">Prize
+                                            Allocation (Individual/Team)</label>
+                                        <select
+                                            class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary text-on-surface transition-colors">
+                                            <option>Individual Pool (Winner Takes All)</option>
+                                            <option>Individual Pool (Top 3 Split)</option>
+                                            <option>Team Based Allocation</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block text-xs font-bold text-error uppercase tracking-wider mb-2">Host
+                                            Investment Setup (Coins)</label>
+                                        <input type="number" id="host-investment" min="100" value="500" required
+                                            class="w-full bg-surface-container-highest border border-error/50 rounded-lg px-4 py-3 text-sm focus:border-error focus:ring-1 focus:ring-error text-on-surface transition-colors">
+                                        <p
+                                            class="text-[10px] text-on-surface-variant mt-2 leading-relaxed italic border-l-2 border-error pl-2">
+                                            <strong class="text-error">Rule:</strong> The host pays <span
+                                                id="display-inv">500</span> coins. If only 1 user registers, <span
+                                                id="display-half">250</span> coins (half) are automatically won by that
+                                            user
+                                            format.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-6 border-t border-outline-variant/10 flex justify-end gap-4">
+                                <button type="button" id="cancel-modal"
+                                    class="px-6 py-3 rounded-lg text-sm font-bold text-on-surface-variant hover:text-white transition-colors">Cancel</button>
+                                <button type="submit"
+                                    class="px-8 py-3 rounded-lg font-bold text-[#000] bg-primary hover:bg-primary-dim transition-colors shadow-[0_0_15px_rgba(207,150,255,0.3)]">Publish
+                                    Tournament</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leaderboard Modal (Mock View for post-creation) -->
+            <div id="leaderboard-modal"
+                class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden items-center justify-center p-4 lg:p-8">
+                <div
+                    class="bg-surface-container w-full max-w-2xl max-h-full overflow-y-auto rounded-2xl border border-outline-variant/20 shadow-2xl">
+                    <div
+                        class="sticky top-0 bg-surface-container border-b border-outline-variant/10 px-8 py-5 flex justify-between items-center z-10">
+                        <h2 class="text-xl font-headline font-bold text-on-surface" id="lb-title">Tournament Leaderboard
+                        </h2>
+                        <button id="close-leaderboard"
+                            class="text-on-surface-variant hover:text-white transition-colors"><span
+                                class="material-symbols-outlined">close</span></button>
+                    </div>
+                    <div class="p-8 space-y-3">
+                        <!-- Rank 1 -->
+                        <div
+                            class="flex items-center gap-4 bg-surface-container-highest p-4 rounded-xl border border-secondary/20">
+                            <div class="w-8 flex-shrink-0 text-center"><span
+                                    class="font-headline font-bold text-2xl text-secondary">#1</span></div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-primary/20 flex flex-shrink-0 items-center justify-center text-primary font-bold">
+                                VS</div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-on-surface">ViperScope</p>
+                                <p class="text-xs text-on-surface-variant">Wins: 5 | K/D: 2.4</p>
+                            </div>
+                            <div class="font-bold text-xl text-primary font-headline">1,500 <span
+                                    class="text-xs font-body text-on-surface-variant">pts</span></div>
+                        </div>
+                        <!-- Rank 2 -->
+                        <div class="flex items-center gap-4 bg-surface rounded-xl p-4">
+                            <div class="w-8 flex-shrink-0 text-center"><span
+                                    class="font-headline font-bold pl-1 text-lg text-on-surface-variant">#2</span></div>
+                            <div
+                                class="w-10 h-10 rounded-full bg-secondary/20 flex flex-shrink-0 items-center justify-center text-secondary font-bold">
+                                LD</div>
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-on-surface">Lumina_Dev</p>
+                            </div>
+                            <div class="font-bold text-xl text-on-surface font-headline">1,250 <span
+                                    class="text-xs font-body text-on-surface-variant">pts</span></div>
+                        </div>
+                        <!-- Rank 3 -->
+                        <div class="flex items-center gap-4 bg-surface rounded-xl p-4">
+                            <div class="w-8 flex-shrink-0 text-center"><span
+                                    class="font-headline font-bold pl-1 text-lg text-on-surface-variant">#3</span></div>
+                            <img class="w-10 h-10 rounded-full object-cover flex-shrink-0"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuANOKMIQ0ezd4yMmcN8c1253CdjbU46dwJdxb6gtAZlaohmKJzz5arK9Opgbuxx_io7iUTpxMGGXxp73GcCTYSmZRMLCKAhpU-B6X9RoU_5gxg0IC1JuKiXLr_x2d7goJwzwY9VC0M_Edb68nbnRsGAxbQk19Oe4e7wRbvuErsAIFsbQcSsRWCbJ_tSqTOZaUh9nnqu2lPKtZi5jnBwwxUTsXmPkb66Yawt13E1-L8K_pIlK7giyOCg5vroUzH4-YvmveKVjEtk_1E" />
+                            <div class="flex-1 min-w-0">
+                                <p class="font-bold text-on-surface">Krona_Gaming</p>
+                            </div>
+                            <div class="font-bold text-xl text-on-surface font-headline">980 <span
+                                    class="text-xs font-body text-on-surface-variant">pts</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="nav_components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const createModal = document.getElementById('create-modal');
+            const openModalBtn = document.getElementById('open-create-modal');
+            const closeBtn = document.getElementById('close-modal');
+            const cancelBtn = document.getElementById('cancel-modal');
+            const createForm = document.getElementById('create-form');
+            const hostInvestment = document.getElementById('host-investment');
+            const displayInv = document.getElementById('display-inv');
+            const displayHalf = document.getElementById('display-half');
+            const hostedList = document.getElementById('hosted-list');
+
+            const lbModal = document.getElementById('leaderboard-modal');
+            const closeLbBtn = document.getElementById('close-leaderboard');
+
+            // Interactive UI for Investment Rule
+            hostInvestment.addEventListener('input', () => {
+                const val = parseInt(hostInvestment.value) || 0;
+                displayInv.textContent = val;
+                displayHalf.textContent = Math.floor(val / 2);
+            });
+
+            // Modal Toggles
+            openModalBtn.addEventListener('click', () => {
+                createModal.classList.remove('hidden');
+                createModal.classList.add('flex');
+            });
+
+            const hideModal = () => {
+                createModal.classList.add('hidden');
+                createModal.classList.remove('flex');
+            };
+            closeBtn.addEventListener('click', hideModal);
+            cancelBtn.addEventListener('click', hideModal);
+
+            closeLbBtn.addEventListener('click', () => {
+                lbModal.classList.add('hidden');
+                lbModal.classList.remove('flex');
+            });
+
+            // Event binding for initial Leaderboard button
+            const attachLeaderboardEvent = () => {
+                document.querySelectorAll('#hosted-list button').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        lbModal.classList.remove('hidden');
+                        lbModal.classList.add('flex');
+                    });
+                });
+            }
+            attachLeaderboardEvent();
+
+            createForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const inputs = createForm.querySelectorAll('input, select');
+                const name = inputs[0].value;
+                const game = inputs[1].value;
+                const inv = document.getElementById('host-investment').value;
+
+                // Add to list visually
+                const newCard = document.createElement('div');
+                newCard.className = 'bg-surface-container-high rounded-xl p-5 border border-primary/30 shadow-[0_0_15px_rgba(207,150,255,0.1)] fade-in';
+                newCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-3">
+                        <div>
+                            <h3 class="font-bold text-lg text-on-surface">${name}</h3>
+                            <p class="text-xs text-on-surface-variant">Game: ${game}</p>
+                        </div>
+                        <span class="bg-primary/20 text-primary text-[10px] font-bold px-2 py-1 rounded shadow-sm">NEW / OPEN</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Host Escrow</p>
+                            <p class="font-bold text-secondary">${inv} Coins</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Members</p>
+                            <p class="font-bold text-on-surface">0 Registered</p>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-on-surface-variant uppercase tracking-wider">Leaderboard</p>
+                            <p class="font-bold text-emerald-400 text-sm">Active</p>
+                        </div>
+                    </div>
+                    <button class="w-full py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors text-sm font-bold border border-primary/30">Manage & View Leaderboard</button>
+                `;
+
+                hostedList.insertBefore(newCard, hostedList.firstChild);
+                attachLeaderboardEvent();
+
+                // Alert the specific rule success
+                alert(`Tournament "${name}" created!\n\n${inv} Coins have been deducted from your wallet to host this event.\nAs per rules: If only 1 user registers, they will automatically receive ${Math.floor(inv / 2)} coins.`);
+
+                hideModal();
+                createForm.reset();
+                displayInv.textContent = '500';
+                displayHalf.textContent = '250';
+            });
+        });
+    </script>
+</body>
+
+</html>

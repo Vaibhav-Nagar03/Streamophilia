@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <!-- === AUTH GUARD === -->
+    <script>
+        if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Friends & Messages | NEON NOCTURNE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "#0e0e11",
+                        "surface-container": "#19191d",
+                        "surface-container-high": "#1f1f23",
+                        "surface-container-highest": "#25252a",
+                        "on-surface": "#fbf8fc",
+                        "on-surface-variant": "#acaaae",
+                        "primary": "#cf96ff",
+                        "primary-dim": "#a533ff",
+                        "secondary": "#00d9ff",
+                        "error": "#ff6e84",
+                        "outline-variant": "#48474b"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0e0e11;
+            color: #fbf8fc;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #25252a;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #48474b;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface">
+    <!-- TopAppBar -->
+    <header
+        class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <a href="index.html"
+                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-['Space_Grotesk'] tracking-tight whitespace-nowrap">NEON
+                NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
+        </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
+
+    <div class="flex pt-16">
+        <!-- Mobile Sidebar Overlay -->
+        <div id="mobile-sidebar-overlay"
+            class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] hidden transition-opacity opacity-0 lg:hidden">
+        </div>
+
+        <!-- SideNavBar -->
+        <aside id="main-sidebar"
+            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-['Manrope'] text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10">
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 lg:ml-64 h-[calc(100vh-4rem)] overflow-hidden flex flex-col">
+            <div class="flex-1 flex overflow-hidden">
+
+                <!-- Left Sidebar (Friends & Contacts) -->
+                <div
+                    class="w-80 bg-surface-container border-r border-outline-variant/10 flex flex-col h-full z-10 flex-shrink-0 hidden md:flex">
+                    <div class="p-6 pb-4">
+                        <h1 class="text-2xl font-headline font-bold text-on-surface mb-4">Friends</h1>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
+                            <input
+                                class="w-full bg-surface-container-highest border-none rounded-lg pl-9 pr-4 py-2 text-sm focus:ring-1 focus:ring-secondary/50 text-on-surface transition-all placeholder:text-on-surface-variant/70"
+                                placeholder="Search friends..." type="text" />
+                        </div>
+                    </div>
+
+                    <div class="flex px-6 mb-2 border-b border-outline-variant/10">
+                        <button
+                            class="pb-2 border-b-2 border-primary text-primary font-bold text-sm tracking-wide mr-6">Direct
+                            Messages</button>
+                        <button
+                            class="pb-2 border-b-2 border-transparent text-on-surface-variant hover:text-on-surface font-bold text-sm tracking-wide transition-colors">Group
+                            Chats</button>
+                    </div>
+
+                    <div class="flex-1 overflow-y-auto custom-scrollbar">
+                        <!-- Contact 1 (Active) -->
+                        <div class="px-3 py-1">
+                            <div
+                                class="flex items-center gap-3 p-3 rounded-xl bg-primary/10 cursor-pointer active:scale-[0.98] transition-transform">
+                                <div class="relative flex-shrink-0">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary ring-2 ring-primary">
+                                        LD</div>
+                                    <span
+                                        class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-surface-container rounded-full"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-baseline mb-0.5">
+                                        <p class="text-sm font-bold text-on-surface truncate">Lumina_Dev</p>
+                                        <p class="text-[10px] text-on-surface-variant whitespace-nowrap ml-2">Now</p>
+                                    </div>
+                                    <p class="text-xs text-primary font-medium truncate">Hey, are we still queuing up
+                                        later?</p>
+                                </div>
+                                <div class="w-2 h-2 bg-primary rounded-full flex-shrink-0"></div>
+                            </div>
+                        </div>
+
+                        <!-- Contact 2 -->
+                        <div class="px-3 py-1">
+                            <div
+                                class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high cursor-pointer active:scale-[0.98] transition-all">
+                                <div class="relative flex-shrink-0">
+                                    <div
+                                        class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-secondary">
+                                        VS</div>
+                                    <span
+                                        class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-400 border-2 border-surface-container rounded-full"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-baseline mb-0.5">
+                                        <p class="text-sm font-bold text-on-surface truncate">ViperScope</p>
+                                        <p class="text-[10px] text-on-surface-variant whitespace-nowrap ml-2">2h</p>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant truncate">GG's on that last match! 🔥</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact 3 -->
+                        <div class="px-3 py-1">
+                            <div
+                                class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-high cursor-pointer active:scale-[0.98] transition-all">
+                                <div class="relative flex-shrink-0">
+                                    <img class="w-10 h-10 rounded-full object-cover"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuANOKMIQ0ezd4yMmcN8c1253CdjbU46dwJdxb6gtAZlaohmKJzz5arK9Opgbuxx_io7iUTpxMGGXxp73GcCTYSmZRMLCKAhpU-B6X9RoU_5gxg0IC1JuKiXLr_x2d7goJwzwY9VC0M_Edb68nbnRsGAxbQk19Oe4e7wRbvuErsAIFsbQcSsRWCbJ_tSqTOZaUh9nnqu2lPKtZi5jnBwwxUTsXmPkb66Yawt13E1-L8K_pIlK7giyOCg5vroUzH4-YvmveKVjEtk_1E" />
+                                    <span
+                                        class="absolute bottom-0 right-0 w-3 h-3 bg-surface border-2 border-surface-container rounded-full"></span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <div class="flex justify-between items-baseline mb-0.5">
+                                        <p class="text-sm font-bold text-on-surface truncate">Krona_Gaming</p>
+                                        <p class="text-[10px] text-on-surface-variant whitespace-nowrap ml-2">Yesterday
+                                        </p>
+                                    </div>
+                                    <p class="text-xs text-on-surface-variant truncate">Sent an attachment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Area -->
+                <div class="flex-1 flex flex-col bg-surface relative">
+                    <!-- Chat Header -->
+                    <div
+                        class="h-20 bg-surface/50 backdrop-blur-md border-b border-outline-variant/10 flex justify-between items-center px-8 flex-shrink-0 z-10 w-full">
+                        <div class="flex items-center gap-4">
+                            <button class="md:hidden text-on-surface-variant hover:text-on-surface"><span
+                                    class="material-symbols-outlined">arrow_back</span></button>
+                            <div
+                                class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-primary ring-2 ring-primary ring-offset-2 ring-offset-surface">
+                                LD</div>
+                            <div>
+                                <h2 class="text-xl font-headline font-bold text-on-surface leading-none mb-1 shadow-sm">
+                                    Lumina_Dev</h2>
+                                <p class="text-xs text-emerald-400 font-medium tracking-wide">Online</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <button
+                                class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span
+                                    class="material-symbols-outlined">call</span></button>
+                            <button
+                                class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span
+                                    class="material-symbols-outlined">videocam</span></button>
+                            <button
+                                class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors"><span
+                                    class="material-symbols-outlined">more_vert</span></button>
+                        </div>
+                    </div>
+
+                    <!-- Messages Container -->
+                    <div
+                        class="flex-1 overflow-y-auto p-8 custom-scrollbar space-y-6 bg-gradient-to-b from-surface to-surface-container/30">
+                        <div class="text-center my-6">
+                            <span
+                                class="bg-surface-container-high text-on-surface-variant text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full border border-outline-variant/10 shadow-sm">Today</span>
+                        </div>
+
+                        <!-- Received Message -->
+                        <div class="flex items-end gap-3 justify-start group">
+                            <div
+                                class="w-8 h-8 rounded-full bg-surface-container-highest flex leading-none items-center justify-center font-bold text-xs text-primary flex-shrink-0 pb-0 shadow-sm">
+                                LD</div>
+                            <div class="max-w-[70%]">
+                                <div
+                                    class="bg-surface-container-high text-on-surface px-5 py-3.5 rounded-2xl rounded-bl-sm border border-outline-variant/10 shadow-md">
+                                    <p class="text-[15px] leading-relaxed">Check out my new overlay setup for the
+                                        charity stream! Really proud of the starlight animations. ✨</p>
+                                </div>
+                                <p
+                                    class="text-[10px] text-on-surface-variant font-medium mt-1.5 ml-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    9:15 AM</p>
+                            </div>
+                        </div>
+
+                        <!-- Sent Message -->
+                        <div class="flex items-end gap-3 justify-end group">
+                            <div class="max-w-[70%] text-right">
+                                <div
+                                    class="bg-gradient-to-br from-primary to-primary-dim text-[#000] px-5 py-3.5 rounded-2xl rounded-br-sm shadow-lg shadow-primary/20 inline-block text-left">
+                                    <p class="text-[15px] font-medium leading-relaxed">That looks absolutely gorgeous!
+                                        Did you build that completely from scratch using canvas or CSS?</p>
+                                </div>
+                                <p
+                                    class="text-[10px] text-on-surface-variant font-medium mt-1.5 mr-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    9:20 AM</p>
+                            </div>
+                        </div>
+
+                        <!-- Received Message -->
+                        <div class="flex items-end gap-3 justify-start group">
+                            <div
+                                class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs text-primary flex-shrink-0 shadow-sm pb-0">
+                                LD</div>
+                            <div class="max-w-[70%]">
+                                <div
+                                    class="bg-surface-container-high text-on-surface px-5 py-3.5 rounded-2xl rounded-bl-sm border border-outline-variant/10 shadow-md">
+                                    <p class="text-[15px] leading-relaxed">Built it totally from scratch with CSS! 💻
+                                        CSS animations make everything better.</p>
+                                </div>
+                                <p
+                                    class="text-[10px] text-on-surface-variant font-medium mt-1.5 ml-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    9:22 AM</p>
+                            </div>
+                        </div>
+
+                        <!-- Received Message (Typing...) -->
+                        <div class="flex items-end gap-3 justify-start">
+                            <div
+                                class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center font-bold text-xs text-primary flex-shrink-0 shadow-sm pb-0">
+                                LD</div>
+                            <div
+                                class="bg-surface-container-high px-4 py-3 rounded-2xl rounded-bl-sm border border-outline-variant/10 shadow-md flex items-center gap-1.5">
+                                <span
+                                    class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce [animation-delay:-0.3s]"></span>
+                                <span
+                                    class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce [animation-delay:-0.15s]"></span>
+                                <span class="w-1.5 h-1.5 bg-on-surface-variant rounded-full animate-bounce"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div
+                        class="h-24 bg-surface/80 backdrop-blur-xl border-t border-outline-variant/10 px-8 flex items-center gap-4 flex-shrink-0 w-full z-10 bottom-0">
+                        <button
+                            class="w-10 h-10 rounded-full hover:bg-surface-container-high flex items-center justify-center text-primary-dim transition-colors flex-shrink-0"><span
+                                class="material-symbols-outlined text-2xl">add_circle</span></button>
+                        <div
+                            class="flex-1 relative bg-surface-container rounded-xl border border-outline-variant/20 focus-within:border-primary/50 focus-within:ring-1 focus-within:ring-primary/50 transition-all shadow-inner">
+                            <input type="text" placeholder="Send a message to Lumina_Dev..."
+                                class="w-full bg-transparent border-none text-[15px] text-on-surface px-5 py-4 focus:ring-0 placeholder:text-on-surface-variant/60">
+                            <div class="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1">
+                                <button
+                                    class="w-8 h-8 rounded-md hover:bg-surface-container-highest flex items-center justify-center text-on-surface-variant transition-colors"><span
+                                        class="material-symbols-outlined text-lg">mood</span></button>
+                                <button
+                                    class="w-8 h-8 rounded-md hover:bg-surface-container-highest flex items-center justify-center text-on-surface-variant transition-colors"><span
+                                        class="material-symbols-outlined text-lg">gif_box</span></button>
+                            </div>
+                        </div>
+                        <button
+                            class="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-dim hover:from-primary-dim hover:to-primary text-[#000] flex items-center justify-center font-bold shadow-lg shadow-primary/20 active:scale-95 transition-all flex-shrink-0"><span
+                                class="material-symbols-outlined">send</span></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="nav_components.js"></script>
+    <script>
+        // Simple script to let user hit enter to send a fake message in the UI
+        document.addEventListener('DOMContentLoaded', () => {
+            const sendBtn = document.querySelector('.bg-gradient-to-br.from-primary');
+            const input = document.querySelector('input[placeholder^="Send"]');
+            const msgContainer = document.querySelector('.space-y-6');
+
+            function addMessage() {
+                if (!input.value.trim()) return;
+
+                // Remove typing indicator if present
+                const lastMsg = msgContainer.lastElementChild;
+                if (lastMsg.innerHTML.includes('animate-bounce')) {
+                    lastMsg.remove();
+                }
+
+                const newMsg = document.createElement('div');
+                newMsg.className = "flex items-end gap-3 justify-end group fade-in";
+                const timeStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                newMsg.innerHTML = `
+                    <div class="max-w-[70%] text-right">
+                        <div class="bg-gradient-to-br from-primary to-primary-dim text-[#000] px-5 py-3.5 rounded-2xl rounded-br-sm shadow-lg shadow-primary/20 inline-block text-left">
+                            <p class="text-[15px] font-medium leading-relaxed">${input.value.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</p>
+                        </div>
+                        <p class="text-[10px] text-on-surface-variant font-medium mt-1.5 mr-1 opacity-0 group-hover:opacity-100 transition-opacity">${timeStr}</p>
+                    </div>
+                `;
+                msgContainer.appendChild(newMsg);
+                input.value = '';
+                msgContainer.scrollTop = msgContainer.scrollHeight;
+            }
+
+            if (sendBtn && input) {
+                sendBtn.addEventListener('click', addMessage);
+                input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') addMessage();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

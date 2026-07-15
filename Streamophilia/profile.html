@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem('neonNocturneLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Profile | NEON NOCTURNE</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-high": "#1f1f23", "on-primary": "#480079", "inverse-primary": "#8d00e6", "error": "#ff6e84", "surface": "#0e0e11", "secondary-fixed": "#6ce1ff", "secondary": "#00d9ff", "on-primary-container": "#37005f", "surface-dim": "#0e0e11", "on-error": "#490013", "primary-fixed-dim": "#bc6fff", "surface-variant": "#25252a", "on-secondary": "#004755", "background": "#0e0e11", "secondary-container": "#00687b", "secondary-fixed-dim": "#00d6fb", "on-error-container": "#ffb2b9", "on-background": "#fbf8fc", "surface-container": "#19191d", "outline": "#767578", "error-container": "#a70138", "secondary-dim": "#00caed", "on-primary-fixed-variant": "#450074", "on-tertiary": "#680a1f", "on-secondary-container": "#ecfaff", "tertiary": "#ff959d", "on-secondary-fixed": "#003a46", "tertiary-container": "#fe7e8a", "surface-container-low": "#131316", "surface-tint": "#cf96ff", "outline-variant": "#48474b", "inverse-surface": "#fbf8fc", "primary-container": "#c683ff", "surface-bright": "#2c2c30", "primary-fixed": "#c683ff", "on-tertiary-container": "#570015", "primary-dim": "#a533ff", "error-dim": "#d73357", "tertiary-fixed": "#ff9099", "tertiary-dim": "#f47783", "on-secondary-fixed-variant": "#005969", "inverse-on-surface": "#555458", "primary": "#cf96ff", "surface-container-highest": "#25252a", "on-primary-fixed": "#000000", "tertiary-fixed-dim": "#fb7c88", "on-surface": "#fbf8fc", "on-surface-variant": "#acaaae", "surface-container-lowest": "#000000"
+                    },
+                    fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"], "label": ["Manrope"] },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        body {
+            background-color: #0e0e11;
+            color: #fbf8fc;
+            font-family: 'Manrope', sans-serif;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0e0e11;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #48474b;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #cf96ff;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface">
+    <!-- Header Content: Handled by nav_components.js -->
+    <header
+        class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <a href="index.html"
+                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-headline tracking-tight whitespace-nowrap">NEON
+                NOCTURNE</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
+        </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
+
+    <div class="flex pt-16">
+        <aside id="main-sidebar"
+            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-body text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out z-[70] border-r border-outline-variant/10">
+        </aside>
+
+        <main class="flex-1 lg:ml-64 p-8 min-h-screen">
+            <!-- Profile Banner & Stats -->
+            <div
+                class="relative bg-surface-container-high rounded-2xl overflow-hidden shadow-lg border border-outline-variant/10 mb-8 max-w-5xl mx-auto">
+                <!-- Banner Image -->
+                <div class="h-48 bg-gradient-to-r from-primary-dim to-secondary-dim w-full relative group">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200"
+                        class="w-full h-full object-cover opacity-60" />
+                </div>
+
+                <div class="px-8 pb-8">
+                    <!-- Profile Picture and Edit -->
+                    <div class="relative -mt-16 mb-4 flex justify-between items-end">
+                        <!-- Profile Pic -->
+                        <div class="relative group cursor-pointer inline-block">
+                            <img id="profile-pic-img"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6qyE2BV1dCnfusfPdmXhBtNGFRnaLpKcZUN4_PHt_DhRLFed7TPdq2SXjdVyYcMq7Jf1WU5J_AVHbr97V8q49PC4IGHZ9HZzC56cf8bT1hMvlcn1zM_-O8OrWdFcEt8dbRRLK7lpCLGYldrJ4rdmyXLxHNPWaYnGkOd-mvxAPBJ12nOvitgvIJcanK1KSxDM5zu68dHQoL47n_mitgKmk8GjlLvVb5rJg_UyJY55FP2AQOmmpbpvpa6BAInqnbDT8_REYcg4cTmQ"
+                                class="w-32 h-32 rounded-full object-cover ring-4 ring-surface bg-surface shadow-2xl transition-all" />
+
+                            <!-- Overlay -->
+                            <div
+                                class="absolute inset-0 bg-black/60 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                                <label for="profile-upload"
+                                    class="cursor-pointer text-white flex flex-col items-center w-full h-full justify-center">
+                                    <span class="material-symbols-outlined text-3xl">add_a_photo</span>
+                                    <span class="text-[10px] font-bold mt-1 uppercase">Upload Image</span>
+                                </label>
+                                <input id="profile-upload" type="file" accept="image/*" class="hidden" />
+                            </div>
+                        </div>
+
+                        <!-- Actions / Edit Profile -->
+                        <div class="flex items-center gap-3 mb-2">
+                            <button
+                                class="bg-surface-container text-on-surface hover:bg-surface-container-highest border border-outline-variant/20 px-4 py-2 rounded-lg font-bold text-xs transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">edit</span>
+                                Edit Profile
+                            </button>
+                            <button id="logout-btn"
+                                class="bg-error/10 text-error hover:bg-error hover:text-on-error border border-error/20 px-4 py-2 rounded-lg font-bold text-xs transition-colors flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">logout</span>
+                                Sign Out
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Details -->
+                    <div class="flex flex-col xl:flex-row xl:items-center justify-between gap-6">
+                        <div>
+                            <h1 id="profile-username"
+                                class="text-3xl font-headline font-bold text-on-surface flex items-center gap-2">
+                                User
+                                <span class="material-symbols-outlined text-secondary text-[24px]"
+                                    style="font-variation-settings: 'FILL' 1;">verified</span>
+                            </h1>
+                            <p class="text-on-surface-variant text-sm mt-1">Avid gamer, stream enthusiast, and
+                                tournament organizer.</p>
+                        </div>
+
+                        <!-- Stats Grid -->
+                        <div
+                            class="flex items-center gap-6 bg-surface-container-low px-6 py-4 rounded-xl border border-outline-variant/10 flex-wrap">
+                            <div class="text-center">
+                                <p class="text-xl font-headline font-bold text-primary">12.4k</p>
+                                <p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">
+                                    Followers</p>
+                            </div>
+                            <div class="w-px h-8 bg-outline-variant/20"></div>
+                            <div class="text-center">
+                                <p class="text-xl font-headline font-bold text-secondary">342</p>
+                                <p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">
+                                    Following</p>
+                            </div>
+                            <div class="w-px h-8 bg-outline-variant/20"></div>
+                            <div class="text-center">
+                                <p class="text-xl font-headline font-bold text-on-surface" id="post-count">14</p>
+                                <p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">
+                                    Posters</p>
+                            </div>
+                            <div class="w-px h-8 bg-outline-variant/20"></div>
+                            <div class="text-center">
+                                <p class="text-xl font-headline font-bold text-error">5</p>
+                                <p class="text-[10px] uppercase font-bold text-on-surface-variant tracking-wider">
+                                    Tournaments Done</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Tabs -->
+            <div class="max-w-5xl mx-auto">
+                <div class="border-b border-outline-variant/20 mb-8 flex gap-8">
+                    <button class="pb-3 text-sm font-bold text-primary border-b-2 border-primary tracking-wide">My
+                        Posters</button>
+                    <button
+                        class="pb-3 text-sm font-bold text-on-surface-variant hover:text-on-surface transition-colors tracking-wide">Tournaments
+                        Done</button>
+                </div>
+
+                <!-- Post Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" id="posters-grid">
+                    <!-- Poster Item 1 -->
+                    <div
+                        class="group relative rounded-xl overflow-hidden bg-black aspect-[3/4] cursor-pointer shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <h3 class="font-bold text-white mb-2 leading-tight">Valorant Championship Regional</h3>
+                            <div class="flex items-center gap-4 text-xs font-bold text-white">
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-[16px] text-error"
+                                        style="font-variation-settings: 'FILL' 1;">favorite</span> 1.2k</div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-[16px]">chat_bubble</span> 84</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster Item 2 -->
+                    <div
+                        class="group relative rounded-xl overflow-hidden bg-black aspect-[3/4] cursor-pointer shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=600"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <h3 class="font-bold text-white mb-2 leading-tight">Clash Legends Week 4</h3>
+                            <div class="flex items-center gap-4 text-xs font-bold text-white">
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-[16px] text-error"
+                                        style="font-variation-settings: 'FILL' 1;">favorite</span> 840</div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-[16px]">chat_bubble</span> 22</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster Item 3 -->
+                    <div
+                        class="group relative rounded-xl overflow-hidden bg-black aspect-[3/4] cursor-pointer shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=600"
+                            class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-5 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <h3 class="font-bold text-white mb-2 leading-tight">PUBG Squads Survival</h3>
+                            <div class="flex items-center gap-4 text-xs font-bold text-white">
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-[16px] text-error"
+                                        style="font-variation-settings: 'FILL' 1;">favorite</span> 931</div>
+                                <div class="flex items-center gap-1"><span
+                                        class="material-symbols-outlined text-[16px]">chat_bubble</span> 15</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Add New Poster Card -->
+                    <a href="tournament_feed.html"
+                        class="group relative rounded-xl overflow-hidden bg-surface-container border-2 border-dashed border-outline-variant/30 aspect-[3/4] cursor-pointer hover:border-primary hover:bg-surface-container-high transition-all flex flex-col items-center justify-center">
+                        <div
+                            class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined text-primary text-2xl">add</span>
+                        </div>
+                        <p class="text-sm font-bold text-on-surface-variant group-hover:text-primary transition-colors">
+                            Post Tournament</p>
+                    </a>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="nav_components.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load user data
+            const usernameLabel = document.getElementById('profile-username');
+            const storedUser = localStorage.getItem('neonNocturneUsername');
+            if (storedUser) {
+                usernameLabel.innerHTML = `${storedUser} <span class="material-symbols-outlined text-secondary text-[24px]" style="font-variation-settings: 'FILL' 1;">verified</span>`;
+            }
+
+            // Handle Profile Image Upload (Preview functionality)
+            const profileUpload = document.getElementById('profile-upload');
+            const profilePicImg = document.getElementById('profile-pic-img');
+
+            profileUpload.addEventListener('change', function (e) {
+                const file = this.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (evt) {
+                        const newSrc = evt.target.result;
+                        profilePicImg.src = newSrc;
+
+                        // Also update the dropdown profile image in the top right to maintain consistency
+                        const dropdownProfile = document.getElementById('dropdown-profile-img');
+                        if (dropdownProfile) dropdownProfile.src = newSrc;
+
+                        // We could also save this to localStorage, but for now we'll just show the preview
+                    }
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Logout logic
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    localStorage.removeItem('neonNocturneLoggedIn');
+                    window.location.href = 'login.html';
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

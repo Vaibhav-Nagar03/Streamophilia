@@ -1,27 +1,27 @@
 // nav_components.js - Shared navbar & sidebar for all pages
-(function(){
-const page = location.pathname.split('/').pop() || 'index.html';
+(function () {
+  const page = location.pathname.split('/').pop() || 'index.html';
 
-// === TOP NAVBAR LINKS ===
-const navEl = document.getElementById('main-nav');
-if(navEl){
-  const links = [
-    {href:'index.html', label:'Home', icon:'home'},
-    {href:'streams.html', label:'Streams', icon:'live_tv'},
-    {href:'tournaments.html', label:'Tournaments', icon:'emoji_events'},
-    {href:'esports.html', label:'Esports', icon:'sports_esports'},
-    {href:'shop.html', label:'Shop', icon:'storefront'},
-  ];
-  navEl.innerHTML = links.map(l => {
-    const active = page === l.href;
-    return `<a class="${active ? 'text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1' : 'text-neutral-400 hover:text-purple-400'} font-['Space_Grotesk'] transition-colors duration-300 text-sm" href="${l.href}">${l.label}</a>`;
-  }).join('');
-}
+  // === TOP NAVBAR LINKS ===
+  const navEl = document.getElementById('main-nav');
+  if (navEl) {
+    const links = [
+      { href: 'index.html', label: 'Home', icon: 'home' },
+      { href: 'streams.html', label: 'Streams', icon: 'live_tv' },
+      { href: 'tournaments.html', label: 'Tournaments', icon: 'emoji_events' },
+      { href: 'esports.html', label: 'Esports', icon: 'sports_esports' },
+      { href: 'shop.html', label: 'Shop', icon: 'storefront' },
+    ];
+    navEl.innerHTML = links.map(l => {
+      const active = page === l.href;
+      return `<a class="${active ? 'text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1' : 'text-neutral-400 hover:text-purple-400'} font-['Space_Grotesk'] transition-colors duration-300 text-sm" href="${l.href}">${l.label}</a>`;
+    }).join('');
+  }
 
-// === SEARCH BAR WITH FILTERS ===
-const searchC = document.getElementById('search-container');
-if(searchC){
-  searchC.innerHTML = `
+  // === SEARCH BAR WITH FILTERS ===
+  const searchC = document.getElementById('search-container');
+  if (searchC) {
+    searchC.innerHTML = `
   <div class="relative group" id="search-wrapper">
     <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-secondary transition-colors">search</span>
     <input id="global-search" class="w-full bg-surface-container-lowest border-none py-2.5 pl-12 pr-4 rounded-lg focus:ring-1 focus:ring-secondary text-sm placeholder:text-on-surface-variant transition-all" placeholder="Search streamers, games, or tournaments" type="text" autocomplete="off"/>
@@ -35,23 +35,23 @@ if(searchC){
       </div>
     </div>
   </div>`;
-  const si = document.getElementById('global-search');
-  const sf = document.getElementById('search-filters');
-  si.addEventListener('focus', ()=> sf.classList.remove('hidden'));
-  document.addEventListener('click', e => { if(!document.getElementById('search-wrapper').contains(e.target)) sf.classList.add('hidden'); });
-  document.querySelectorAll('.search-filter-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.search-filter-btn').forEach(b => { b.classList.remove('bg-primary/20','text-primary','border-primary/30'); b.classList.add('bg-surface-container','text-on-surface-variant','border-outline-variant/20'); });
-      btn.classList.remove('bg-surface-container','text-on-surface-variant','border-outline-variant/20');
-      btn.classList.add('bg-primary/20','text-primary','border-primary/30');
+    const si = document.getElementById('global-search');
+    const sf = document.getElementById('search-filters');
+    si.addEventListener('focus', () => sf.classList.remove('hidden'));
+    document.addEventListener('click', e => { if (!document.getElementById('search-wrapper').contains(e.target)) sf.classList.add('hidden'); });
+    document.querySelectorAll('.search-filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.search-filter-btn').forEach(b => { b.classList.remove('bg-primary/20', 'text-primary', 'border-primary/30'); b.classList.add('bg-surface-container', 'text-on-surface-variant', 'border-outline-variant/20'); });
+        btn.classList.remove('bg-surface-container', 'text-on-surface-variant', 'border-outline-variant/20');
+        btn.classList.add('bg-primary/20', 'text-primary', 'border-primary/30');
+      });
     });
-  });
-}
+  }
 
-// === TOP RIGHT ACTIONS (Coins dropdown, Notifications w/ categories, Messages, Profile) ===
-const actions = document.getElementById('top-actions');
-if(actions){
-  actions.innerHTML = `
+  // === TOP RIGHT ACTIONS (Coins dropdown, Notifications w/ categories, Messages, Profile) ===
+  const actions = document.getElementById('top-actions');
+  if (actions) {
+    actions.innerHTML = `
   <!-- Coins Dropdown -->
   <div class="relative" id="coins-wrapper">
     <button id="coins-btn" class="top-dashboard-btn flex items-center gap-2 bg-surface-container-high px-3 py-1.5 rounded-lg border border-primary/20 hover:border-primary/50 text-primary transition-colors active:scale-95" title="Your Wallet">
@@ -65,8 +65,7 @@ if(actions){
         <p class="text-lg font-headline font-bold text-primary">500 COINS</p>
       </div>
       <div class="py-1">
-        <a href="shop.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">redeem</span>Redeem Rewards</a>
-        <a href="shop.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">receipt_long</span>Transaction History</a>
+        <a href="shop.html" class="flex items-center gap-3 px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">redeem</span>Redeem Rewards / History</a>
       </div>
     </div>
   </div>
@@ -134,82 +133,61 @@ if(actions){
 
   <!-- Profile -->
   <div class="relative" id="profile-wrapper">
-    <div id="profile-btn" class="w-9 h-9 rounded-full ring-2 ring-purple-500 ring-offset-2 ring-offset-surface overflow-hidden cursor-pointer active:scale-95 transition-transform">
-      <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6qyE2BV1dCnfusfPdmXhBtNGFRnaLpKcZUN4_PHt_DhRLFed7TPdq2SXjdVyYcMq7Jf1WU5J_AVHbr97V8q49PC4IGHZ9HZzC56cf8bT1hMvlcn1zM_-O8OrWdFcEt8dbRRLK7lpCLGYldrJ4rdmyXLxHNPWaYnGkOd-mvxAPBJ12nOvitgvIJcanK1KSxDM5zu68dHQoL47n_mitgKmk8GjlLvVb5rJg_UyJY55FP2AQOmmpbpvpa6BAInqnbDT8_REYcg4cTmQ"/>
-    </div>
-    <div id="profile-panel" class="hidden absolute right-0 top-12 w-64 bg-[#131316] border border-outline-variant/20 rounded-xl shadow-[0_20px_60px_rgba(0,0,0,0.7)] overflow-hidden z-[100]">
-      <div class="px-5 py-4 border-b border-outline-variant/10 flex items-center gap-3">
-        <img class="w-10 h-10 rounded-full ring-2 ring-primary/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6qyE2BV1dCnfusfPdmXhBtNGFRnaLpKcZUN4_PHt_DhRLFed7TPdq2SXjdVyYcMq7Jf1WU5J_AVHbr97V8q49PC4IGHZ9HZzC56cf8bT1hMvlcn1zM_-O8OrWdFcEt8dbRRLK7lpCLGYldrJ4rdmyXLxHNPWaYnGkOd-mvxAPBJ12nOvitgvIJcanK1KSxDM5zu68dHQoL47n_mitgKmk8GjlLvVb5rJg_UyJY55FP2AQOmmpbpvpa6BAInqnbDT8_REYcg4cTmQ"/>
-        <div><p class="text-sm font-bold text-on-surface font-headline">User</p><p class="text-[10px] text-secondary font-bold uppercase tracking-wider">Online</p></div>
-      </div>
-      <div class="py-1">
-        <a href="setting.html" class="flex items-center gap-3 px-5 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">settings</span>Settings</a>
-        <a href="streams.html" class="flex items-center gap-3 px-5 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors"><span class="material-symbols-outlined text-lg">person</span>My Channel</a>
-      </div>
-      <div class="border-t border-outline-variant/10 py-1">
-        <button id="logout-btn" class="flex items-center gap-3 px-5 py-2.5 text-sm text-error hover:bg-error/10 transition-colors w-full text-left"><span class="material-symbols-outlined text-lg">logout</span>Sign Out</button>
-      </div>
-    </div>
+    <a href="profile.html" id="profile-btn" class="block w-9 h-9 rounded-full ring-2 ring-purple-500 ring-offset-2 ring-offset-surface overflow-hidden cursor-pointer active:scale-95 transition-transform">
+      <img id="dropdown-profile-img" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6qyE2BV1dCnfusfPdmXhBtNGFRnaLpKcZUN4_PHt_DhRLFed7TPdq2SXjdVyYcMq7Jf1WU5J_AVHbr97V8q49PC4IGHZ9HZzC56cf8bT1hMvlcn1zM_-O8OrWdFcEt8dbRRLK7lpCLGYldrJ4rdmyXLxHNPWaYnGkOd-mvxAPBJ12nOvitgvIJcanK1KSxDM5zu68dHQoL47n_mitgKmk8GjlLvVb5rJg_UyJY55FP2AQOmmpbpvpa6BAInqnbDT8_REYcg4cTmQ"/>
+    </a>
   </div>`;
 
-  // Toggle logic for all dropdowns
-  function setupToggle(btnId, panelId, wrapperId){
-    const btn = document.getElementById(btnId);
-    const panel = document.getElementById(panelId);
-    if(!btn||!panel) return;
-    btn.addEventListener('click', e => { e.stopPropagation(); document.querySelectorAll('#coins-panel,#notif-panel,#msg-panel,#profile-panel').forEach(p=>{if(p!==panel)p.classList.add('hidden')}); panel.classList.toggle('hidden'); });
-  }
-  setupToggle('coins-btn','coins-panel','coins-wrapper');
-  setupToggle('notif-btn','notif-panel','notif-wrapper');
-  setupToggle('msg-btn','msg-panel','msg-wrapper');
-  setupToggle('profile-btn','profile-panel','profile-wrapper');
+    // Toggle logic for all dropdowns
+    function setupToggle(btnId, panelId, wrapperId) {
+      const btn = document.getElementById(btnId);
+      const panel = document.getElementById(panelId);
+      if (!btn || !panel) return;
+      btn.addEventListener('click', e => { e.stopPropagation(); document.querySelectorAll('#coins-panel,#notif-panel,#msg-panel,#profile-panel').forEach(p => { if (p !== panel) p.classList.add('hidden') }); panel.classList.toggle('hidden'); });
+    }
+    setupToggle('coins-btn', 'coins-panel', 'coins-wrapper');
+    setupToggle('notif-btn', 'notif-panel', 'notif-wrapper');
+    setupToggle('msg-btn', 'msg-panel', 'msg-wrapper');
 
-  document.addEventListener('click', e => {
-    ['coins','notif','msg','profile'].forEach(id => {
-      const w = document.getElementById(id+'-wrapper');
-      const p = document.getElementById(id+'-panel');
-      if(w && p && !w.contains(e.target)) p.classList.add('hidden');
-    });
-  });
-
-  // Notif category filter
-  document.querySelectorAll('.notif-cat-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.notif-cat-btn').forEach(b => { b.classList.remove('text-secondary','border-secondary'); b.classList.add('text-on-surface-variant','border-transparent'); });
-      btn.classList.remove('text-on-surface-variant','border-transparent');
-      btn.classList.add('text-secondary','border-secondary');
-      const cat = btn.dataset.cat;
-      document.querySelectorAll('.notif-item').forEach(item => {
-        item.style.display = (cat === 'all' || item.dataset.type === cat) ? '' : 'none';
+    document.addEventListener('click', e => {
+      ['coins', 'notif', 'msg', 'profile'].forEach(id => {
+        const w = document.getElementById(id + '-wrapper');
+        const p = document.getElementById(id + '-panel');
+        if (w && p && !w.contains(e.target)) p.classList.add('hidden');
       });
     });
-  });
 
-  // Notif clear
-  const nc = document.getElementById('notif-clear');
-  if(nc) nc.addEventListener('click', () => { const b = document.getElementById('notif-badge'); if(b) b.classList.add('hidden'); });
+    // Notif category filter
+    document.querySelectorAll('.notif-cat-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.notif-cat-btn').forEach(b => { b.classList.remove('text-secondary', 'border-secondary'); b.classList.add('text-on-surface-variant', 'border-transparent'); });
+        btn.classList.remove('text-on-surface-variant', 'border-transparent');
+        btn.classList.add('text-secondary', 'border-secondary');
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('.notif-item').forEach(item => {
+          item.style.display = (cat === 'all' || item.dataset.type === cat) ? '' : 'none';
+        });
+      });
+    });
 
-  // Logout
-  const lo = document.getElementById('logout-btn');
-  if(lo) lo.addEventListener('click', () => { localStorage.removeItem('neonNocturneLoggedIn'); location.href = 'login.html'; });
-}
+    // Notif clear
+    const nc = document.getElementById('notif-clear');
+    if (nc) nc.addEventListener('click', () => { const b = document.getElementById('notif-badge'); if (b) b.classList.add('hidden'); });
 
-// === SIDEBAR ===
-const sidebar = document.getElementById('main-sidebar');
-if(sidebar){
-  sidebar.innerHTML = `
+    // Logout component moved to profile.html
+  }
+
+  // === SIDEBAR ===
+  const sidebar = document.getElementById('main-sidebar');
+  if (sidebar) {
+    sidebar.innerHTML = `
   <!-- Profile Quick Access -->
   <div class="mb-6">
     <div class="px-2 mb-4"><h3 class="font-bold text-on-surface-variant uppercase tracking-widest text-[0.65rem]">Quick Access</h3></div>
     <nav class="space-y-1">
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="setting.html">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="profile-dash.html">
         <span class="material-symbols-outlined text-xl">dashboard</span><span>Profile / Dashboard</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="streams.html">
-        <span class="material-symbols-outlined text-xl">favorite</span><span>Following</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="streams.html">
-        <span class="material-symbols-outlined text-xl">sensors</span><span>Live Now</span>
-        <span class="ml-auto text-[10px] font-bold text-error bg-error/10 px-1.5 py-0.5 rounded border border-error/20">6</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="tournaments.html">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="my_tournaments.html">
         <span class="material-symbols-outlined text-xl">emoji_events</span><span>My Tournaments</span></a>
       <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="leaderboards.html">
         <span class="material-symbols-outlined text-xl">leaderboard</span><span>Leaderboards</span></a>
@@ -220,21 +198,23 @@ if(sidebar){
     <div class="px-2 mb-4"><h3 class="font-bold text-on-surface-variant uppercase tracking-widest text-[0.65rem]">Game Filters</h3></div>
     <nav class="space-y-1">
       <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
-        <span class="material-symbols-outlined text-xl">sports_esports</span><span>All Games</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
-        <span class="material-symbols-outlined text-xl">target</span><span>FPS / Shooter</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
-        <span class="material-symbols-outlined text-xl">strategy</span><span>Strategy / MOBA</span></a>
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="categories.html">
-        <span class="material-symbols-outlined text-xl">landscape</span><span>Battle Royale</span></a>
+        <span class="material-symbols-outlined text-xl">sports_esports</span><span>All Games & Categories</span></a>
     </nav>
   </div>
   <!-- Social -->
   <div class="mb-6">
     <div class="px-2 mb-4"><h3 class="font-bold text-on-surface-variant uppercase tracking-widest text-[0.65rem]">Social</h3></div>
     <nav class="space-y-1">
-      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="leaderboards.html">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="social.html">
         <span class="material-symbols-outlined text-xl">group</span><span>Friends / Messages</span></a>
+    </nav>
+  </div>
+  <!-- Community Hub -->
+  <div class="mb-6">
+    <div class="px-2 mb-4"><h3 class="font-bold text-on-surface-variant uppercase tracking-widest text-[0.65rem]">Community Hub</h3></div>
+    <nav class="space-y-1">
+      <a class="flex items-center gap-3 p-2 text-neutral-500 hover:bg-neutral-800/50 hover:text-neutral-200 rounded-md transition-all hover:translate-x-1" href="tournament_feed.html">
+        <span class="material-symbols-outlined text-xl">dynamic_feed</span><span>Tournament Feed</span></a>
     </nav>
   </div>
   <!-- Bottom -->
@@ -246,5 +226,68 @@ if(sidebar){
         <span class="material-symbols-outlined text-xl">help_outline</span><span>Help</span></a>
     </nav>
   </div>`;
-}
+  }
+
+  function attachSPA() {
+    document.querySelectorAll('a[href="setting.html"], a[href="profile-dash.html"], a[href="esports.html"], a[href="tournaments.html"], a[href="categories.html"], a[href="social.html"], a[href="my_tournaments.html"], a[href="tournament_feed.html"], a[href="profile.html"]').forEach(a => {
+      a.addEventListener('click', async (e) => {
+        e.preventDefault();
+        const targetPage = a.getAttribute('href');
+        try {
+          const res = await fetch(targetPage);
+          if (!res.ok) throw new Error();
+          const html = await res.text();
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+
+          const newMain = doc.querySelector('main');
+          const currentMain = document.querySelector('main');
+
+          if (newMain && currentMain) {
+            currentMain.innerHTML = newMain.innerHTML;
+            currentMain.className = newMain.className; // copy styles if any
+
+            // Re-attach scripts if needed
+            const scripts = doc.querySelectorAll('script');
+            scripts.forEach(s => {
+              if (!s.src && s.textContent.includes('DOMContentLoaded')) {
+                const newScript = document.createElement('script');
+                let text = s.textContent.replace("document.addEventListener('DOMContentLoaded', () => {", "(function(){");
+                const lastIdx = text.lastIndexOf("});");
+                if (lastIdx !== -1) {
+                  text = text.substring(0, lastIdx) + "})();" + text.substring(lastIdx + 3);
+                }
+                newScript.textContent = text;
+                document.body.appendChild(newScript);
+              }
+            });
+
+            // Use history API to pretend we are on the same page but URL updates
+            window.history.pushState({}, '', targetPage);
+
+            // Close panels if they are open
+            document.querySelectorAll('#coins-panel,#notif-panel,#msg-panel,#profile-panel').forEach(p => {
+              if (p) p.classList.add('hidden');
+            });
+
+            // Update the top navbar links active state
+            const navLinks = document.querySelectorAll('#main-nav a');
+            navLinks.forEach(link => {
+              if (link.getAttribute('href') === targetPage) {
+                link.className = "text-cyan-400 font-bold border-b-2 border-cyan-400 pb-1 font-['Space_Grotesk'] transition-colors duration-300 text-sm";
+              } else {
+                link.className = "text-neutral-400 hover:text-purple-400 font-['Space_Grotesk'] transition-colors duration-300 text-sm";
+              }
+            });
+          }
+        } catch (err) {
+          window.location.href = targetPage;
+        }
+      });
+    });
+  }
+
+  // Only run this slightly after render so buttons are present
+  setTimeout(attachSPA, 100);
+
 })();
