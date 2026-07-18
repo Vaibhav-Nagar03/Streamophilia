@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem('streamophiliaLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Help &amp; Support | STREAMOPHILIA</title>
+    <script src="theme.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "var(--color-surface)",
+                        "surface-container": "var(--color-surface-container)",
+                        "surface-container-high": "var(--color-surface-container-high)",
+                        "surface-container-highest": "var(--color-surface-container-highest)",
+                        "on-surface": "var(--color-on-surface)",
+                        "on-surface-variant": "var(--color-on-surface-variant)",
+                        "outline-variant": "var(--color-outline-variant)",
+                        "primary": "var(--color-primary)",
+                        "primary-dim": "var(--color-primary-dim)",
+                        "on-primary": "var(--color-on-primary)",
+                        "secondary": "var(--color-secondary)",
+                        "error": "var(--color-error)",
+                    },
+                    fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"] },
+                },
+            },
+        };
+    </script>
+    <style>
+        body { background: var(--color-surface); color: var(--color-on-surface); font-family: 'Manrope', sans-serif; }
+        details[open] summary .chevron { transform: rotate(180deg); }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <header
+        class="fixed top-0 w-full z-50 bg-neutral-950/80 backdrop-blur-xl shadow-[0_20px_80px_rgba(0,0,0,0.4)] flex justify-between items-center px-8 h-16 transition-colors duration-300">
+        <div class="flex items-center gap-x-[1.2rem]">
+            <a href="index.html"
+                class="text-2xl font-bold bg-gradient-to-br from-purple-400 to-purple-600 bg-clip-text text-transparent font-headline tracking-tight whitespace-nowrap">STREAMOPHILIA</a>
+            <nav class="hidden md:flex items-center gap-x-6 ml-8" id="main-nav"></nav>
+        </div>
+        <div class="flex-1 max-w-xl mx-12" id="search-container"></div>
+        <div class="flex items-center gap-x-6" id="top-actions"></div>
+    </header>
+
+    <div class="flex pt-16">
+        <aside id="main-sidebar"
+            class="fixed left-0 top-16 h-[calc(100vh-4rem)] w-64 bg-[#131316] flex flex-col py-6 px-4 font-body text-sm overflow-y-auto transform -translate-x-full lg:translate-x-0 z-[70] border-r border-outline-variant/10 transition-colors duration-300">
+        </aside>
+
+        <main class="flex-1 lg:ml-64 p-8 min-h-screen">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="font-headline font-bold text-xl mb-6">Help &amp; Support</h1>
+
+                <!-- Quick links -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+                    <a href="setting.html" class="bg-surface-container-high border border-outline-variant/20 rounded-xl p-4 hover:border-primary/40 transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-2 block">settings</span>
+                        <p class="font-bold text-sm">Account Settings</p>
+                        <p class="text-xs text-on-surface-variant mt-1">Manage your profile and preferences</p>
+                    </a>
+                    <a href="my_tournaments.html" class="bg-surface-container-high border border-outline-variant/20 rounded-xl p-4 hover:border-primary/40 transition-colors">
+                        <span class="material-symbols-outlined text-secondary mb-2 block">emoji_events</span>
+                        <p class="font-bold text-sm">Tournaments</p>
+                        <p class="text-xs text-on-surface-variant mt-1">Hosting or joining help</p>
+                    </a>
+                    <a href="shop.html" class="bg-surface-container-high border border-outline-variant/20 rounded-xl p-4 hover:border-primary/40 transition-colors">
+                        <span class="material-symbols-outlined text-primary mb-2 block">account_balance_wallet</span>
+                        <p class="font-bold text-sm">Coins &amp; Wallet</p>
+                        <p class="text-xs text-on-surface-variant mt-1">Balance and transaction history</p>
+                    </a>
+                </div>
+
+                <h2 class="font-headline font-bold text-lg mb-4">Frequently Asked Questions</h2>
+                <div class="space-y-3 mb-10" id="faq-list">
+                    <!-- FAQ items injected below -->
+                </div>
+
+                <h2 class="font-headline font-bold text-lg mb-4">Still need help?</h2>
+                <div class="bg-surface-container-high border border-outline-variant/20 rounded-xl p-6">
+                    <p class="text-sm text-on-surface-variant mb-4">
+                        This project doesn't have live support staff or a ticketing system connected yet, so this form
+                        doesn't send anywhere — but it shows you what a real contact form looks like end to end.
+                    </p>
+                    <form id="contact-form" class="space-y-3">
+                        <input type="text" placeholder="Subject" required
+                            class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-sm focus:border-primary focus:outline-none" />
+                        <textarea placeholder="Describe your issue…" rows="4" required
+                            class="w-full bg-surface-container-highest border border-outline-variant/20 rounded-lg px-4 py-2.5 text-sm focus:border-primary focus:outline-none resize-none"></textarea>
+                        <button type="submit"
+                            class="px-6 py-2.5 rounded-lg bg-primary text-on-primary font-bold text-sm hover:bg-primary-dim transition-colors">
+                            Send Message
+                        </button>
+                        <p id="contact-confirm" class="text-secondary text-xs hidden">Got it — thanks! (Not actually sent anywhere yet, see note above.)</p>
+                    </form>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const faqs = [
+            ["How do coins work?", "Every new account starts with 500 coins. You spend coins to host a tournament (the amount you set as \"Host Investment\") and can earn or lose coins through gameplay features as they're added. Coins aren't real money and can't be withdrawn."],
+            ["Why did my tournament get removed and my coins refunded?", "If an admin removes a tournament for any reason (rule violation, duplicate, etc.), the coins you put in as host investment are automatically returned to your wallet — you never lose coins to a tournament that gets taken down."],
+            ["I can't log in with my account.", "Double check you're using the exact email and password you signed up with. If your account was suspended or banned by an admin, you'll see that specific message when you try to log in rather than a generic error."],
+            ["How do I change my password?", "Go to Settings from the sidebar. If you're locked out and can't log in at all, use \"Forgot Password?\" on the sign-in page instead."],
+            ["Can I get my account deleted?", "Yes — this removes your account, posts, and tournaments permanently. Reach out through the contact form below or ask an admin directly, since self-service deletion isn't wired up in the UI yet."],
+            ["Is my password secure?", "Passwords are hashed with bcrypt before being stored — nobody, including admins, can see your actual password. That said, this is a development project, so don't reuse a password here that protects something important elsewhere."],
+        ];
+
+        const list = document.getElementById('faq-list');
+        list.innerHTML = faqs.map(([q, a]) => `
+            <details class="bg-surface-container-high border border-outline-variant/20 rounded-xl overflow-hidden group">
+                <summary class="flex items-center justify-between px-5 py-4 cursor-pointer list-none select-none">
+                    <span class="font-bold text-sm">${q}</span>
+                    <span class="material-symbols-outlined text-on-surface-variant chevron transition-transform">expand_more</span>
+                </summary>
+                <div class="px-5 pb-4 text-sm text-on-surface-variant leading-relaxed">${a}</div>
+            </details>
+        `).join('');
+
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            document.getElementById('contact-confirm').classList.remove('hidden');
+            e.target.reset();
+        });
+    </script>
+    <script src="nav_components.js"></script>
+</body>
+
+</html>

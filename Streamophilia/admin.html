@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Streamophilia — Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="theme.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface": "var(--color-surface)",
+                        "surface-container": "var(--color-surface-container)",
+                        "surface-container-high": "var(--color-surface-container-high)",
+                        "surface-container-highest": "var(--color-surface-container-highest)",
+                        "surface-container-low": "var(--color-surface-container-low)",
+                        "on-surface": "var(--color-on-surface)",
+                        "on-surface-variant": "var(--color-on-surface-variant)",
+                        "outline": "var(--color-outline)",
+                        "outline-variant": "var(--color-outline-variant)",
+                        "primary": "var(--color-primary)",
+                        "primary-dim": "var(--color-primary-dim)",
+                        "on-primary": "var(--color-on-primary)",
+                        "secondary": "var(--color-secondary)",
+                        "error": "var(--color-error)",
+                        "success": "#4ade80",
+                        "warning": "#fbbf24",
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Manrope"],
+                    },
+                },
+            },
+        };
+    </script>
+    <style>
+        * { margin: 0; box-sizing: border-box; }
+        body { background: var(--color-surface); color: var(--color-on-surface); font-family: 'Manrope', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-thumb { background: #2c2c31; border-radius: 8px; }
+        .nav-item.active { background: rgba(207,150,255,0.12); color: #cf96ff; border-color: rgba(207,150,255,0.3); }
+        .nav-item.disabled { opacity: 0.35; cursor: not-allowed; }
+        .view { display: none; }
+        .view.active { display: block; }
+        table { border-collapse: collapse; width: 100%; }
+        th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: #acaaae; padding: 12px 16px; border-bottom: 1px solid #2c2c31; }
+        td { padding: 12px 16px; border-bottom: 1px solid #1f1f23; font-size: 13px; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+    </style>
+</head>
+
+<body class="dark">
+
+    <!-- ===================== PASSWORD GATE ===================== -->
+    <div id="gate" class="fixed inset-0 z-50 flex items-center justify-center bg-surface">
+        <div class="w-full max-w-sm bg-surface-container-high border border-outline-variant rounded-2xl p-8">
+            <h1 class="font-headline text-xl font-bold text-primary mb-1">Admin Access</h1>
+            <p class="text-sm text-on-surface-variant mb-6">Enter the admin password to continue.</p>
+            <input id="gate-password" type="password" placeholder="Password"
+                class="w-full bg-surface-container-highest border border-outline-variant rounded-lg px-4 py-3 text-sm mb-3 focus:border-primary focus:outline-none" />
+            <p id="gate-error" class="text-error text-xs mb-3 hidden">Incorrect password.</p>
+            <button id="gate-submit"
+                class="w-full py-3 rounded-lg bg-primary text-on-primary font-bold text-sm hover:bg-primary-dim transition-colors">
+                Enter Dashboard
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================== APP SHELL ===================== -->
+    <div id="app" class="hidden flex h-screen overflow-hidden">
+
+        <!-- Sidebar -->
+        <aside class="w-64 flex-shrink-0 bg-surface-container-low border-r border-outline-variant flex flex-col">
+            <div class="px-6 py-5 border-b border-outline-variant">
+                <h1 class="font-headline font-bold text-lg text-primary">STREAMOPHILIA</h1>
+                <p class="text-[11px] text-on-surface-variant tracking-wide">ADMIN PANEL</p>
+            </div>
+            <nav id="sidebar-nav" class="flex-1 overflow-y-auto py-4 px-3 space-y-1 text-sm"></nav>
+            <div class="p-3 border-t border-outline-variant">
+                <button id="logout-btn" class="w-full text-left px-3 py-2 rounded-lg text-on-surface-variant hover:text-error hover:bg-error/10 transition-colors text-sm">Log out</button>
+            </div>
+        </aside>
+
+        <!-- Main -->
+        <main class="flex-1 overflow-y-auto">
+            <header class="sticky top-0 z-10 bg-surface/90 backdrop-blur border-b border-outline-variant px-8 py-4 flex items-center justify-between">
+                <h2 id="view-title" class="font-headline font-bold text-xl">Dashboard</h2>
+                <div id="toast-area" class="flex flex-col gap-2"></div>
+            </header>
+
+            <div class="p-8">
+
+                <!-- ============ DASHBOARD ============ -->
+                <section id="view-dashboard" class="view active space-y-8">
+                    <div id="stat-cards" class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4"></div>
+
+                    <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-6">
+                        <h3 class="font-headline font-bold mb-4">Signups — Last 14 Days</h3>
+                        <canvas id="growth-chart" height="80"></canvas>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-5">
+                            <h3 class="font-headline font-bold text-sm mb-3 text-primary">Recent Signups</h3>
+                            <div id="recent-users" class="space-y-2 text-sm"></div>
+                        </div>
+                        <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-5">
+                            <h3 class="font-headline font-bold text-sm mb-3 text-secondary">Recent Tournaments</h3>
+                            <div id="recent-tournaments" class="space-y-2 text-sm"></div>
+                        </div>
+                        <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-5">
+                            <h3 class="font-headline font-bold text-sm mb-3 text-warning">Recent Posts</h3>
+                            <div id="recent-posts" class="space-y-2 text-sm"></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============ USERS ============ -->
+                <section id="view-users" class="view space-y-4">
+                    <div class="flex flex-wrap gap-3 items-center justify-between">
+                        <input id="users-search" placeholder="Search username or email…"
+                            class="bg-surface-container-high border border-outline-variant rounded-lg px-4 py-2 text-sm w-72 focus:border-primary focus:outline-none" />
+                        <select id="users-filter" class="bg-surface-container-high border border-outline-variant rounded-lg px-3 py-2 text-sm focus:outline-none">
+                            <option value="">All statuses</option>
+                            <option value="active">Active</option>
+                            <option value="suspended">Suspended</option>
+                            <option value="banned">Banned</option>
+                        </select>
+                    </div>
+                    <div class="bg-surface-container-high border border-outline-variant rounded-2xl overflow-hidden">
+                        <table>
+                            <thead>
+                                <tr><th>Username</th><th>Email</th><th>Coins</th><th>Status</th><th>Joined</th><th>Actions</th></tr>
+                            </thead>
+                            <tbody id="users-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ============ TOURNAMENTS ============ -->
+                <section id="view-tournaments" class="view space-y-4">
+                    <input id="tournaments-search" placeholder="Search name, host, or game…"
+                        class="bg-surface-container-high border border-outline-variant rounded-lg px-4 py-2 text-sm w-72 focus:border-primary focus:outline-none" />
+                    <div class="bg-surface-container-high border border-outline-variant rounded-2xl overflow-hidden">
+                        <table>
+                            <thead>
+                                <tr><th>Name</th><th>Host</th><th>Game</th><th>Escrow</th><th>Members</th><th>Created</th><th>Actions</th></tr>
+                            </thead>
+                            <tbody id="tournaments-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ============ COMMUNITY / POSTS ============ -->
+                <section id="view-community" class="view space-y-4">
+                    <input id="posts-search" placeholder="Search author or text…"
+                        class="bg-surface-container-high border border-outline-variant rounded-lg px-4 py-2 text-sm w-72 focus:border-primary focus:outline-none" />
+                    <div class="bg-surface-container-high border border-outline-variant rounded-2xl overflow-hidden">
+                        <table>
+                            <thead>
+                                <tr><th>Author</th><th>Text</th><th>Image</th><th>Posted</th><th>Actions</th></tr>
+                            </thead>
+                            <tbody id="posts-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ============ WALLET & FINANCE ============ -->
+                <section id="view-wallet" class="view space-y-6">
+                    <div id="wallet-cards" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+                    <div class="bg-surface-container-high border border-outline-variant rounded-2xl overflow-hidden">
+                        <div class="px-5 py-4 border-b border-outline-variant">
+                            <h3 class="font-headline font-bold text-sm">Transaction Ledger <span class="text-on-surface-variant font-normal">(last 200)</span></h3>
+                        </div>
+                        <table>
+                            <thead>
+                                <tr><th>User</th><th>Type</th><th>Amount</th><th>Reason</th><th>Date</th></tr>
+                            </thead>
+                            <tbody id="transactions-tbody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- ============ SETTINGS ============ -->
+                <section id="view-settings" class="view space-y-4">
+                    <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-6 max-w-lg">
+                        <h3 class="font-headline font-bold mb-4">System Info</h3>
+                        <div class="space-y-2 text-sm text-on-surface-variant">
+                            <p>Database: <span class="text-on-surface">SQLite (Backend/data/streamophilia.db)</span></p>
+                            <p>Signup bonus: <span class="text-on-surface">500 coins</span></p>
+                            <p>Admin auth: <span class="text-on-surface">Shared password (dev-grade — see notes)</span></p>
+                        </div>
+                        <p class="text-xs text-on-surface-variant mt-4 leading-relaxed">
+                            Further settings (branding, commission rules, email config, etc.) aren't wired to real
+                            behavior yet, so they're intentionally left out rather than shown as fake controls.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- ============ NOT CONNECTED (placeholder for disabled modules) ============ -->
+                <section id="view-disabled" class="view">
+                    <div class="flex flex-col items-center justify-center py-24 text-center">
+                        <div class="w-16 h-16 rounded-2xl bg-surface-container-high border border-outline-variant flex items-center justify-center mb-4">
+                            <span class="text-2xl">🔌</span>
+                        </div>
+                        <h3 class="font-headline font-bold text-lg mb-1" id="disabled-title">Not connected</h3>
+                        <p class="text-sm text-on-surface-variant max-w-sm">This module doesn't have a real data source in the project yet, so it isn't shown here as a working page. Ask to have it built once the underlying feature exists.</p>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- ===================== MODALS ===================== -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-40 hidden items-center justify-center p-4">
+        <div id="modal-box" class="bg-surface-container-high border border-outline-variant rounded-2xl p-6 w-full max-w-sm"></div>
+    </div>
+
+    <script>
+        const API = window.location.origin;
+        let adminPassword = sessionStorage.getItem('adminPassword') || '';
+
+        // ---------------- TOASTS ----------------
+        function toast(message, type = 'success') {
+            const el = document.createElement('div');
+            const color = type === 'error' ? 'bg-error text-on-error' : 'bg-success text-black';
+            el.className = `${color} px-4 py-2 rounded-lg text-xs font-bold shadow-lg animate-pulse`;
+            el.textContent = message;
+            document.getElementById('toast-area').appendChild(el);
+            setTimeout(() => el.remove(), 3500);
+        }
+
+        // ---------------- CONFIRM DIALOG ----------------
+        function confirmDialog(title, body) {
+            return new Promise(resolve => {
+                const backdrop = document.getElementById('modal-backdrop');
+                const box = document.getElementById('modal-box');
+                box.innerHTML = `
+                    <h3 class="font-headline font-bold text-lg mb-2">${title}</h3>
+                    <p class="text-sm text-on-surface-variant mb-6">${body}</p>
+                    <div class="flex justify-end gap-3">
+                        <button id="confirm-cancel" class="px-4 py-2 rounded-lg text-sm text-on-surface-variant hover:text-on-surface">Cancel</button>
+                        <button id="confirm-ok" class="px-4 py-2 rounded-lg text-sm font-bold bg-error text-white hover:opacity-90">Confirm</button>
+                    </div>`;
+                backdrop.classList.remove('hidden');
+                backdrop.classList.add('flex');
+                document.getElementById('confirm-cancel').onclick = () => { backdrop.classList.add('hidden'); resolve(false); };
+                document.getElementById('confirm-ok').onclick = () => { backdrop.classList.add('hidden'); resolve(true); };
+            });
+        }
+
+        function promptModal(title, fields) {
+            // fields: [{id, label, type, placeholder}]
+            return new Promise(resolve => {
+                const backdrop = document.getElementById('modal-backdrop');
+                const box = document.getElementById('modal-box');
+                box.innerHTML = `
+                    <h3 class="font-headline font-bold text-lg mb-4">${title}</h3>
+                    <div class="space-y-3 mb-6">
+                        ${fields.map(f => `
+                            <div>
+                                <label class="text-xs text-on-surface-variant block mb-1">${f.label}</label>
+                                <input id="pm-${f.id}" type="${f.type || 'text'}" placeholder="${f.placeholder || ''}"
+                                    class="w-full bg-surface-container-highest border border-outline-variant rounded-lg px-3 py-2 text-sm focus:border-primary focus:outline-none" />
+                            </div>`).join('')}
+                    </div>
+                    <div class="flex justify-end gap-3">
+                        <button id="pm-cancel" class="px-4 py-2 rounded-lg text-sm text-on-surface-variant hover:text-on-surface">Cancel</button>
+                        <button id="pm-ok" class="px-4 py-2 rounded-lg text-sm font-bold bg-primary text-on-primary hover:bg-primary-dim">Submit</button>
+                    </div>`;
+                backdrop.classList.remove('hidden');
+                backdrop.classList.add('flex');
+                document.getElementById('pm-cancel').onclick = () => { backdrop.classList.add('hidden'); resolve(null); };
+                document.getElementById('pm-ok').onclick = () => {
+                    const result = {};
+                    fields.forEach(f => result[f.id] = document.getElementById(`pm-${f.id}`).value);
+                    backdrop.classList.add('hidden');
+                    resolve(result);
+                };
+            });
+        }
+
+        // ---------------- API HELPER ----------------
+        async function api(path, opts = {}) {
+            const res = await fetch(API + path, {
+                ...opts,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-admin-password': adminPassword,
+                    ...(opts.headers || {})
+                }
+            });
+            const data = await res.json().catch(() => ({}));
+            if (!res.ok) throw new Error(data.error || 'Request failed.');
+            return data;
+        }
+
+        function timeAgo(iso) {
+            const s = Math.floor((Date.now() - new Date(iso).getTime()) / 1000);
+            if (s < 60) return 'just now';
+            const m = Math.floor(s / 60); if (m < 60) return `${m}m ago`;
+            const h = Math.floor(m / 60); if (h < 24) return `${h}h ago`;
+            return `${Math.floor(h / 24)}d ago`;
+        }
+
+        function escapeHtml(str) {
+            const div = document.createElement('div');
+            div.textContent = str ?? '';
+            return div.innerHTML;
+        }
+
+        // ---------------- SIDEBAR ----------------
+        const NAV_SECTIONS = [
+            { id: 'dashboard', label: 'Dashboard', enabled: true },
+            { id: 'users', label: 'Users', enabled: true },
+            { id: 'creators', label: 'Creators', enabled: false },
+            { id: 'streams', label: 'Streams', enabled: false },
+            { id: 'tournaments', label: 'Tournaments', enabled: true },
+            { id: 'challenges', label: 'Challenges', enabled: false },
+            { id: 'wallet', label: 'Wallet & Finance', enabled: true },
+            { id: 'payments', label: 'Payments', enabled: false },
+            { id: 'community', label: 'Community', enabled: true },
+            { id: 'content', label: 'Content Management', enabled: false },
+            { id: 'games', label: 'Game Management', enabled: false },
+            { id: 'reports', label: 'Reports & Moderation', enabled: false },
+            { id: 'notifications', label: 'Notifications', enabled: false },
+            { id: 'marketing', label: 'Marketing', enabled: false },
+            { id: 'analytics', label: 'Analytics', enabled: false },
+            { id: 'support', label: 'Support', enabled: false },
+            { id: 'security', label: 'Security', enabled: false },
+            { id: 'settings', label: 'Settings', enabled: true },
+            { id: 'developer', label: 'Developer', enabled: false },
+        ];
+
+        function renderSidebar() {
+            const nav = document.getElementById('sidebar-nav');
+            nav.innerHTML = NAV_SECTIONS.map(s => `
+                <button data-id="${s.id}" data-enabled="${s.enabled}"
+                    class="nav-item w-full text-left px-3 py-2 rounded-lg border border-transparent transition-colors flex items-center justify-between ${s.enabled ? 'hover:bg-surface-container-high text-on-surface' : 'disabled text-on-surface-variant'}">
+                    <span>${s.label}</span>
+                    ${s.enabled ? '' : '<span class="text-[9px] uppercase tracking-wide border border-outline-variant rounded px-1.5 py-0.5">soon</span>'}
+                </button>
+            `).join('');
+            nav.querySelectorAll('.nav-item').forEach(btn => {
+                btn.addEventListener('click', () => switchView(btn.dataset.id, btn.dataset.enabled === 'true', btn.textContent.trim()));
+            });
+        }
+
+        function switchView(id, enabled, label) {
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.nav-item[data-id="${id}"]`)?.classList.add('active');
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+
+            document.getElementById('view-title').textContent = label.replace('soon', '').trim();
+
+            const map = { dashboard: 'view-dashboard', users: 'view-users', tournaments: 'view-tournaments', community: 'view-community', wallet: 'view-wallet', settings: 'view-settings' };
+            if (enabled && map[id]) {
+                document.getElementById(map[id]).classList.add('active');
+                loadView(id);
+            } else {
+                document.getElementById('disabled-title').textContent = label.replace('soon', '').trim();
+                document.getElementById('view-disabled').classList.add('active');
+            }
+        }
+
+        function loadView(id) {
+            if (id === 'dashboard') loadDashboard();
+            if (id === 'users') loadUsers();
+            if (id === 'tournaments') loadTournaments();
+            if (id === 'community') loadPosts();
+            if (id === 'wallet') loadWallet();
+        }
+
+        // ---------------- DASHBOARD ----------------
+        let growthChart;
+        async function loadDashboard() {
+            const d = await api('/api/admin/overview');
+
+            document.getElementById('stat-cards').innerHTML = [
+                ['Total Users', d.totalUsers, 'text-primary'],
+                ['Tournaments', d.totalTournaments, 'text-secondary'],
+                ['Posts', d.totalPosts, 'text-warning'],
+                ['Banned Users', d.bannedUsers, 'text-error'],
+                ['Coins Circulating', d.coinsCirculating, 'text-success'],
+                ['Coins in Escrow', d.coinsEscrow, 'text-primary'],
+            ].map(([label, value, color]) => `
+                <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-5">
+                    <p class="text-3xl font-headline font-bold ${color}">${value}</p>
+                    <p class="text-xs text-on-surface-variant mt-1">${label}</p>
+                </div>
+            `).join('');
+
+            const labels = d.userGrowth.map(r => r.day.slice(5));
+            const values = d.userGrowth.map(r => r.count);
+            const ctx = document.getElementById('growth-chart');
+            if (growthChart) growthChart.destroy();
+            growthChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Signups',
+                        data: values,
+                        borderColor: '#cf96ff',
+                        backgroundColor: 'rgba(207,150,255,0.15)',
+                        tension: 0.35,
+                        fill: true,
+                        pointRadius: 3,
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#acaaae' }, grid: { color: '#1f1f23' } },
+                        y: { ticks: { color: '#acaaae', precision: 0 }, grid: { color: '#1f1f23' } }
+                    }
+                }
+            });
+
+            document.getElementById('recent-users').innerHTML = d.recentUsers.map(u =>
+                `<div class="flex justify-between"><span>${escapeHtml(u.username)}</span><span class="text-on-surface-variant text-xs">${timeAgo(u.created_at)}</span></div>`
+            ).join('') || '<p class="text-on-surface-variant">No users yet.</p>';
+
+            document.getElementById('recent-tournaments').innerHTML = d.recentTournaments.map(t =>
+                `<div class="flex justify-between"><span>${escapeHtml(t.name)}</span><span class="text-on-surface-variant text-xs">${t.host_investment} coins</span></div>`
+            ).join('') || '<p class="text-on-surface-variant">No tournaments yet.</p>';
+
+            document.getElementById('recent-posts').innerHTML = d.recentPosts.map(p =>
+                `<div class="flex justify-between gap-2"><span class="truncate">${escapeHtml(p.text || '(image only)')}</span><span class="text-on-surface-variant text-xs flex-shrink-0">${timeAgo(p.created_at)}</span></div>`
+            ).join('') || '<p class="text-on-surface-variant">No posts yet.</p>';
+        }
+
+        // ---------------- USERS ----------------
+        let allUsers = [];
+        async function loadUsers() {
+            const d = await api('/api/admin/users');
+            allUsers = d.users;
+            renderUsers();
+        }
+
+        function statusBadge(status) {
+            const map = { active: 'bg-success/20 text-success', suspended: 'bg-warning/20 text-warning', banned: 'bg-error/20 text-error' };
+            return `<span class="badge ${map[status] || map.active}">${status}</span>`;
+        }
+
+        function renderUsers() {
+            const search = document.getElementById('users-search').value.toLowerCase();
+            const filter = document.getElementById('users-filter').value;
+            const rows = allUsers.filter(u =>
+                (!search || u.username.toLowerCase().includes(search) || u.email.toLowerCase().includes(search)) &&
+                (!filter || u.status === filter)
+            );
+
+            document.getElementById('users-tbody').innerHTML = rows.map(u => `
+                <tr>
+                    <td class="font-bold text-primary">${escapeHtml(u.username)}</td>
+                    <td>${escapeHtml(u.email)}</td>
+                    <td>${u.coins}</td>
+                    <td>${statusBadge(u.status || 'active')}</td>
+                    <td class="text-on-surface-variant">${new Date(u.created_at).toLocaleDateString()}</td>
+                    <td class="space-x-2 whitespace-nowrap">
+                        <button class="text-secondary hover:underline text-xs" onclick="adjustCoins(${u.id}, '${escapeHtml(u.username)}')">Adjust Coins</button>
+                        <button class="text-warning hover:underline text-xs" onclick="toggleBan(${u.id}, '${u.status || 'active'}', '${escapeHtml(u.username)}')">${u.status === 'banned' ? 'Unban' : 'Ban'}</button>
+                        <button class="text-error hover:underline text-xs" onclick="deleteUser(${u.id}, '${escapeHtml(u.username)}')">Delete</button>
+                    </td>
+                </tr>
+            `).join('') || `<tr><td colspan="6" class="text-center text-on-surface-variant py-8">No matching users.</td></tr>`;
+        }
+        document.getElementById('users-search').addEventListener('input', renderUsers);
+        document.getElementById('users-filter').addEventListener('change', renderUsers);
+
+        async function adjustCoins(id, username) {
+            const result = await promptModal(`Adjust ${username}'s coins`, [
+                { id: 'amount', label: 'Amount (negative to debit)', type: 'number', placeholder: 'e.g. 100 or -50' },
+                { id: 'reason', label: 'Reason', placeholder: 'e.g. Tournament prize payout' }
+            ]);
+            if (!result || !result.amount) return;
+            try {
+                const d = await api(`/api/admin/users/${id}/coins`, { method: 'POST', body: JSON.stringify({ amount: Number(result.amount), reason: result.reason }) });
+                toast(`Wallet updated — new balance ${d.coins} coins.`);
+                loadUsers();
+            } catch (err) { toast(err.message, 'error'); }
+        }
+
+        async function toggleBan(id, currentStatus, username) {
+            const newStatus = currentStatus === 'banned' ? 'active' : 'banned';
+            const ok = await confirmDialog(`${newStatus === 'banned' ? 'Ban' : 'Unban'} ${username}?`, newStatus === 'banned' ? 'They will be blocked from logging in.' : 'They will be able to log in again.');
+            if (!ok) return;
+            try {
+                await api(`/api/admin/users/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status: newStatus }) });
+                toast(`${username} is now ${newStatus}.`);
+                loadUsers();
+            } catch (err) { toast(err.message, 'error'); }
+        }
+
+        async function deleteUser(id, username) {
+            const ok = await confirmDialog(`Delete ${username}?`, 'This permanently deletes their account, posts, and tournaments. This cannot be undone.');
+            if (!ok) return;
+            try {
+                await api(`/api/admin/users/${id}`, { method: 'DELETE' });
+                toast(`${username} deleted.`);
+                loadUsers();
+            } catch (err) { toast(err.message, 'error'); }
+        }
+
+        // ---------------- TOURNAMENTS ----------------
+        let allTournaments = [];
+        async function loadTournaments() {
+            const d = await api('/api/admin/tournaments');
+            allTournaments = d.tournaments;
+            renderTournaments();
+        }
+
+        function renderTournaments() {
+            const search = document.getElementById('tournaments-search').value.toLowerCase();
+            const rows = allTournaments.filter(t =>
+                !search || t.name.toLowerCase().includes(search) || (t.host_username || '').toLowerCase().includes(search) || (t.game || '').toLowerCase().includes(search)
+            );
+            document.getElementById('tournaments-tbody').innerHTML = rows.map(t => `
+                <tr>
+                    <td class="font-bold">${escapeHtml(t.name)}</td>
+                    <td class="text-primary">${escapeHtml(t.host_username)}</td>
+                    <td>${escapeHtml(t.game || '—')}</td>
+                    <td>${t.host_investment} coins</td>
+                    <td>${t.min_members || '?'}–${t.max_members || '?'}</td>
+                    <td class="text-on-surface-variant">${new Date(t.created_at).toLocaleDateString()}</td>
+                    <td><button class="text-error hover:underline text-xs" onclick="deleteTournament(${t.id}, '${escapeHtml(t.name)}')">Delete & Refund</button></td>
+                </tr>
+            `).join('') || `<tr><td colspan="7" class="text-center text-on-surface-variant py-8">No matching tournaments.</td></tr>`;
+        }
+        document.getElementById('tournaments-search').addEventListener('input', renderTournaments);
+
+        async function deleteTournament(id, name) {
+            const ok = await confirmDialog(`Delete "${name}"?`, "The host's escrowed coins will be refunded automatically.");
+            if (!ok) return;
+            try {
+                const d = await api(`/api/admin/tournaments/${id}`, { method: 'DELETE' });
+                toast(d.message);
+                loadTournaments();
+            } catch (err) { toast(err.message, 'error'); }
+        }
+
+        // ---------------- POSTS ----------------
+        let allPosts = [];
+        async function loadPosts() {
+            const d = await api('/api/admin/posts');
+            allPosts = d.posts;
+            renderPosts();
+        }
+
+        function renderPosts() {
+            const search = document.getElementById('posts-search').value.toLowerCase();
+            const rows = allPosts.filter(p =>
+                !search || (p.username || '').toLowerCase().includes(search) || (p.text || '').toLowerCase().includes(search)
+            );
+            document.getElementById('posts-tbody').innerHTML = rows.map(p => `
+                <tr>
+                    <td class="text-primary font-bold">${escapeHtml(p.username)}</td>
+                    <td class="max-w-md truncate">${escapeHtml(p.text || '(no text)')}</td>
+                    <td>${p.image ? 'Yes' : 'No'}</td>
+                    <td class="text-on-surface-variant">${new Date(p.created_at).toLocaleDateString()}</td>
+                    <td><button class="text-error hover:underline text-xs" onclick="deletePost(${p.id})">Delete</button></td>
+                </tr>
+            `).join('') || `<tr><td colspan="5" class="text-center text-on-surface-variant py-8">No matching posts.</td></tr>`;
+        }
+        document.getElementById('posts-search').addEventListener('input', renderPosts);
+
+        async function deletePost(id) {
+            const ok = await confirmDialog('Delete this post?', 'This cannot be undone.');
+            if (!ok) return;
+            try {
+                await api(`/api/admin/posts/${id}`, { method: 'DELETE' });
+                toast('Post deleted.');
+                loadPosts();
+            } catch (err) { toast(err.message, 'error'); }
+        }
+
+        // ---------------- WALLET & FINANCE ----------------
+        async function loadWallet() {
+            const overview = await api('/api/admin/overview');
+            document.getElementById('wallet-cards').innerHTML = `
+                <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-5">
+                    <p class="text-3xl font-headline font-bold text-success">${overview.coinsCirculating}</p>
+                    <p class="text-xs text-on-surface-variant mt-1">Total coins in circulation</p>
+                </div>
+                <div class="bg-surface-container-high border border-outline-variant rounded-2xl p-5">
+                    <p class="text-3xl font-headline font-bold text-primary">${overview.coinsEscrow}</p>
+                    <p class="text-xs text-on-surface-variant mt-1">Coins locked in active tournament escrow</p>
+                </div>
+            `;
+
+            const t = await api('/api/admin/transactions');
+            const typeColor = { signup_bonus: 'text-success', tournament_host: 'text-error', tournament_refund: 'text-success', admin_credit: 'text-success', admin_debit: 'text-error' };
+            document.getElementById('transactions-tbody').innerHTML = t.transactions.map(tx => `
+                <tr>
+                    <td class="text-primary">${escapeHtml(tx.username)}</td>
+                    <td><span class="badge bg-surface-container-highest text-on-surface-variant">${tx.type.replace('_', ' ')}</span></td>
+                    <td class="font-bold ${typeColor[tx.type] || ''}">${tx.amount > 0 ? '+' : ''}${tx.amount}</td>
+                    <td class="text-on-surface-variant">${escapeHtml(tx.reason || '')}</td>
+                    <td class="text-on-surface-variant">${new Date(tx.created_at).toLocaleString()}</td>
+                </tr>
+            `).join('') || `<tr><td colspan="5" class="text-center text-on-surface-variant py-8">No transactions yet.</td></tr>`;
+        }
+
+        // ---------------- GATE / BOOTSTRAP ----------------
+        async function tryEnter(password) {
+            try {
+                await fetch(API + '/api/admin/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ password })
+                }).then(async r => {
+                    if (!r.ok) throw new Error((await r.json()).error || 'Incorrect password.');
+                });
+                adminPassword = password;
+                sessionStorage.setItem('adminPassword', password);
+                document.getElementById('gate').classList.add('hidden');
+                document.getElementById('app').classList.remove('hidden');
+                renderSidebar();
+                switchView('dashboard', true, 'Dashboard');
+                document.querySelector('.nav-item[data-id="dashboard"]').classList.add('active');
+            } catch (err) {
+                document.getElementById('gate-error').textContent = err.message;
+                document.getElementById('gate-error').classList.remove('hidden');
+            }
+        }
+
+        document.getElementById('gate-submit').addEventListener('click', () => tryEnter(document.getElementById('gate-password').value));
+        document.getElementById('gate-password').addEventListener('keydown', e => { if (e.key === 'Enter') tryEnter(e.target.value); });
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            sessionStorage.removeItem('adminPassword');
+            location.reload();
+        });
+
+        // Auto-enter if we already have a verified password this session
+        if (adminPassword) tryEnter(adminPassword);
+    </script>
+</body>
+
+</html>

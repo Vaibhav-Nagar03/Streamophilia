@@ -1,0 +1,6 @@
+node_modules/
+data/streamophilia.db
+data/streamophilia.db-journal
+data/streamophilia.db-wal
+data/streamophilia.db-shm
+.env

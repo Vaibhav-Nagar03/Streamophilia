@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>STREAMOPHILIA | Terms of Service</title>
+    <script src="theme.js"></script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: { extend: { colors: {
+                "surface": "var(--color-surface)", "surface-container-high": "var(--color-surface-container-high)",
+                "on-surface": "var(--color-on-surface)", "on-surface-variant": "var(--color-on-surface-variant)",
+                "outline-variant": "var(--color-outline-variant)", "primary": "var(--color-primary)",
+            }, fontFamily: { "headline": ["Space Grotesk"], "body": ["Manrope"] } } },
+        };
+    </script>
+    <style>body { background: var(--color-surface); }</style>
+</head>
+
+<body class="font-body text-on-surface min-h-screen">
+    <div class="max-w-3xl mx-auto px-6 py-12">
+        <a href="login.html" class="text-primary text-sm font-bold hover:text-secondary transition-colors">&larr; Back</a>
+        <h1 class="font-headline font-bold text-3xl mt-4 mb-2">Terms of Service</h1>
+        <p class="text-on-surface-variant text-sm mb-10">Last updated: development build — placeholder terms for this project, not reviewed by a lawyer.</p>
+
+        <div class="space-y-8 text-sm leading-relaxed text-on-surface-variant">
+            <section>
+                <h2 class="font-headline font-bold text-lg text-on-surface mb-2">1. Using Streamophilia</h2>
+                <p>By creating an account, you agree to use the platform in good faith — no harassment, spam, or attempts to manipulate tournaments, coins, or leaderboards.</p>
+            </section>
+            <section>
+                <h2 class="font-headline font-bold text-lg text-on-surface mb-2">2. Coins &amp; Tournaments</h2>
+                <p>Coins on this platform are a virtual, non-monetary token used to host and join tournaments. They hold no real-world cash value and cannot be redeemed, purchased, or withdrawn.</p>
+            </section>
+            <section>
+                <h2 class="font-headline font-bold text-lg text-on-surface mb-2">3. Content You Post</h2>
+                <p>You're responsible for anything you post to the Tournament Feed or elsewhere. Posts that violate community standards may be removed by an admin.</p>
+            </section>
+            <section>
+                <h2 class="font-headline font-bold text-lg text-on-surface mb-2">4. Account Actions</h2>
+                <p>Accounts that violate these terms may be suspended or banned. You can request account deletion at any time.</p>
+            </section>
+            <section>
+                <h2 class="font-headline font-bold text-lg text-on-surface mb-2">5. Changes</h2>
+                <p>These terms may change as the platform develops. Continued use after a change means you accept the updated terms.</p>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
